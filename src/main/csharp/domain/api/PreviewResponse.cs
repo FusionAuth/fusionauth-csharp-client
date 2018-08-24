@@ -14,7 +14,7 @@
  * language governing permissions and limitations under the License.
  */
 
-using Io.FusionAuth.Error;
+using FusionAuth.Error;
 
 namespace FusionAuth.Domain
 {

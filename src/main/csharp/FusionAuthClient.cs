@@ -14,17 +14,12 @@
  * language governing permissions and limitations under the License.
  */
 
+using FusionAuth.Error;
+using FusionAuth.Domain;
+using Inversoft.Restify;
 using System;
 using System.Collections.Generic;
-using Io.FusionAuth.Error;
-using FusionAuth.Domain.Api;
-using FusionAuth.Domain.Api.Jwt;
-using FusionAuth.Domain.Api.Report;
-using FusionAuth.Domain.Api.TwoFactor;
-using FusionAuth.Domain.Api.Users;
 using System.Net;
-
-using Inversoft.Restify;
 
 namespace FusionAuth
 {
