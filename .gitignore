@@ -1,0 +1,9 @@
+obj
+bin
+packages
+build
+**/.DS_Store
+*.userprefs
+**/UserPrefs.xml
+**/workspace.xml
+.vs/

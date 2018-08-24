@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../LICENSE" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../README.md" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/csharp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src/test/csharp" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+      <excludeFolder url="file://$MODULE_DIR$/../../src/main/csharp/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../src/main/csharp/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../src/test/csharp/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../src/test/csharp/obj" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

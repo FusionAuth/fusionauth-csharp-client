@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.1.324\build\NuGet.Build.Packaging.props" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.1.324\build\NuGet.Build.Packaging.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29216E22-A0AC-42E6-872E-FBE7A908C002}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FusionAuth</RootNamespace>
+    <AssemblyName>FusionAuthClient</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <LangVersion>3</LangVersion>
+    <PackageId>FusionAuth</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Brian Pontarelli, Daniel DeGroff</Authors>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Owners>voidmain, robotdan</Owners>
+    <PackageProjectUrl>https://github.com/FusionAuth/fusionauth-csharp-client</PackageProjectUrl>
+    <Summary>C# FusionAuth Client</Summary>
+    <PackageTags>json rest fusionauth api</PackageTags>
+    <Title>C# FusionAuth Client</Title>
+    <Description>C# FusionAuth Client</Description>
+    <PackOnBuild>false</PackOnBuild>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>
+    </DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="domain\api\ApplicationRequest.cs" />
+    <Compile Include="domain\api\ApplicationResponse.cs" />
+    <Compile Include="domain\api\AuditLogRequest.cs" />
+    <Compile Include="domain\api\AuditLogResponse.cs" />
+    <Compile Include="domain\api\AuditLogSearchRequest.cs" />
+    <Compile Include="domain\api\AuditLogSearchResponse.cs" />
+    <Compile Include="domain\api\EmailTemplateRequest.cs" />
+    <Compile Include="domain\api\EmailTemplateResponse.cs" />
+    <Compile Include="domain\api\email\SendRequest.cs" />
+    <Compile Include="domain\api\email\SendResponse.cs" />
+    <Compile Include="domain\api\GroupRequest.cs" />
+    <Compile Include="domain\api\GroupResponse.cs" />
+    <Compile Include="domain\api\IntegrationRequest.cs" />
+    <Compile Include="domain\api\IntegrationResponse.cs" />
+    <Compile Include="domain\api\jwt\IssueResponse.cs" />
+    <Compile Include="domain\api\jwt\RefreshRequest.cs" />
+    <Compile Include="domain\api\jwt\ValidateResponse.cs" />
+    <Compile Include="domain\api\LoginPreventedResponse.cs" />
+    <Compile Include="domain\api\LoginRequest.cs" />
+    <Compile Include="domain\api\LoginResponse.cs" />
+    <Compile Include="domain\api\MemberDeleteRequest.cs" />
+    <Compile Include="domain\api\MemberRequest.cs" />
+    <Compile Include="domain\api\MemberResponse.cs" />
+    <Compile Include="domain\api\PublicKeyResponse.cs" />
+    <Compile Include="domain\api\UserDeleteRequest.cs" />
+    <Compile Include="domain\api\user\ForgotPasswordResponse.cs" />
+    <Compile Include="domain\api\WebhookRequest.cs" />
+    <Compile Include="domain\api\WebhookResponse.cs" />
+    <Compile Include="domain\api\PreviewRequest.cs" />
+    <Compile Include="domain\api\PreviewResponse.cs" />
+    <Compile Include="domain\api\report\Count.cs" />
+    <Compile Include="domain\api\report\DailyActiveUserReportResponse.cs" />
+    <Compile Include="domain\api\report\LoginReportResponse.cs" />
+    <Compile Include="domain\api\report\MonthlyActiveUserReportResponse.cs" />
+    <Compile Include="domain\api\report\RegistrationReportResponse.cs" />
+    <Compile Include="domain\api\report\TotalsReportResponse.cs" />
+    <Compile Include="domain\api\report\UserLoginReportResponse.cs" />
+    <Compile Include="domain\api\SystemConfigurationRequest.cs" />
+    <Compile Include="domain\api\SystemConfigurationResponse.cs" />
+    <Compile Include="domain\api\TwoFactorRequest.cs" />
+    <Compile Include="domain\api\UserActionReasonRequest.cs" />
+    <Compile Include="domain\api\UserActionReasonResponse.cs" />
+    <Compile Include="domain\api\UserActionRequest.cs" />
+    <Compile Include="domain\api\UserActionResponse.cs" />
+    <Compile Include="domain\api\UserCommentRequest.cs" />
+    <Compile Include="domain\api\UserCommentResponse.cs" />
+    <Compile Include="domain\api\UserRequest.cs" />
+    <Compile Include="domain\api\UserResponse.cs" />
+    <Compile Include="domain\api\user\ActionRequest.cs" />
+    <Compile Include="domain\api\user\ActionResponse.cs" />
+    <Compile Include="domain\api\user\ChangePasswordRequest.cs" />
+    <Compile Include="domain\api\user\ForgotPasswordRequest.cs" />
+    <Compile Include="domain\api\user\ImportRequest.cs" />
+    <Compile Include="domain\api\user\RegistrationRequest.cs" />
+    <Compile Include="domain\api\user\RegistrationResponse.cs" />
+    <Compile Include="domain\api\user\SearchRequest.cs" />
+    <Compile Include="domain\api\user\SearchResponse.cs" />
+    <Compile Include="domain\Application.cs" />
+    <Compile Include="domain\ApplicationRole.cs" />
+    <Compile Include="domain\AuditLog.cs" />
+    <Compile Include="domain\AuditLogData.cs" />
+    <Compile Include="domain\Buildable.cs" />
+    <Compile Include="domain\EmailConfiguration.cs" />
+    <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
+    <Compile Include="domain\Group.cs" />
+    <Compile Include="domain\GroupData.cs" />
+    <Compile Include="domain\GroupMember.cs" />
+    <Compile Include="domain\TwilioConfiguration.cs" />
+    <Compile Include="domain\ContentStatus.cs" />
+    <Compile Include="domain\email\Attachment.cs" />
+    <Compile Include="domain\email\EmailAddress.cs" />
+    <Compile Include="domain\EventConfiguration.cs" />
+    <Compile Include="domain\EventType.cs" />
+    <Compile Include="domain\ExpiryUnit.cs" />
+    <Compile Include="domain\FailedAuthenticationConfiguration.cs" />
+    <Compile Include="domain\HTTPHeaders.cs" />
+    <Compile Include="domain\Integrations.cs" />
+    <Compile Include="domain\JWTConfiguration.cs" />
+    <Compile Include="domain\MaximumPasswordAge.cs" />
+    <Compile Include="domain\MinimumPasswordAge.cs" />
+    <Compile Include="domain\PasswordEncryptionConfiguration.cs" />
+    <Compile Include="domain\RememberPreviousPasswords.cs" />
+    <Compile Include="domain\TransactionType.cs" />
+    <Compile Include="domain\CleanSpeakConfiguration.cs" />
+    <Compile Include="domain\UIConfiguration.cs" />
+    <Compile Include="domain\Webhook.cs" />
+    <Compile Include="domain\event\EventRequest.cs" />
+    <Compile Include="domain\event\UserActionPhase.cs" />
+    <Compile Include="domain\oauth2\GrantType.cs" />
+    <Compile Include="domain\oauth2\OAuth2Configuration.cs" />
+    <Compile Include="domain\email\EmailTemplate.cs" />
+    <Compile Include="domain\PasswordValidationRules.cs" />
+    <Compile Include="domain\RawLogin.cs" />
+    <Compile Include="domain\search\AuditLogSearchCriteria.cs" />
+    <Compile Include="domain\search\BaseSearchCriteria.cs" />
+    <Compile Include="domain\search\SearchResults.cs" />
+    <Compile Include="domain\search\UserSearchCriteria.cs" />
+    <Compile Include="domain\SystemConfiguration.cs" />
+    <Compile Include="domain\User.cs" />
+    <Compile Include="domain\UserAction.cs" />
+    <Compile Include="domain\UserActionOption.cs" />
+    <Compile Include="domain\UserActionReason.cs" />
+    <Compile Include="domain\UserData.cs" />
+    <Compile Include="domain\UserRegistration.cs" />
+    <Compile Include="domain\LocalizedStrings.cs" />
+    <Compile Include="domain\LogHistory.cs" />
+    <Compile Include="domain\event\UserActionEvent.cs" />
+    <Compile Include="domain\UserActionLog.cs" />
+    <Compile Include="domain\UserComment.cs" />
+    <Compile Include="error\Error.cs" />
+    <Compile Include="error\Errors.cs" />
+    <Compile Include="FusionAuthClient.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="domain\search\Sort.cs" />
+    <Compile Include="domain\search\SortField.cs" />
+    <Compile Include="domain\api\jwt\RefreshResponse.cs" />
+    <Compile Include="domain\jwt\MetaData.cs" />
+    <Compile Include="domain\jwt\RefreshToken.cs" />
+    <Compile Include="domain\jwt\DeviceInfo.cs" />
+    <Compile Include="domain\oauth2\AccessToken.cs" />
+    <Compile Include="domain\oauth2\TokenType.cs" />
+    <Compile Include="domain\event\BaseEvent.cs" />
+    <Compile Include="domain\event\ApplicationEvent.cs" />
+    <Compile Include="domain\event\JWTPublicKeyUpdateEvent.cs" />
+    <Compile Include="domain\event\UserBulkCreateEvent.cs" />
+    <Compile Include="domain\event\UserCreateEvent.cs" />
+    <Compile Include="domain\event\UserDeactivateEvent.cs" />
+    <Compile Include="domain\event\UserDeleteEvent.cs" />
+    <Compile Include="domain\event\UserReactivateEvent.cs" />
+    <Compile Include="domain\event\UserUpdateEvent.cs" />
+    <Compile Include="domain\AuthenticationTokenConfiguration.cs" />
+    <Compile Include="domain\KafkaConfiguration.cs" />
+    <Compile Include="domain\api\jwt\ReconcileRequest.cs" />
+    <Compile Include="domain\api\twoFactor\TwoFactorLoginRequest.cs" />
+    <Compile Include="domain\api\user\VerifyEmailResponse.cs" />
+    <Compile Include="domain\api\IdentityProviderRequest.cs" />
+    <Compile Include="domain\api\IdentityProviderResponse.cs" />
+    <Compile Include="domain\IdentityProvider.cs" />
+    <Compile Include="domain\UniqueIdentityClaimType.cs" />
+    <Compile Include="domain\IdentityProviderOAuth2Configuration.cs" />
+    <Compile Include="domain\TwoFactorDelivery.cs" />
+    <Compile Include="domain\api\PasswordValidationRulesResponse.cs" />
+    <Compile Include="domain\api\OAuthConfigurationResponse.cs" />
+    <Compile Include="domain\email\Email.cs" />
+    <Compile Include="domain\api\twoFactor\SecretResponse.cs" />
+    <Compile Include="domain\api\twoFactor\TwoFactorSendRequest.cs" />
+    <Compile Include="domain\api\identityProvider\LookupResponse.cs" />
+    <Compile Include="domain\ExternalIdentifierConfiguration.cs" />
+    <Compile Include="domain\LoginTheme.cs" />
+    <Compile Include="domain\api\user\VerifyRegistrationResponse.cs" />
+    <Compile Include="domain\ApplicationPasswordConfiguration.cs" />
+    <Compile Include="domain\api\TenantResponse.cs" />
+    <Compile Include="domain\Tenant.cs" />
+    <Compile Include="domain\TenantData.cs" />
+    <Compile Include="domain\TenantEmailConfiguration.cs" />
+    <Compile Include="domain\api\TenantRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FusionAuth.Client.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="domain\oauth2\" />
+    <Folder Include="domain\api\jwt\" />
+    <Folder Include="domain\jwt\" />
+    <Folder Include="domain\api\twoFactor\" />
+    <Folder Include="domain\api\identityProvider\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Restify, Version=3.0.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Inversoft.Restify.3.1.5\lib\net20\Restify.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net20\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.1.324\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.1.324\build\NuGet.Build.Packaging.targets')" />
+</Project>

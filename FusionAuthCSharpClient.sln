@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FusionAuthCSharpClient", "src\main\csharp\FusionAuthCSharpClient.csproj", "{29216E22-A0AC-42E6-872E-FBE7A908C002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FusionAuthCSharpClientTest", "src\test\csharp\FusionAuthCSharpClientTest.csproj", "{43D3DE3C-1B5F-42A2-BA2E-F70E4202EC98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{585697A5-D1AC-4DE5-90ED-DBADF45BABCD}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29216E22-A0AC-42E6-872E-FBE7A908C002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29216E22-A0AC-42E6-872E-FBE7A908C002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29216E22-A0AC-42E6-872E-FBE7A908C002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29216E22-A0AC-42E6-872E-FBE7A908C002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D3DE3C-1B5F-42A2-BA2E-F70E4202EC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D3DE3C-1B5F-42A2-BA2E-F70E4202EC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D3DE3C-1B5F-42A2-BA2E-F70E4202EC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D3DE3C-1B5F-42A2-BA2E-F70E4202EC98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$0.VersionControlPolicy = $2
+		$0.StandardHeader = $3
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 80
+		$4.TabWidth = 2
+		$4.TabsToSpaces = True
+		$4.IndentWidth = 2
+		$4.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $5
+		$5.scope = text/x-csharp
+		$0.TextStylePolicy = $6
+		$6.FileWidth = 80
+		$6.TabsToSpaces = True
+		$6.scope = text/plain
+		$0.TextStylePolicy = $7
+		$7.inheritsSet = null
+		$7.scope = application/xml
+		$0.XmlFormattingPolicy = $8
+		$8.scope = application/xml
+		version = 1.21.0
+	EndGlobalSection
+EndGlobal

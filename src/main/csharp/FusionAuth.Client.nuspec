@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+    <metadata>
+        <id>FusionAuth.Client</id>
+        <version>1.0.0</version>
+        <title>C# FusionAuth Client</title>
+        <authors>Brian Pontarelli, Daniel DeGroff</authors>
+        <owners>voidmain, robotdan</owners>
+        <projectUrl>https://github.com/FusionAuth/fusionauth-csharp-client</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>C# FusionAuth Client</description>
+        <summary>C# FusionAuth Client</summary>
+        <copyright>Apache-2.0</copyright>
+        <language>en-US</language>
+        <tags>json rest http fusionauth</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework2.0">
+                <dependency id="Inversoft.Restify" version="1.3.3" />
+                <dependency id="Newtonsoft.Json" version="8.0.3" />
+            </group>
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" targetFramework=".NETFramework2.0" />
+            <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework2.0" />
+        </frameworkAssemblies>
+        <contentFiles>
+            <files include="FusionAuth.Client.nuspec" />
+        </contentFiles>
+    </metadata>
+</package>
