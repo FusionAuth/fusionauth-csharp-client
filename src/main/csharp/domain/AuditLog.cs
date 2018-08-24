@@ -16,6 +16,7 @@
 
 using System;
 
+
 namespace FusionAuth.Domain
 {
   public class AuditLog : Buildable<AuditLog>

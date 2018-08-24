@@ -15,7 +15,6 @@
  */
 
 
-
 namespace FusionAuth.Domain
 {
   public class SearchRequest

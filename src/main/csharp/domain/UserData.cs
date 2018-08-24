@@ -41,6 +41,7 @@ namespace FusionAuth.Domain
           this.attributes.Add(attribute.Key, attribute.Value);
         }
       }
+
       if (preferredLanguages != null)
       {
         foreach (var language in preferredLanguages)

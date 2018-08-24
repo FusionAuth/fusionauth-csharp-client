@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FusionAuth</RootNamespace>
     <AssemblyName>FusionAuthClientTest</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>1.0.0</ReleaseVersion>
     <LangVersion>3</LangVersion>
   </PropertyGroup>
@@ -35,6 +35,10 @@
     <ProjectReference Include="..\..\main\csharp\FusionAuthCSharpClient.csproj">
       <Project>{29216E22-A0AC-42E6-872E-FBE7A908C002}</Project>
       <Name>FusionAuthCSharpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="FusionAuthCSharpClientTest.csproj">
+      <Project>{43d3de3c-1b5f-42a2-ba2e-f70e4202ec98}</Project>
+      <Name>FusionAuthCSharpClientTest</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

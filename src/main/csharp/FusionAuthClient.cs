@@ -85,11 +85,11 @@ namespace FusionAuth
      */
     public ClientResponse<ActionResponse, Errors> ActionUser(Guid actioneeUserId, ActionRequest request)
     {
-        return Start<ActionResponse, Errors>().Uri("/api/user/action")
-                                          .UrlSegment(actioneeUserId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                            .UrlSegment(actioneeUserId)
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Post()
+                                            .Go();
     }
 
     /**
@@ -104,11 +104,11 @@ namespace FusionAuth
      */
     public ClientResponse<ActionResponse, Errors> CancelAction(Guid actionId, ActionRequest request)
     {
-        return Start<ActionResponse, Errors>().Uri("/api/user/action")
-                                          .UrlSegment(actionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Delete()
-                                          .Go();
+      return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                            .UrlSegment(actionId)
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Delete()
+                                            .Go();
     }
 
     /**
@@ -124,11 +124,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> ChangePassword(string changePasswordId, ChangePasswordRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
-                                          .UrlSegment(changePasswordId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
+                                      .UrlSegment(changePasswordId)
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -144,10 +144,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> ChangePasswordByIdentity(ChangePasswordRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -161,10 +161,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> CommentOnUser(UserCommentRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/comment")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/comment")
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -177,13 +177,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> CreateApplication(Guid? applicationId, ApplicationRequest request)
+    public ClientResponse<ApplicationResponse, Errors> CreateApplication(
+      Guid? applicationId, ApplicationRequest request)
     {
-        return Start<ApplicationResponse, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                                 .UrlSegment(applicationId)
+                                                 .BodyHandler(new JSONBodyHandler(request))
+                                                 .Post()
+                                                 .Go();
     }
 
     /**
@@ -198,15 +199,16 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> CreateApplicationRole(Guid applicationId, Guid? roleId, ApplicationRequest request)
+    public ClientResponse<ApplicationResponse, Errors> CreateApplicationRole(
+      Guid applicationId, Guid? roleId, ApplicationRequest request)
     {
-        return Start<ApplicationResponse, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .UrlSegment("role")
-                                          .UrlSegment(roleId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                                 .UrlSegment(applicationId)
+                                                 .UrlSegment("role")
+                                                 .UrlSegment(roleId)
+                                                 .BodyHandler(new JSONBodyHandler(request))
+                                                 .Post()
+                                                 .Go();
     }
 
     /**
@@ -222,10 +224,10 @@ namespace FusionAuth
      */
     public ClientResponse<AuditLogResponse, Errors> CreateAuditLog(AuditLogRequest request)
     {
-        return Start<AuditLogResponse, Errors>().Uri("/api/system/audit-log")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<AuditLogResponse, Errors>().Uri("/api/system/audit-log")
+                                              .BodyHandler(new JSONBodyHandler(request))
+                                              .Post()
+                                              .Go();
     }
 
     /**
@@ -238,13 +240,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<EmailTemplateResponse, Errors> CreateEmailTemplate(Guid? emailTemplateId, EmailTemplateRequest request)
+    public ClientResponse<EmailTemplateResponse, Errors> CreateEmailTemplate(
+      Guid? emailTemplateId, EmailTemplateRequest request)
     {
-        return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
-                                          .UrlSegment(emailTemplateId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
+                                                   .UrlSegment(emailTemplateId)
+                                                   .BodyHandler(new JSONBodyHandler(request))
+                                                   .Post()
+                                                   .Go();
     }
 
     /**
@@ -259,11 +262,11 @@ namespace FusionAuth
      */
     public ClientResponse<GroupResponse, Errors> CreateGroup(Guid? groupId, GroupRequest request)
     {
-        return Start<GroupResponse, Errors>().Uri("/api/group")
-                                          .UrlSegment(groupId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<GroupResponse, Errors>().Uri("/api/group")
+                                           .UrlSegment(groupId)
+                                           .BodyHandler(new JSONBodyHandler(request))
+                                           .Post()
+                                           .Go();
     }
 
     /**
@@ -277,10 +280,10 @@ namespace FusionAuth
      */
     public ClientResponse<MemberResponse, Errors> CreateGroupMembers(MemberRequest request)
     {
-        return Start<MemberResponse, Errors>().Uri("/api/group/member")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<MemberResponse, Errors>().Uri("/api/group/member")
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Post()
+                                            .Go();
     }
 
     /**
@@ -293,13 +296,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<IdentityProviderResponse, Errors> CreateIdentityProvider(Guid? identityProviderId, IdentityProviderRequest request)
+    public ClientResponse<IdentityProviderResponse, Errors> CreateIdentityProvider(
+      Guid? identityProviderId, IdentityProviderRequest request)
     {
-        return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
-                                          .UrlSegment(identityProviderId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
+                                                      .UrlSegment(identityProviderId)
+                                                      .BodyHandler(new JSONBodyHandler(request))
+                                                      .Post()
+                                                      .Go();
     }
 
     /**
@@ -314,11 +318,11 @@ namespace FusionAuth
      */
     public ClientResponse<TenantResponse, Errors> CreateTenant(Guid? tenantId, TenantRequest request)
     {
-        return Start<TenantResponse, Errors>().Uri("/api/tenant")
-                                          .UrlSegment(tenantId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<TenantResponse, Errors>().Uri("/api/tenant")
+                                            .UrlSegment(tenantId)
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Post()
+                                            .Go();
     }
 
     /**
@@ -333,7 +337,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> CreateUser(Guid? userId, UserRequest request)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
                                           .BodyHandler(new JSONBodyHandler(request))
                                           .Post()
@@ -353,11 +357,11 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionResponse, Errors> CreateUserAction(Guid? userActionId, UserActionRequest request)
     {
-        return Start<UserActionResponse, Errors>().Uri("/api/user-action")
-                                          .UrlSegment(userActionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<UserActionResponse, Errors>().Uri("/api/user-action")
+                                                .UrlSegment(userActionId)
+                                                .BodyHandler(new JSONBodyHandler(request))
+                                                .Post()
+                                                .Go();
     }
 
     /**
@@ -371,13 +375,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserActionReasonResponse, Errors> CreateUserActionReason(Guid? userActionReasonId, UserActionReasonRequest request)
+    public ClientResponse<UserActionReasonResponse, Errors> CreateUserActionReason(
+      Guid? userActionReasonId, UserActionReasonRequest request)
     {
-        return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
-                                          .UrlSegment(userActionReasonId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
+                                                      .UrlSegment(userActionReasonId)
+                                                      .BodyHandler(new JSONBodyHandler(request))
+                                                      .Post()
+                                                      .Go();
     }
 
     /**
@@ -392,11 +397,11 @@ namespace FusionAuth
      */
     public ClientResponse<WebhookResponse, Errors> CreateWebhook(Guid? webhookId, WebhookRequest request)
     {
-        return Start<WebhookResponse, Errors>().Uri("/api/webhook")
-                                          .UrlSegment(webhookId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<WebhookResponse, Errors>().Uri("/api/webhook")
+                                             .UrlSegment(webhookId)
+                                             .BodyHandler(new JSONBodyHandler(request))
+                                             .Post()
+                                             .Go();
     }
 
     /**
@@ -410,10 +415,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeactivateApplication(Guid applicationId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/application")
+                                      .UrlSegment(applicationId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -427,10 +432,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeactivateUser(Guid userId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user")
-                                          .UrlSegment(userId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user")
+                                      .UrlSegment(userId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -444,10 +449,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeactivateUserAction(Guid userActionId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user-action")
-                                          .UrlSegment(userActionId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user-action")
+                                      .UrlSegment(userActionId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -461,10 +466,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeactivateUsers(ICollection<Guid> userIds)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
-                                          .UrlParameter("userId", userIds)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
+                                      .UrlParameter("userId", userIds)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -481,11 +486,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteApplication(Guid applicationId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .UrlParameter("hardDelete", true)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/application")
+                                      .UrlSegment(applicationId)
+                                      .UrlParameter("hardDelete", true)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -501,12 +506,12 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteApplicationRole(Guid applicationId, Guid roleId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .UrlSegment("role")
-                                          .UrlSegment(roleId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/application")
+                                      .UrlSegment(applicationId)
+                                      .UrlSegment("role")
+                                      .UrlSegment(roleId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -520,10 +525,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteEmailTemplate(Guid emailTemplateId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/email/template")
-                                          .UrlSegment(emailTemplateId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/email/template")
+                                      .UrlSegment(emailTemplateId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -537,10 +542,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteGroup(Guid groupId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/group")
-                                          .UrlSegment(groupId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/group")
+                                      .UrlSegment(groupId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -554,10 +559,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteGroupMembers(MemberDeleteRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/group/member")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/group/member")
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -571,10 +576,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteIdentityProvider(Guid identityProviderId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/identity-provider")
-                                          .UrlSegment(identityProviderId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/identity-provider")
+                                      .UrlSegment(identityProviderId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -589,11 +594,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteRegistration(Guid userId, Guid applicationId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/registration")
-                                          .UrlSegment(userId)
-                                          .UrlSegment(applicationId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/registration")
+                                      .UrlSegment(userId)
+                                      .UrlSegment(applicationId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -607,10 +612,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteTenant(Guid tenantId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/tenant")
-                                          .UrlSegment(tenantId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/tenant")
+                                      .UrlSegment(tenantId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -625,11 +630,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteUser(Guid userId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user")
-                                          .UrlSegment(userId)
-                                          .UrlParameter("hardDelete", true)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user")
+                                      .UrlSegment(userId)
+                                      .UrlParameter("hardDelete", true)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -644,11 +649,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteUserAction(Guid userActionId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user-action")
-                                          .UrlSegment(userActionId)
-                                          .UrlParameter("hardDelete", true)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user-action")
+                                      .UrlSegment(userActionId)
+                                      .UrlParameter("hardDelete", true)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -662,10 +667,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteUserActionReason(Guid userActionReasonId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user-action-reason")
-                                          .UrlSegment(userActionReasonId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user-action-reason")
+                                      .UrlSegment(userActionReasonId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -679,10 +684,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteUsers(UserDeleteRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -696,10 +701,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DeleteWebhook(Guid webhookId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/webhook")
-                                          .UrlSegment(webhookId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/webhook")
+                                      .UrlSegment(webhookId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -714,11 +719,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> DisableTwoFactor(Guid userId, string code)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
-                                          .UrlParameter("userId", userId)
-                                          .UrlParameter("code", code)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
+                                      .UrlParameter("userId", userId)
+                                      .UrlParameter("code", code)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -733,11 +738,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> EnableTwoFactor(Guid userId, TwoFactorRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
-                                          .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
+                                      .UrlSegment(userId)
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -751,10 +756,10 @@ namespace FusionAuth
      */
     public ClientResponse<RefreshResponse, Errors> ExchangeRefreshTokenForJWT(RefreshRequest request)
     {
-        return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
+                                             .BodyHandler(new JSONBodyHandler(request))
+                                             .Post()
+                                             .Go();
     }
 
     /**
@@ -768,10 +773,10 @@ namespace FusionAuth
      */
     public ClientResponse<ForgotPasswordResponse, Errors> ForgotPassword(ForgotPasswordRequest request)
     {
-        return Start<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
+                                                    .BodyHandler(new JSONBodyHandler(request))
+                                                    .Post()
+                                                    .Go();
     }
 
     /**
@@ -786,11 +791,11 @@ namespace FusionAuth
      */
     public ClientResponse<VerifyEmailResponse, RESTVoid> GenerateEmailVerificationId(string email)
     {
-        return Start<VerifyEmailResponse, RESTVoid>().Uri("/api/user/verify-email")
-                                          .UrlParameter("email", email)
-                                          .UrlParameter("sendVerifyPasswordEmail", false)
-                                          .Put()
-                                          .Go();
+      return Start<VerifyEmailResponse, RESTVoid>().Uri("/api/user/verify-email")
+                                                   .UrlParameter("email", email)
+                                                   .UrlParameter("sendVerifyPasswordEmail", false)
+                                                   .Put()
+                                                   .Go();
     }
 
     /**
@@ -804,14 +809,15 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<VerifyRegistrationResponse, RESTVoid> GenerateRegistrationVerificationId(string email, Guid applicationId)
+    public ClientResponse<VerifyRegistrationResponse, RESTVoid> GenerateRegistrationVerificationId(
+      string email, Guid applicationId)
     {
-        return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
-                                          .UrlParameter("email", email)
-                                          .UrlParameter("sendVerifyPasswordEmail", false)
-                                          .UrlParameter("applicationId", applicationId)
-                                          .Put()
-                                          .Go();
+      return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
+                                                          .UrlParameter("email", email)
+                                                          .UrlParameter("sendVerifyPasswordEmail", false)
+                                                          .UrlParameter("applicationId", applicationId)
+                                                          .Put()
+                                                          .Go();
     }
 
     /**
@@ -826,9 +832,9 @@ namespace FusionAuth
      */
     public ClientResponse<SecretResponse, RESTVoid> GenerateTwoFactorSecret()
     {
-        return Start<SecretResponse, RESTVoid>().Uri("/api/two-factor/secret")
-                                          .Get()
-                                          .Go();
+      return Start<SecretResponse, RESTVoid>().Uri("/api/two-factor/secret")
+                                              .Get()
+                                              .Go();
     }
 
     /**
@@ -844,10 +850,10 @@ namespace FusionAuth
      */
     public ClientResponse<SecretResponse, RESTVoid> GenerateTwoFactorSecretUsingJWT(string encodedJWT)
     {
-        return Start<SecretResponse, RESTVoid>().Uri("/api/two-factor/secret")
-                                          .Authorization("JWT " + encodedJWT)
-                                          .Get()
-                                          .Go();
+      return Start<SecretResponse, RESTVoid>().Uri("/api/two-factor/secret")
+                                              .Authorization("JWT " + encodedJWT)
+                                              .Get()
+                                              .Go();
     }
 
     /**
@@ -863,10 +869,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> ImportUsers(ImportRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/import")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/user/import")
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -885,11 +891,11 @@ namespace FusionAuth
      */
     public ClientResponse<IssueResponse, Errors> IssueJWT(Guid applicationId, string encodedJWT)
     {
-        return Start<IssueResponse, Errors>().Uri("/api/jwt/issue")
-                                          .Authorization("JWT " + encodedJWT)
-                                          .UrlParameter("applicationId", applicationId)
-                                          .Get()
-                                          .Go();
+      return Start<IssueResponse, Errors>().Uri("/api/jwt/issue")
+                                           .Authorization("JWT " + encodedJWT)
+                                           .UrlParameter("applicationId", applicationId)
+                                           .Get()
+                                           .Go();
     }
 
     /**
@@ -903,10 +909,10 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> Login(LoginRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/login")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<LoginResponse, Errors>().Uri("/api/login")
+                                           .BodyHandler(new JSONBodyHandler(request))
+                                           .Post()
+                                           .Go();
     }
 
     /**
@@ -926,12 +932,12 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> LoginPing(Guid userId, Guid applicationId, string callerIPAddress)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/login")
-                                          .UrlSegment(userId)
-                                          .UrlSegment(applicationId)
-                                          .UrlParameter("ipAddress", callerIPAddress)
-                                          .Put()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/login")
+                                      .UrlSegment(userId)
+                                      .UrlSegment(applicationId)
+                                      .UrlParameter("ipAddress", callerIPAddress)
+                                      .Put()
+                                      .Go();
     }
 
     /**
@@ -950,11 +956,11 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, RESTVoid> Logout(bool global, string refreshToken)
     {
-        return Start<RESTVoid, RESTVoid>().Uri("/api/logout")
-                                          .UrlParameter("global", global)
-                                          .UrlParameter("refreshToken", refreshToken)
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, RESTVoid>().Uri("/api/logout")
+                                        .UrlParameter("global", global)
+                                        .UrlParameter("refreshToken", refreshToken)
+                                        .Post()
+                                        .Go();
     }
 
     /**
@@ -969,10 +975,10 @@ namespace FusionAuth
      */
     public ClientResponse<LookupResponse, RESTVoid> LookupIdentityProvider(string domain)
     {
-        return Start<LookupResponse, RESTVoid>().Uri("/api/identity-provider/lookup")
-                                          .UrlParameter("domain", domain)
-                                          .Get()
-                                          .Go();
+      return Start<LookupResponse, RESTVoid>().Uri("/api/identity-provider/lookup")
+                                              .UrlParameter("domain", domain)
+                                              .Get()
+                                              .Go();
     }
 
     /**
@@ -988,11 +994,11 @@ namespace FusionAuth
      */
     public ClientResponse<ActionResponse, Errors> ModifyAction(Guid actionId, ActionRequest request)
     {
-        return Start<ActionResponse, Errors>().Uri("/api/user/action")
-                                          .UrlSegment(actionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                            .UrlSegment(actionId)
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Put()
+                                            .Go();
     }
 
     /**
@@ -1006,11 +1012,11 @@ namespace FusionAuth
      */
     public ClientResponse<ApplicationResponse, Errors> ReactivateApplication(Guid applicationId)
     {
-        return Start<ApplicationResponse, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .UrlParameter("reactivate", true)
-                                          .Put()
-                                          .Go();
+      return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                                 .UrlSegment(applicationId)
+                                                 .UrlParameter("reactivate", true)
+                                                 .Put()
+                                                 .Go();
     }
 
     /**
@@ -1024,7 +1030,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> ReactivateUser(Guid userId)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
                                           .UrlParameter("reactivate", true)
                                           .Put()
@@ -1042,11 +1048,11 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionResponse, Errors> ReactivateUserAction(Guid userActionId)
     {
-        return Start<UserActionResponse, Errors>().Uri("/api/user-action")
-                                          .UrlSegment(userActionId)
-                                          .UrlParameter("reactivate", true)
-                                          .Put()
-                                          .Go();
+      return Start<UserActionResponse, Errors>().Uri("/api/user-action")
+                                                .UrlSegment(userActionId)
+                                                .UrlParameter("reactivate", true)
+                                                .Put()
+                                                .Go();
     }
 
     /**
@@ -1060,10 +1066,10 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> ReconcileJWT(ReconcileRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/jwt/reconcile")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<LoginResponse, Errors>().Uri("/api/jwt/reconcile")
+                                           .BodyHandler(new JSONBodyHandler(request))
+                                           .Post()
+                                           .Go();
     }
 
     /**
@@ -1082,11 +1088,11 @@ namespace FusionAuth
      */
     public ClientResponse<RegistrationResponse, Errors> Register(Guid? userId, RegistrationRequest request)
     {
-        return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
-                                          .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
+                                                  .UrlSegment(userId)
+                                                  .BodyHandler(new JSONBodyHandler(request))
+                                                  .Post()
+                                                  .Go();
     }
 
     /**
@@ -1100,10 +1106,10 @@ namespace FusionAuth
      */
     public ClientResponse<VerifyEmailResponse, RESTVoid> ResendEmailVerification(string email)
     {
-        return Start<VerifyEmailResponse, RESTVoid>().Uri("/api/user/verify-email")
-                                          .UrlParameter("email", email)
-                                          .Put()
-                                          .Go();
+      return Start<VerifyEmailResponse, RESTVoid>().Uri("/api/user/verify-email")
+                                                   .UrlParameter("email", email)
+                                                   .Put()
+                                                   .Go();
     }
 
     /**
@@ -1116,13 +1122,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<VerifyRegistrationResponse, RESTVoid> ResendRegistrationVerification(string email, Guid applicationId)
+    public ClientResponse<VerifyRegistrationResponse, RESTVoid> ResendRegistrationVerification(
+      string email, Guid applicationId)
     {
-        return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
-                                          .UrlParameter("email", email)
-                                          .UrlParameter("applicationId", applicationId)
-                                          .Put()
-                                          .Go();
+      return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
+                                                          .UrlParameter("email", email)
+                                                          .UrlParameter("applicationId", applicationId)
+                                                          .Put()
+                                                          .Go();
     }
 
     /**
@@ -1136,10 +1143,10 @@ namespace FusionAuth
      */
     public ClientResponse<ActionResponse, Errors> RetrieveAction(Guid actionId)
     {
-        return Start<ActionResponse, Errors>().Uri("/api/user/action")
-                                          .UrlSegment(actionId)
-                                          .Get()
-                                          .Go();
+      return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                            .UrlSegment(actionId)
+                                            .Get()
+                                            .Go();
     }
 
     /**
@@ -1153,10 +1160,10 @@ namespace FusionAuth
      */
     public ClientResponse<ActionResponse, Errors> RetrieveActions(Guid userId)
     {
-        return Start<ActionResponse, Errors>().Uri("/api/user/action")
-                                          .UrlParameter("userId", userId)
-                                          .Get()
-                                          .Go();
+      return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                            .UrlParameter("userId", userId)
+                                            .Get()
+                                            .Go();
     }
 
     /**
@@ -1170,10 +1177,10 @@ namespace FusionAuth
      */
     public ClientResponse<ApplicationResponse, RESTVoid> RetrieveApplication(Guid? applicationId)
     {
-        return Start<ApplicationResponse, RESTVoid>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .Get()
-                                          .Go();
+      return Start<ApplicationResponse, RESTVoid>().Uri("/api/application")
+                                                   .UrlSegment(applicationId)
+                                                   .Get()
+                                                   .Go();
     }
 
     /**
@@ -1186,9 +1193,9 @@ namespace FusionAuth
      */
     public ClientResponse<ApplicationResponse, RESTVoid> RetrieveApplications()
     {
-        return Start<ApplicationResponse, RESTVoid>().Uri("/api/application")
-                                          .Get()
-                                          .Go();
+      return Start<ApplicationResponse, RESTVoid>().Uri("/api/application")
+                                                   .Get()
+                                                   .Go();
     }
 
     /**
@@ -1202,10 +1209,10 @@ namespace FusionAuth
      */
     public ClientResponse<AuditLogResponse, Errors> RetrieveAuditLog(int auditLogId)
     {
-        return Start<AuditLogResponse, Errors>().Uri("/api/system/audit-log")
-                                          .UrlSegment(auditLogId)
-                                          .Get()
-                                          .Go();
+      return Start<AuditLogResponse, Errors>().Uri("/api/system/audit-log")
+                                              .UrlSegment(auditLogId)
+                                              .Get()
+                                              .Go();
     }
 
     /**
@@ -1220,14 +1227,15 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<DailyActiveUserReportResponse, Errors> RetrieveDailyActiveReport(Guid? applicationId, long start, long end)
+    public ClientResponse<DailyActiveUserReportResponse, Errors> RetrieveDailyActiveReport(
+      Guid? applicationId, long start, long end)
     {
-        return Start<DailyActiveUserReportResponse, Errors>().Uri("/api/report/daily-active-user")
-                                          .UrlParameter("applicationId", applicationId)
-                                          .UrlParameter("start", start)
-                                          .UrlParameter("end", end)
-                                          .Get()
-                                          .Go();
+      return Start<DailyActiveUserReportResponse, Errors>().Uri("/api/report/daily-active-user")
+                                                           .UrlParameter("applicationId", applicationId)
+                                                           .UrlParameter("start", start)
+                                                           .UrlParameter("end", end)
+                                                           .Get()
+                                                           .Go();
     }
 
     /**
@@ -1241,10 +1249,10 @@ namespace FusionAuth
      */
     public ClientResponse<EmailTemplateResponse, RESTVoid> RetrieveEmailTemplate(Guid? emailTemplateId)
     {
-        return Start<EmailTemplateResponse, RESTVoid>().Uri("/api/email/template")
-                                          .UrlSegment(emailTemplateId)
-                                          .Get()
-                                          .Go();
+      return Start<EmailTemplateResponse, RESTVoid>().Uri("/api/email/template")
+                                                     .UrlSegment(emailTemplateId)
+                                                     .Get()
+                                                     .Go();
     }
 
     /**
@@ -1260,10 +1268,10 @@ namespace FusionAuth
      */
     public ClientResponse<PreviewResponse, Errors> RetrieveEmailTemplatePreview(PreviewRequest request)
     {
-        return Start<PreviewResponse, Errors>().Uri("/api/email/template/preview")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<PreviewResponse, Errors>().Uri("/api/email/template/preview")
+                                             .BodyHandler(new JSONBodyHandler(request))
+                                             .Post()
+                                             .Go();
     }
 
     /**
@@ -1276,9 +1284,9 @@ namespace FusionAuth
      */
     public ClientResponse<EmailTemplateResponse, RESTVoid> RetrieveEmailTemplates()
     {
-        return Start<EmailTemplateResponse, RESTVoid>().Uri("/api/email/template")
-                                          .Get()
-                                          .Go();
+      return Start<EmailTemplateResponse, RESTVoid>().Uri("/api/email/template")
+                                                     .Get()
+                                                     .Go();
     }
 
     /**
@@ -1292,10 +1300,10 @@ namespace FusionAuth
      */
     public ClientResponse<GroupResponse, Errors> RetrieveGroup(Guid groupId)
     {
-        return Start<GroupResponse, Errors>().Uri("/api/group")
-                                          .UrlSegment(groupId)
-                                          .Get()
-                                          .Go();
+      return Start<GroupResponse, Errors>().Uri("/api/group")
+                                           .UrlSegment(groupId)
+                                           .Get()
+                                           .Go();
     }
 
     /**
@@ -1308,9 +1316,9 @@ namespace FusionAuth
      */
     public ClientResponse<GroupResponse, RESTVoid> RetrieveGroups()
     {
-        return Start<GroupResponse, RESTVoid>().Uri("/api/group")
-                                          .Get()
-                                          .Go();
+      return Start<GroupResponse, RESTVoid>().Uri("/api/group")
+                                             .Get()
+                                             .Go();
     }
 
     /**
@@ -1324,10 +1332,10 @@ namespace FusionAuth
      */
     public ClientResponse<IdentityProviderResponse, RESTVoid> RetrieveIdentityProvider(Guid? identityProviderId)
     {
-        return Start<IdentityProviderResponse, RESTVoid>().Uri("/api/identity-provider")
-                                          .UrlSegment(identityProviderId)
-                                          .Get()
-                                          .Go();
+      return Start<IdentityProviderResponse, RESTVoid>().Uri("/api/identity-provider")
+                                                        .UrlSegment(identityProviderId)
+                                                        .Get()
+                                                        .Go();
     }
 
     /**
@@ -1340,9 +1348,9 @@ namespace FusionAuth
      */
     public ClientResponse<IdentityProviderResponse, RESTVoid> RetrieveIdentityProviders()
     {
-        return Start<IdentityProviderResponse, RESTVoid>().Uri("/api/identity-provider")
-                                          .Get()
-                                          .Go();
+      return Start<IdentityProviderResponse, RESTVoid>().Uri("/api/identity-provider")
+                                                        .Get()
+                                                        .Go();
     }
 
     /**
@@ -1355,10 +1363,10 @@ namespace FusionAuth
      */
     public ClientResponse<ApplicationResponse, RESTVoid> RetrieveInactiveApplications()
     {
-        return Start<ApplicationResponse, RESTVoid>().Uri("/api/application")
-                                          .UrlParameter("inactive", true)
-                                          .Get()
-                                          .Go();
+      return Start<ApplicationResponse, RESTVoid>().Uri("/api/application")
+                                                   .UrlParameter("inactive", true)
+                                                   .Get()
+                                                   .Go();
     }
 
     /**
@@ -1371,10 +1379,10 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionResponse, RESTVoid> RetrieveInactiveUserActions()
     {
-        return Start<UserActionResponse, RESTVoid>().Uri("/api/user-action")
-                                          .UrlParameter("inactive", true)
-                                          .Get()
-                                          .Go();
+      return Start<UserActionResponse, RESTVoid>().Uri("/api/user-action")
+                                                  .UrlParameter("inactive", true)
+                                                  .Get()
+                                                  .Go();
     }
 
     /**
@@ -1387,9 +1395,9 @@ namespace FusionAuth
      */
     public ClientResponse<IntegrationResponse, RESTVoid> RetrieveIntegration()
     {
-        return Start<IntegrationResponse, RESTVoid>().Uri("/api/integration")
-                                          .Get()
-                                          .Go();
+      return Start<IntegrationResponse, RESTVoid>().Uri("/api/integration")
+                                                   .Get()
+                                                   .Go();
     }
 
     /**
@@ -1405,10 +1413,10 @@ namespace FusionAuth
      */
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKey(string keyId)
     {
-        return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
-                                          .UrlSegment(keyId)
-                                          .Get()
-                                          .Go();
+      return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+                                                 .UrlSegment(keyId)
+                                                 .Get()
+                                                 .Go();
     }
 
     /**
@@ -1421,9 +1429,9 @@ namespace FusionAuth
      */
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKeys()
     {
-        return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
-                                          .Get()
-                                          .Go();
+      return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+                                                 .Get()
+                                                 .Go();
     }
 
     /**
@@ -1440,12 +1448,12 @@ namespace FusionAuth
      */
     public ClientResponse<LoginReportResponse, Errors> RetrieveLoginReport(Guid? applicationId, long start, long end)
     {
-        return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
-                                          .UrlParameter("applicationId", applicationId)
-                                          .UrlParameter("start", start)
-                                          .UrlParameter("end", end)
-                                          .Get()
-                                          .Go();
+      return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
+                                                 .UrlParameter("applicationId", applicationId)
+                                                 .UrlParameter("start", start)
+                                                 .UrlParameter("end", end)
+                                                 .Get()
+                                                 .Go();
     }
 
     /**
@@ -1460,14 +1468,15 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<MonthlyActiveUserReportResponse, Errors> RetrieveMonthlyActiveReport(Guid? applicationId, long start, long end)
+    public ClientResponse<MonthlyActiveUserReportResponse, Errors> RetrieveMonthlyActiveReport(
+      Guid? applicationId, long start, long end)
     {
-        return Start<MonthlyActiveUserReportResponse, Errors>().Uri("/api/report/monthly-active-user")
-                                          .UrlParameter("applicationId", applicationId)
-                                          .UrlParameter("start", start)
-                                          .UrlParameter("end", end)
-                                          .Get()
-                                          .Go();
+      return Start<MonthlyActiveUserReportResponse, Errors>().Uri("/api/report/monthly-active-user")
+                                                             .UrlParameter("applicationId", applicationId)
+                                                             .UrlParameter("start", start)
+                                                             .UrlParameter("end", end)
+                                                             .Get()
+                                                             .Go();
     }
 
     /**
@@ -1481,11 +1490,11 @@ namespace FusionAuth
      */
     public ClientResponse<OAuthConfigurationResponse, Errors> RetrieveOauthConfiguration(Guid applicationId)
     {
-        return Start<OAuthConfigurationResponse, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .UrlSegment("oauth-configuration")
-                                          .Get()
-                                          .Go();
+      return Start<OAuthConfigurationResponse, Errors>().Uri("/api/application")
+                                                        .UrlSegment(applicationId)
+                                                        .UrlSegment("oauth-configuration")
+                                                        .Get()
+                                                        .Go();
     }
 
     /**
@@ -1498,9 +1507,10 @@ namespace FusionAuth
      */
     public ClientResponse<PasswordValidationRulesResponse, RESTVoid> RetrievePasswordValidationRules()
     {
-        return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/system-configuration/password-validation-rules")
-                                          .Get()
-                                          .Go();
+      return Start<PasswordValidationRulesResponse, RESTVoid>()
+             .Uri("/api/system-configuration/password-validation-rules")
+             .Get()
+             .Go();
     }
 
     /**
@@ -1514,10 +1524,10 @@ namespace FusionAuth
      */
     public ClientResponse<RefreshResponse, Errors> RetrieveRefreshTokens(Guid userId)
     {
-        return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
-                                          .UrlParameter("userId", userId)
-                                          .Get()
-                                          .Go();
+      return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
+                                             .UrlParameter("userId", userId)
+                                             .Get()
+                                             .Go();
     }
 
     /**
@@ -1532,11 +1542,11 @@ namespace FusionAuth
      */
     public ClientResponse<RegistrationResponse, Errors> RetrieveRegistration(Guid userId, Guid applicationId)
     {
-        return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
-                                          .UrlSegment(userId)
-                                          .UrlSegment(applicationId)
-                                          .Get()
-                                          .Go();
+      return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
+                                                  .UrlSegment(userId)
+                                                  .UrlSegment(applicationId)
+                                                  .Get()
+                                                  .Go();
     }
 
     /**
@@ -1551,14 +1561,15 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RegistrationReportResponse, Errors> RetrieveRegistrationReport(Guid? applicationId, long start, long end)
+    public ClientResponse<RegistrationReportResponse, Errors> RetrieveRegistrationReport(
+      Guid? applicationId, long start, long end)
     {
-        return Start<RegistrationReportResponse, Errors>().Uri("/api/report/registration")
-                                          .UrlParameter("applicationId", applicationId)
-                                          .UrlParameter("start", start)
-                                          .UrlParameter("end", end)
-                                          .Get()
-                                          .Go();
+      return Start<RegistrationReportResponse, Errors>().Uri("/api/report/registration")
+                                                        .UrlParameter("applicationId", applicationId)
+                                                        .UrlParameter("start", start)
+                                                        .UrlParameter("end", end)
+                                                        .Get()
+                                                        .Go();
     }
 
     /**
@@ -1571,9 +1582,9 @@ namespace FusionAuth
      */
     public ClientResponse<SystemConfigurationResponse, RESTVoid> RetrieveSystemConfiguration()
     {
-        return Start<SystemConfigurationResponse, RESTVoid>().Uri("/api/system-configuration")
-                                          .Get()
-                                          .Go();
+      return Start<SystemConfigurationResponse, RESTVoid>().Uri("/api/system-configuration")
+                                                           .Get()
+                                                           .Go();
     }
 
     /**
@@ -1587,10 +1598,10 @@ namespace FusionAuth
      */
     public ClientResponse<TenantResponse, Errors> RetrieveTenant(Guid tenantId)
     {
-        return Start<TenantResponse, Errors>().Uri("/api/tenant")
-                                          .UrlSegment(tenantId)
-                                          .Get()
-                                          .Go();
+      return Start<TenantResponse, Errors>().Uri("/api/tenant")
+                                            .UrlSegment(tenantId)
+                                            .Get()
+                                            .Go();
     }
 
     /**
@@ -1603,9 +1614,9 @@ namespace FusionAuth
      */
     public ClientResponse<TenantResponse, RESTVoid> RetrieveTenants()
     {
-        return Start<TenantResponse, RESTVoid>().Uri("/api/tenant")
-                                          .Get()
-                                          .Go();
+      return Start<TenantResponse, RESTVoid>().Uri("/api/tenant")
+                                              .Get()
+                                              .Go();
     }
 
     /**
@@ -1619,9 +1630,9 @@ namespace FusionAuth
      */
     public ClientResponse<TotalsReportResponse, RESTVoid> RetrieveTotalReport()
     {
-        return Start<TotalsReportResponse, RESTVoid>().Uri("/api/report/totals")
-                                          .Get()
-                                          .Go();
+      return Start<TotalsReportResponse, RESTVoid>().Uri("/api/report/totals")
+                                                    .Get()
+                                                    .Go();
     }
 
     /**
@@ -1635,7 +1646,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUser(Guid userId)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
                                           .Get()
                                           .Go();
@@ -1653,10 +1664,10 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionResponse, RESTVoid> RetrieveUserAction(Guid? userActionId)
     {
-        return Start<UserActionResponse, RESTVoid>().Uri("/api/user-action")
-                                          .UrlSegment(userActionId)
-                                          .Get()
-                                          .Go();
+      return Start<UserActionResponse, RESTVoid>().Uri("/api/user-action")
+                                                  .UrlSegment(userActionId)
+                                                  .Get()
+                                                  .Go();
     }
 
     /**
@@ -1671,10 +1682,10 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionReasonResponse, RESTVoid> RetrieveUserActionReason(Guid? userActionReasonId)
     {
-        return Start<UserActionReasonResponse, RESTVoid>().Uri("/api/user-action-reason")
-                                          .UrlSegment(userActionReasonId)
-                                          .Get()
-                                          .Go();
+      return Start<UserActionReasonResponse, RESTVoid>().Uri("/api/user-action-reason")
+                                                        .UrlSegment(userActionReasonId)
+                                                        .Get()
+                                                        .Go();
     }
 
     /**
@@ -1687,9 +1698,9 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionReasonResponse, RESTVoid> RetrieveUserActionReasons()
     {
-        return Start<UserActionReasonResponse, RESTVoid>().Uri("/api/user-action-reason")
-                                          .Get()
-                                          .Go();
+      return Start<UserActionReasonResponse, RESTVoid>().Uri("/api/user-action-reason")
+                                                        .Get()
+                                                        .Go();
     }
 
     /**
@@ -1702,9 +1713,9 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionResponse, RESTVoid> RetrieveUserActions()
     {
-        return Start<UserActionResponse, RESTVoid>().Uri("/api/user-action")
-                                          .Get()
-                                          .Go();
+      return Start<UserActionResponse, RESTVoid>().Uri("/api/user-action")
+                                                  .Get()
+                                                  .Go();
     }
 
     /**
@@ -1719,7 +1730,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserByChangePasswordId(string changePasswordId)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlParameter("changePasswordId", changePasswordId)
                                           .Get()
                                           .Go();
@@ -1736,7 +1747,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserByEmail(string email)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlParameter("email", email)
                                           .Get()
                                           .Go();
@@ -1753,7 +1764,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserByLoginId(string loginId)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlParameter("loginId", loginId)
                                           .Get()
                                           .Go();
@@ -1770,7 +1781,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserByUsername(string username)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlParameter("username", username)
                                           .Get()
                                           .Go();
@@ -1788,7 +1799,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserByVerificationId(string verificationId)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlParameter("verificationId", verificationId)
                                           .Get()
                                           .Go();
@@ -1805,10 +1816,10 @@ namespace FusionAuth
      */
     public ClientResponse<UserCommentResponse, Errors> RetrieveUserComments(Guid userId)
     {
-        return Start<UserCommentResponse, Errors>().Uri("/api/user/comment")
-                                          .UrlSegment(userId)
-                                          .Get()
-                                          .Go();
+      return Start<UserCommentResponse, Errors>().Uri("/api/user/comment")
+                                                 .UrlSegment(userId)
+                                                 .Get()
+                                                 .Go();
     }
 
     /**
@@ -1824,12 +1835,12 @@ namespace FusionAuth
      */
     public ClientResponse<UserLoginReportResponse, Errors> RetrieveUserLoginReport(Guid userId, int offset, int limit)
     {
-        return Start<UserLoginReportResponse, Errors>().Uri("/api/report/user-login")
-                                          .UrlParameter("userId", userId)
-                                          .UrlParameter("offset", offset)
-                                          .UrlParameter("limit", limit)
-                                          .Get()
-                                          .Go();
+      return Start<UserLoginReportResponse, Errors>().Uri("/api/report/user-login")
+                                                     .UrlParameter("userId", userId)
+                                                     .UrlParameter("offset", offset)
+                                                     .UrlParameter("limit", limit)
+                                                     .Get()
+                                                     .Go();
     }
 
     /**
@@ -1843,7 +1854,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserUsingJWT(string encodedJWT)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .Authorization("JWT " + encodedJWT)
                                           .Get()
                                           .Go();
@@ -1860,10 +1871,10 @@ namespace FusionAuth
      */
     public ClientResponse<WebhookResponse, RESTVoid> RetrieveWebhook(Guid? webhookId)
     {
-        return Start<WebhookResponse, RESTVoid>().Uri("/api/webhook")
-                                          .UrlSegment(webhookId)
-                                          .Get()
-                                          .Go();
+      return Start<WebhookResponse, RESTVoid>().Uri("/api/webhook")
+                                               .UrlSegment(webhookId)
+                                               .Get()
+                                               .Go();
     }
 
     /**
@@ -1876,9 +1887,9 @@ namespace FusionAuth
      */
     public ClientResponse<WebhookResponse, RESTVoid> RetrieveWebhooks()
     {
-        return Start<WebhookResponse, RESTVoid>().Uri("/api/webhook")
-                                          .Get()
-                                          .Go();
+      return Start<WebhookResponse, RESTVoid>().Uri("/api/webhook")
+                                               .Get()
+                                               .Go();
     }
 
     /**
@@ -1895,12 +1906,12 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> RevokeRefreshToken(string token, Guid? userId, Guid? applicationId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/jwt/refresh")
-                                          .UrlParameter("token", token)
-                                          .UrlParameter("userId", userId)
-                                          .UrlParameter("applicationId", applicationId)
-                                          .Delete()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/jwt/refresh")
+                                      .UrlParameter("token", token)
+                                      .UrlParameter("userId", userId)
+                                      .UrlParameter("applicationId", applicationId)
+                                      .Delete()
+                                      .Go();
     }
 
     /**
@@ -1914,10 +1925,10 @@ namespace FusionAuth
      */
     public ClientResponse<AuditLogSearchResponse, RESTVoid> SearchAuditLogs(AuditLogSearchRequest request)
     {
-        return Start<AuditLogSearchResponse, RESTVoid>().Uri("/api/system/audit-log/search")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<AuditLogSearchResponse, RESTVoid>().Uri("/api/system/audit-log/search")
+                                                      .BodyHandler(new JSONBodyHandler(request))
+                                                      .Post()
+                                                      .Go();
     }
 
     /**
@@ -1931,10 +1942,10 @@ namespace FusionAuth
      */
     public ClientResponse<SearchResponse, Errors> SearchUsers(ICollection<Guid> ids)
     {
-        return Start<SearchResponse, Errors>().Uri("/api/user/search")
-                                          .UrlParameter("ids", ids)
-                                          .Get()
-                                          .Go();
+      return Start<SearchResponse, Errors>().Uri("/api/user/search")
+                                            .UrlParameter("ids", ids)
+                                            .Get()
+                                            .Go();
     }
 
     /**
@@ -1949,10 +1960,10 @@ namespace FusionAuth
      */
     public ClientResponse<SearchResponse, Errors> SearchUsersByQueryString(SearchRequest request)
     {
-        return Start<SearchResponse, Errors>().Uri("/api/user/search")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<SearchResponse, Errors>().Uri("/api/user/search")
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Post()
+                                            .Go();
     }
 
     /**
@@ -1968,7 +1979,7 @@ namespace FusionAuth
      */
     public ClientResponse<SendResponse, Errors> SendEmail(Guid emailTemplateId, SendRequest request)
     {
-        return Start<SendResponse, Errors>().Uri("/api/email/send")
+      return Start<SendResponse, Errors>().Uri("/api/email/send")
                                           .UrlSegment(emailTemplateId)
                                           .BodyHandler(new JSONBodyHandler(request))
                                           .Post()
@@ -1986,10 +1997,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> SendTwoFactorCode(TwoFactorSendRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/two-factor/send")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/two-factor/send")
+                                      .BodyHandler(new JSONBodyHandler(request))
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -2003,10 +2014,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> SendTwoFactorCodeForLogin(string twoFactorId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/two-factor/send")
-                                          .UrlSegment(twoFactorId)
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, Errors>().Uri("/api/two-factor/send")
+                                      .UrlSegment(twoFactorId)
+                                      .Post()
+                                      .Go();
     }
 
     /**
@@ -2020,10 +2031,10 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> TwoFactorLogin(TwoFactorLoginRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/two-factor/login")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Post()
-                                          .Go();
+      return Start<LoginResponse, Errors>().Uri("/api/two-factor/login")
+                                           .BodyHandler(new JSONBodyHandler(request))
+                                           .Post()
+                                           .Go();
     }
 
     /**
@@ -2038,11 +2049,11 @@ namespace FusionAuth
      */
     public ClientResponse<ApplicationResponse, Errors> UpdateApplication(Guid applicationId, ApplicationRequest request)
     {
-        return Start<ApplicationResponse, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                                 .UrlSegment(applicationId)
+                                                 .BodyHandler(new JSONBodyHandler(request))
+                                                 .Put()
+                                                 .Go();
     }
 
     /**
@@ -2056,15 +2067,16 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> UpdateApplicationRole(Guid applicationId, Guid roleId, ApplicationRequest request)
+    public ClientResponse<ApplicationResponse, Errors> UpdateApplicationRole(
+      Guid applicationId, Guid roleId, ApplicationRequest request)
     {
-        return Start<ApplicationResponse, Errors>().Uri("/api/application")
-                                          .UrlSegment(applicationId)
-                                          .UrlSegment("role")
-                                          .UrlSegment(roleId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                                 .UrlSegment(applicationId)
+                                                 .UrlSegment("role")
+                                                 .UrlSegment(roleId)
+                                                 .BodyHandler(new JSONBodyHandler(request))
+                                                 .Put()
+                                                 .Go();
     }
 
     /**
@@ -2077,13 +2089,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<EmailTemplateResponse, Errors> UpdateEmailTemplate(Guid emailTemplateId, EmailTemplateRequest request)
+    public ClientResponse<EmailTemplateResponse, Errors> UpdateEmailTemplate(
+      Guid emailTemplateId, EmailTemplateRequest request)
     {
-        return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
-                                          .UrlSegment(emailTemplateId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
+                                                   .UrlSegment(emailTemplateId)
+                                                   .BodyHandler(new JSONBodyHandler(request))
+                                                   .Put()
+                                                   .Go();
     }
 
     /**
@@ -2098,11 +2111,11 @@ namespace FusionAuth
      */
     public ClientResponse<GroupResponse, Errors> UpdateGroup(Guid groupId, GroupRequest request)
     {
-        return Start<GroupResponse, Errors>().Uri("/api/group")
-                                          .UrlSegment(groupId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<GroupResponse, Errors>().Uri("/api/group")
+                                           .UrlSegment(groupId)
+                                           .BodyHandler(new JSONBodyHandler(request))
+                                           .Put()
+                                           .Go();
     }
 
     /**
@@ -2115,13 +2128,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<IdentityProviderResponse, Errors> UpdateIdentityProvider(Guid identityProviderId, IdentityProviderRequest request)
+    public ClientResponse<IdentityProviderResponse, Errors> UpdateIdentityProvider(
+      Guid identityProviderId, IdentityProviderRequest request)
     {
-        return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
-                                          .UrlSegment(identityProviderId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
+                                                      .UrlSegment(identityProviderId)
+                                                      .BodyHandler(new JSONBodyHandler(request))
+                                                      .Put()
+                                                      .Go();
     }
 
     /**
@@ -2135,10 +2149,10 @@ namespace FusionAuth
      */
     public ClientResponse<IntegrationResponse, Errors> UpdateIntegrations(IntegrationRequest request)
     {
-        return Start<IntegrationResponse, Errors>().Uri("/api/integration")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<IntegrationResponse, Errors>().Uri("/api/integration")
+                                                 .BodyHandler(new JSONBodyHandler(request))
+                                                 .Put()
+                                                 .Go();
     }
 
     /**
@@ -2153,11 +2167,11 @@ namespace FusionAuth
      */
     public ClientResponse<RegistrationResponse, Errors> UpdateRegistration(Guid userId, RegistrationRequest request)
     {
-        return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
-                                          .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
+                                                  .UrlSegment(userId)
+                                                  .BodyHandler(new JSONBodyHandler(request))
+                                                  .Put()
+                                                  .Go();
     }
 
     /**
@@ -2169,12 +2183,13 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<SystemConfigurationResponse, Errors> UpdateSystemConfiguration(SystemConfigurationRequest request)
+    public ClientResponse<SystemConfigurationResponse, Errors> UpdateSystemConfiguration(
+      SystemConfigurationRequest request)
     {
-        return Start<SystemConfigurationResponse, Errors>().Uri("/api/system-configuration")
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<SystemConfigurationResponse, Errors>().Uri("/api/system-configuration")
+                                                         .BodyHandler(new JSONBodyHandler(request))
+                                                         .Put()
+                                                         .Go();
     }
 
     /**
@@ -2189,11 +2204,11 @@ namespace FusionAuth
      */
     public ClientResponse<TenantResponse, Errors> UpdateTenant(Guid tenantId, TenantRequest request)
     {
-        return Start<TenantResponse, Errors>().Uri("/api/tenant")
-                                          .UrlSegment(tenantId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<TenantResponse, Errors>().Uri("/api/tenant")
+                                            .UrlSegment(tenantId)
+                                            .BodyHandler(new JSONBodyHandler(request))
+                                            .Put()
+                                            .Go();
     }
 
     /**
@@ -2208,7 +2223,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> UpdateUser(Guid userId, UserRequest request)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+      return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
                                           .BodyHandler(new JSONBodyHandler(request))
                                           .Put()
@@ -2227,11 +2242,11 @@ namespace FusionAuth
      */
     public ClientResponse<UserActionResponse, Errors> UpdateUserAction(Guid userActionId, UserActionRequest request)
     {
-        return Start<UserActionResponse, Errors>().Uri("/api/user-action")
-                                          .UrlSegment(userActionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<UserActionResponse, Errors>().Uri("/api/user-action")
+                                                .UrlSegment(userActionId)
+                                                .BodyHandler(new JSONBodyHandler(request))
+                                                .Put()
+                                                .Go();
     }
 
     /**
@@ -2244,13 +2259,14 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserActionReasonResponse, Errors> UpdateUserActionReason(Guid userActionReasonId, UserActionReasonRequest request)
+    public ClientResponse<UserActionReasonResponse, Errors> UpdateUserActionReason(
+      Guid userActionReasonId, UserActionReasonRequest request)
     {
-        return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
-                                          .UrlSegment(userActionReasonId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
+                                                      .UrlSegment(userActionReasonId)
+                                                      .BodyHandler(new JSONBodyHandler(request))
+                                                      .Put()
+                                                      .Go();
     }
 
     /**
@@ -2265,11 +2281,11 @@ namespace FusionAuth
      */
     public ClientResponse<WebhookResponse, Errors> UpdateWebhook(Guid webhookId, WebhookRequest request)
     {
-        return Start<WebhookResponse, Errors>().Uri("/api/webhook")
-                                          .UrlSegment(webhookId)
-                                          .BodyHandler(new JSONBodyHandler(request))
-                                          .Put()
-                                          .Go();
+      return Start<WebhookResponse, Errors>().Uri("/api/webhook")
+                                             .UrlSegment(webhookId)
+                                             .BodyHandler(new JSONBodyHandler(request))
+                                             .Put()
+                                             .Go();
     }
 
     /**
@@ -2286,10 +2302,10 @@ namespace FusionAuth
      */
     public ClientResponse<ValidateResponse, RESTVoid> ValidateJWT(string encodedJWT)
     {
-        return Start<ValidateResponse, RESTVoid>().Uri("/api/jwt/validate")
-                                          .Authorization("JWT " + encodedJWT)
-                                          .Get()
-                                          .Go();
+      return Start<ValidateResponse, RESTVoid>().Uri("/api/jwt/validate")
+                                                .Authorization("JWT " + encodedJWT)
+                                                .Get()
+                                                .Go();
     }
 
     /**
@@ -2303,10 +2319,10 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, RESTVoid> VerifyEmail(string verificationId)
     {
-        return Start<RESTVoid, RESTVoid>().Uri("/api/user/verify-email")
-                                          .UrlSegment(verificationId)
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, RESTVoid>().Uri("/api/user/verify-email")
+                                        .UrlSegment(verificationId)
+                                        .Post()
+                                        .Go();
     }
 
     /**
@@ -2320,29 +2336,33 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, RESTVoid> VerifyRegistration(string verificationId)
     {
-        return Start<RESTVoid, RESTVoid>().Uri("/api/user/verify-registration")
-                                          .UrlSegment(verificationId)
-                                          .Post()
-                                          .Go();
+      return Start<RESTVoid, RESTVoid>().Uri("/api/user/verify-registration")
+                                        .UrlSegment(verificationId)
+                                        .Post()
+                                        .Go();
     }
 
     // Start initializes and returns RESTClient
     private RESTClient<T, U> Start<T, U>()
     {
-        RESTClient<T, U> client = new RESTClient<T, U>().Authorization(apiKey)
-                                   .SuccessResponseHandler(typeof(T) == typeof(RESTVoid) ? null : new JSONResponseHandler<T>())
-                                   .ErrorResponseHandler(typeof(U) == typeof(RESTVoid) ? null : new JSONResponseHandler<U>())
-                                   .Url(baseUrl)
-                                   .Timeout(timeout)
-                                   .ReadWriteTimeout(readWriteTimeout)
-                                   .Proxy(webProxy);
+      RESTClient<T, U> client = new RESTClient<T, U>().Authorization(apiKey)
+                                                      .SuccessResponseHandler(typeof(T) == typeof(RESTVoid)
+                                                                                ? null
+                                                                                : new JSONResponseHandler<T>())
+                                                      .ErrorResponseHandler(typeof(U) == typeof(RESTVoid)
+                                                                              ? null
+                                                                              : new JSONResponseHandler<U>())
+                                                      .Url(baseUrl)
+                                                      .Timeout(timeout)
+                                                      .ReadWriteTimeout(readWriteTimeout)
+                                                      .Proxy(webProxy);
 
+      if (tenantId != null)
+      {
+        client.Header(TENANT_ID_HEADER, tenantId);
+      }
 
-        if (tenantId != null) {
-          client.Header(TENANT_ID_HEADER, tenantId);
-        }
-
-        return client;
+      return client;
     }
   }
 }

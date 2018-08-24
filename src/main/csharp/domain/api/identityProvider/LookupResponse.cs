@@ -24,7 +24,8 @@ namespace FusionAuth.Domain
     {
     }
 
-    public LookupResponse(IdentityProvider identityProvider) {
+    public LookupResponse(IdentityProvider identityProvider)
+    {
       this.identityProvider = identityProvider;
     }
   }
