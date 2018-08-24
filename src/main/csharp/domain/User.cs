@@ -90,7 +90,8 @@ namespace FusionAuth.Domain
 
     public User(Guid? id, string email, string username, string password, string salt, string birthDate,
                 string fullName, string firstName, string middleName, string lastName, string encryptionScheme,
-                DateTimeOffset? expiry, bool active, string timezone, Guid? cleanSpeakId, Dictionary<string, object> data, bool verified,
+                DateTimeOffset? expiry, bool active, string timezone, Guid? cleanSpeakId,
+                Dictionary<string, object> data, bool verified,
                 ContentStatus usernameStatus, TwoFactorDelivery twoFactorDelivery, bool twoFactorEnabled,
                 string twoFactorSecret, Uri imageUrl, params UserRegistration[] registrations)
     {
@@ -108,7 +109,6 @@ namespace FusionAuth.Domain
       this.firstName = firstName;
       this.middleName = middleName;
       this.lastName = lastName;
-      this.data.SetAll(data);
       this.cleanSpeakId = cleanSpeakId;
       this.verified = verified;
       this.usernameStatus = usernameStatus;
@@ -129,7 +129,7 @@ namespace FusionAuth.Domain
       return this;
     }
 
-    public UserData GetDataForApplication(Guid id)
+    public Dictionary<string, object> GetDataForApplication(Guid id)
     {
       var registration = GetRegistrations().Find(r => r.id.Equals(id));
       return registration == null ? null : registration.data;
@@ -141,17 +141,13 @@ namespace FusionAuth.Domain
       {
         return fullName;
       }
+
       if (firstName != null)
       {
         return firstName + (lastName != null ? " " + lastName : "");
       }
 
       return null;
-    }
-
-    public List<CultureInfo> GetPreferredLanguages()
-    {
-      return data.preferredLanguages;
     }
 
     public UserRegistration GetRegistrationForApplication(Guid id)

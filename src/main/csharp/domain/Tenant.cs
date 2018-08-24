@@ -15,6 +15,7 @@
  */
 
 using System;
+
 namespace FusionAuth.Domain
 {
   public class Tenant : Buildable<Tenant>

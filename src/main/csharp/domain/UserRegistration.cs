@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace FusionAuth.Domain
 {
@@ -55,14 +56,16 @@ namespace FusionAuth.Domain
     {
     }
 
-    public UserRegistration(Guid? id, Guid applicationId, Guid userId, DateTimeOffset? lastLoginInstant, string username,
-                            ContentStatus usernameStatus, Guid? cleanSpeakId, Dictionary<string, object> data, params string[] roles)
+    public UserRegistration(Guid? id, Guid applicationId, Guid userId, DateTimeOffset? lastLoginInstant,
+                            string username,
+                            ContentStatus usernameStatus, Guid? cleanSpeakId, Dictionary<string, object> data,
+                            params string[] roles)
     {
       this.id = id;
       this.applicationId = applicationId;
       this.userId = userId;
       this.cleanSpeakId = cleanSpeakId;
-      this.data.SetAll(data);
+      this.data = data;
       this.lastLoginInstant = lastLoginInstant;
       this.username = username;
       this.usernameStatus = usernameStatus;
