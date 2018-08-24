@@ -21,8 +21,6 @@ namespace FusionAuth.Domain
 {
   public class SystemConfiguration : Buildable<SystemConfiguration>
   {
-    public List<Uri> backendServers;
-
     public string cookieEncryptionIV;
 
     public string cookieEncryptionKey;
