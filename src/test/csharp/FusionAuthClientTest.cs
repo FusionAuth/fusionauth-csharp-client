@@ -273,7 +273,7 @@ namespace FusionAuthCSharpClientTest
       //test update      
       var userRegistration = new UserRegistration(null, TestBuilder.ApplicationId, (Guid) _test.User.id, null,
                                                   _test.User.username, ContentStatus.ACTIVE,
-                                                  new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"), null, null);
+                                                  new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"), null);
       var updateResponse = _test.Client.UpdateRegistration((Guid) _test.User.id,
                                                            new RegistrationRequest(null, userRegistration));
       Assert.AreEqual(_test.User.username, updateResponse.successResponse.registration.username);
