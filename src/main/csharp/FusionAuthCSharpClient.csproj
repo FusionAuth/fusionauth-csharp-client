@@ -15,7 +15,7 @@
     <TargetFrameworkProfile />
     <ReleaseVersion>1.0.12</ReleaseVersion>
     <LangVersion>3</LangVersion>
-    <PackageId>FusionAuth</PackageId>
+    <PackageId>FusionAuth.Client</PackageId>
     <PackageVersion>1.0.12</PackageVersion>
     <Authors>Brian Pontarelli, Daniel DeGroff</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
