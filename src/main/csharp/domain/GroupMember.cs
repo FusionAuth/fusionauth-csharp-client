@@ -15,12 +15,13 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
   public class GroupMember : Buildable<GroupMember>
   {
-    public GroupData data;
+    public IDictionary<string, object> data = new Dictionary<string, object>();
 
     public Guid groupId;
 

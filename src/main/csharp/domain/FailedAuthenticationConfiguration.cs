@@ -27,6 +27,8 @@ namespace FusionAuth.Domain
     public int resetCountInSeconds = 60;
 
     public int tooManyAttempts = 5;
+    
+    public Guid? userActionId;
 
     public FailedAuthenticationConfiguration With(Action<FailedAuthenticationConfiguration> action)
     {

@@ -22,6 +22,8 @@ namespace FusionAuth.Domain
   public class EmailConfiguration : Buildable<EmailConfiguration>
   {
     public bool enabled;
+    
+    public Guid? forgotPasswordEmailTemplateId;
 
     public string host;
 
@@ -30,8 +32,16 @@ namespace FusionAuth.Domain
     public int? port;
 
     public EmailSecurityType security;
+    
+    public Guid? setPasswordEmailTemplateId;
 
     public string username;
+    
+    public Guid? verificationEmailTemplateId;
+
+    public bool verifyEmail;
+
+    public bool verifyEmailWhenChanged;
 
 
     public EmailConfiguration With(Action<EmailConfiguration> action)

@@ -22,11 +22,11 @@ namespace FusionAuth.Domain
 {
   public class User : Buildable<User>
   {
+    public readonly Dictionary<string, object> data = new Dictionary<string, object>();
+    
     public List<GroupMember> memberships = new List<GroupMember>();
 
     public List<UserRegistration> registrations = new List<UserRegistration>();
-
-    public readonly Dictionary<string, object> data = new Dictionary<string, object>();
 
     public bool active;
 

@@ -22,13 +22,14 @@ namespace FusionAuth.Domain
   {
     public bool enabled;
 
-    public TenantEmailConfiguration()
-    {
-    }
+    public Guid? forgotPasswordEmailTemplateId;
 
-    public TenantEmailConfiguration(bool enabled)
-    {
-      this.enabled = enabled;
-    }
+    public Guid? setPasswordEmailTemplateId;
+
+    public Guid? verificationEmailTemplateId;
+
+    public bool verifyEmail;
+
+    public bool verifyEmailWhenChanged;
   }
 }

@@ -17,10 +17,8 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="domain" t="Include">
           <e p="Application.cs" t="Include" />
-          <e p="ApplicationPasswordConfiguration.cs" t="Include" />
           <e p="ApplicationRole.cs" t="Include" />
           <e p="AuditLog.cs" t="Include" />
-          <e p="AuditLogData.cs" t="Include" />
           <e p="AuthenticationTokenConfiguration.cs" t="Include" />
           <e p="Buildable.cs" t="Include" />
           <e p="CleanSpeakConfiguration.cs" t="Include" />
@@ -32,7 +30,6 @@
           <e p="ExternalIdentifierConfiguration.cs" t="Include" />
           <e p="FailedAuthenticationConfiguration.cs" t="Include" />
           <e p="Group.cs" t="Include" />
-          <e p="GroupData.cs" t="Include" />
           <e p="GroupMember.cs" t="Include" />
           <e p="HTTPHeaders.cs" t="Include" />
           <e p="IdentityProvider.cs" t="Include" />
@@ -51,7 +48,6 @@
           <e p="RememberPreviousPasswords.cs" t="Include" />
           <e p="SystemConfiguration.cs" t="Include" />
           <e p="Tenant.cs" t="Include" />
-          <e p="TenantData.cs" t="Include" />
           <e p="TenantEmailConfiguration.cs" t="Include" />
           <e p="TransactionType.cs" t="Include" />
           <e p="TwilioConfiguration.cs" t="Include" />
@@ -64,7 +60,6 @@
           <e p="UserActionOption.cs" t="Include" />
           <e p="UserActionReason.cs" t="Include" />
           <e p="UserComment.cs" t="Include" />
-          <e p="UserData.cs" t="Include" />
           <e p="UserRegistration.cs" t="Include" />
           <e p="Webhook.cs" t="Include" />
           <e p="api" t="Include">

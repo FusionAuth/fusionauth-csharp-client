@@ -21,7 +21,7 @@ namespace FusionAuth.Domain
 {
   public class Group : Buildable<Group>
   {
-    public GroupData data;
+    public IDictionary<string, object> data = new Dictionary<string, object>();
 
     public Guid id;
 

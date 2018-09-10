@@ -33,10 +33,6 @@ namespace FusionAuth.Domain
 
     public FailedAuthenticationConfiguration failedAuthenticationConfiguration;
 
-    public Guid? userActionId;
-
-    public Guid? forgotPasswordEmailTemplateId;
-
     public int httpSessionMaxInactiveInterval = 3600;
 
     public JWTConfiguration jwtConfiguration;
@@ -49,22 +45,11 @@ namespace FusionAuth.Domain
 
     public Uri logoutURL;
 
-    [Obsolete("Prefer maximumPasswordAge.days instead.")]
-    public int? passwordExpirationDays;
-
     public PasswordValidationRules passwordValidationRules;
 
     public string reportTimezone;
 
-    public Guid? setPasswordEmailTemplateId;
-
     public UIConfiguration uiConfiguration;
-
-    public Guid? verificationEmailTemplateId;
-
-    public bool verifyEmail;
-
-    public bool verifyEmailWhenChanged;
 
     public SystemConfiguration With(Action<SystemConfiguration> action)
     {

@@ -26,15 +26,15 @@ namespace FusionAuth.Domain
 
     public bool active;
 
-    public ApplicationPasswordConfiguration passwordConfiguration;
-
     public AuthenticationTokenConfiguration authenticationTokenConfiguration;
 
     public CleanSpeakConfiguration cleanSpeakConfiguration;
-
-    public JWTConfiguration jwtConfiguration;
+    
+    public IDictionary<string, object> data = new Dictionary<string, object>();
 
     public Guid? id;
+    
+    public JWTConfiguration jwtConfiguration;
 
     public string name;
 

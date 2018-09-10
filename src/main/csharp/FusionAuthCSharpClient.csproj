@@ -108,12 +108,10 @@
     <Compile Include="domain\Application.cs" />
     <Compile Include="domain\ApplicationRole.cs" />
     <Compile Include="domain\AuditLog.cs" />
-    <Compile Include="domain\AuditLogData.cs" />
     <Compile Include="domain\Buildable.cs" />
     <Compile Include="domain\EmailConfiguration.cs" />
     <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
     <Compile Include="domain\Group.cs" />
-    <Compile Include="domain\GroupData.cs" />
     <Compile Include="domain\GroupMember.cs" />
     <Compile Include="domain\TwilioConfiguration.cs" />
     <Compile Include="domain\ContentStatus.cs" />
@@ -150,7 +148,6 @@
     <Compile Include="domain\UserAction.cs" />
     <Compile Include="domain\UserActionOption.cs" />
     <Compile Include="domain\UserActionReason.cs" />
-    <Compile Include="domain\UserData.cs" />
     <Compile Include="domain\UserRegistration.cs" />
     <Compile Include="domain\LocalizedStrings.cs" />
     <Compile Include="domain\LogHistory.cs" />
@@ -198,10 +195,8 @@
     <Compile Include="domain\ExternalIdentifierConfiguration.cs" />
     <Compile Include="domain\LoginTheme.cs" />
     <Compile Include="domain\api\user\VerifyRegistrationResponse.cs" />
-    <Compile Include="domain\ApplicationPasswordConfiguration.cs" />
     <Compile Include="domain\api\TenantResponse.cs" />
     <Compile Include="domain\Tenant.cs" />
-    <Compile Include="domain\TenantData.cs" />
     <Compile Include="domain\TenantEmailConfiguration.cs" />
     <Compile Include="domain\api\TenantRequest.cs" />
   </ItemGroup>

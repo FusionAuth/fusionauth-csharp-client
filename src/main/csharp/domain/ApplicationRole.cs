@@ -26,21 +26,24 @@ namespace FusionAuth.Domain
 
     public bool isDefault;
 
+    public bool isSuperRole;
+
     public string name;
 
     public ApplicationRole()
     {
     }
 
-    public ApplicationRole(string roleName) : this(null, roleName, false, null)
+    public ApplicationRole(string roleName) : this(null, roleName, false, false, null)
     {
     }
 
-    public ApplicationRole(Guid? id, string name, bool isDefault, string description)
+    public ApplicationRole(Guid? id, string name, bool isDefault, bool isSuperRole, string description)
     {
       this.id = id;
       this.name = name;
       this.isDefault = isDefault;
+      this.isSuperRole = isSuperRole;
       this.description = description;
     }
 

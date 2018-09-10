@@ -15,32 +15,20 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
   public class Tenant : Buildable<Tenant>
   {
-    public Tenant()
-    {
-    }
+    public IDictionary<string, object> data = new Dictionary<string, object>();
 
     public TenantEmailConfiguration emailConfiguration = new TenantEmailConfiguration();
-
-    public TenantData data;
-
-    public Guid? forgotPasswordEmailTemplateId;
 
     public Guid id;
 
     public string name;
 
-    public Guid? setPasswordEmailTemplateId;
-
-    public bool verifyEmail;
-
-    public Guid? verificationEmailTemplateId;
-
-    public bool verifyEmailWhenChanged;
 
     public Tenant With(Action<Tenant> action)
     {

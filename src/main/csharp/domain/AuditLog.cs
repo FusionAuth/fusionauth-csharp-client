@@ -15,13 +15,14 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 
 namespace FusionAuth.Domain
 {
   public class AuditLog : Buildable<AuditLog>
   {
-    public AuditLogData data;
+    public IDictionary<string, object> data = new Dictionary<string, object>();
 
     public long? id;
 
@@ -31,20 +32,11 @@ namespace FusionAuth.Domain
 
     public string message;
 
-    public AuditLog()
-    {
-    }
+    public object newValue;
 
-    public AuditLog(string insertUser, string message) : this(insertUser, message, null)
-    {
-    }
+    public object oldValue;
 
-    public AuditLog(string insertUser, string message, AuditLogData data)
-    {
-      this.data = data;
-      this.insertUser = insertUser;
-      this.message = message;
-    }
+    public string reason;
 
     public AuditLog With(Action<AuditLog> action)
     {

@@ -14,8 +14,6 @@
  * language governing permissions and limitations under the License.
  */
 
-using System;
-
 namespace FusionAuth.Domain
 {
   public class ExternalIdentifierConfiguration
