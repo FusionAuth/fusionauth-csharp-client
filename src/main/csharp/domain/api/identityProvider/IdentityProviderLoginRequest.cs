@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +15,24 @@
  */
 
 using System;
-using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class IdentityProviderOAuth2Configuration
+  public class IdentityProviderLoginRequest : BaseLoginRequest
   {
-    [JsonProperty(PropertyName = "authorization_endpoint")]
-    public Uri authorizationEndpoint;
+    public IDictionary<string, string> data = new Dictionary<string, string>();
 
-    [JsonProperty(PropertyName = "token_endpoint")]
-    public Uri token_entokenEndpointdpoint;
+    public Guid identityPRoviderId;
 
-    public IdentityProviderOAuth2Configuration()
+    public string getEncodedJWT()
     {
+      return data["token"];
+    }
+
+    public void setEncodedJWT(string encodedJWT)
+    {
+      data["token"] = encodedJWT;
     }
   }
 }

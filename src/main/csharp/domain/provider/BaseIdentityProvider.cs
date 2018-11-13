@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,34 +15,20 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class TwoFactorLoginRequest : BaseLoginRequest
+  public abstract class BaseIdentityProvider<D> : IdentityProvider
   {
-    public string code;
+    public Dictionary<Guid, D> applicationConfiguration = new Dictionary<Guid, D>();
 
-    public bool trustComputer;
+    public bool enabled;
 
-    public string twoFactorId;
+    public Guid id;
 
-    public TwoFactorLoginRequest()
-    {
-    }
+    public string name;
 
-    public TwoFactorLoginRequest(Guid applicationId, string code, string twoFactorId)
-    {
-      this.applicationId = applicationId;
-      this.code = code;
-      this.twoFactorId = twoFactorId;
-    }
-
-    public TwoFactorLoginRequest(Guid applicationId, string code, string twoFactorId, String ipAddress)
-    {
-      this.applicationId = applicationId;
-      this.code = code;
-      this.ipAddress = ipAddress;
-      this.twoFactorId = twoFactorId;
-    }
+    public abstract IdentityProviderType getType();
   }
 }

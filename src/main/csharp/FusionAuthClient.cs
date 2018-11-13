@@ -851,6 +851,25 @@ namespace FusionAuth
     }
 
     /**
+     * Handles login via third-parties including Social login, external OAuth and OpenID Connect, and other
+     * login systems.
+     *
+     * @param request The third-party login request that contains information from the third-party login
+     * providers that FusionAuth uses to reconcile the user's account.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LoginResponse, Errors> IdentityProviderLogin(IdentityProviderLoginRequest request)
+    {
+        return Start<LoginResponse, Errors>().Uri("/api/identity-provider/login")
+                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Bulk imports multiple users. This does some validation, but then tries to run batch inserts of users. This reduces
      * latency when inserting lots of users. Therefore, the error response might contain some information about failures,
      * but it will likely be pretty generic.
@@ -1058,7 +1077,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<LoginResponse, Errors> ReconcileJWT(ReconcileRequest request)
+    public ClientResponse<LoginResponse, Errors> ReconcileJWT(IdentityProviderLoginRequest request)
     {
         return Start<LoginResponse, Errors>().Uri("/api/jwt/reconcile")
                                           .BodyHandler(new JSONBodyHandler(request))

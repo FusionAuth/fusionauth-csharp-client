@@ -19,11 +19,11 @@ using System;
 
 namespace FusionAuth.Domain
 {
-  public class ReconcileRequest
+  public class ThirdPartyLoginRequest
   {
     public Guid applicationId;
 
-    public string encodedJWT;
+    public string token;
 
     public string device;
 
@@ -33,21 +33,21 @@ namespace FusionAuth.Domain
 
     public MetaData metaData;
 
-    public ReconcileRequest()
+    public ThirdPartyLoginRequest()
     {
     }
 
-    public ReconcileRequest(Guid identityProviderId, Guid applicationId, string encodedJWT)
+    public ThirdPartyLoginRequest(Guid identityProviderId, Guid applicationId, string token)
     {
       this.identityProviderId = identityProviderId;
       this.applicationId = applicationId;
-      this.encodedJWT = encodedJWT;
+      this.token = token;
     }
 
-    public ReconcileRequest(Guid identityProviderId, Guid applicationId, string encodedJWT, String ipAddress)
+    public ThirdPartyLoginRequest(Guid identityProviderId, Guid applicationId, string token, String ipAddress)
     {
       this.applicationId = applicationId;
-      this.encodedJWT = encodedJWT;
+      this.token = token;
       this.identityProviderId = identityProviderId;
       this.ipAddress = ipAddress;
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,35 +14,12 @@
  * language governing permissions and limitations under the License.
  */
 
-using System;
-
 namespace FusionAuth.Domain
 {
-  public class LoginRequest : BaseLoginRequest
+  public abstract class BaseIdentityProviderApplicationConfiguration
   {
-    public string loginId;
+    public bool createRegistration;
 
-    public string password;
-
-    public string twoFactorTrustId;
-
-    public LoginRequest()
-    {
-    }
-
-    public LoginRequest(Guid? applicationId, string loginId, string password)
-    {
-      this.applicationId = applicationId;
-      this.loginId = loginId;
-      this.password = password;
-    }
-
-    public LoginRequest(Guid? applicationId, string loginId, string password, string ipAddress)
-    {
-      this.applicationId = applicationId;
-      this.loginId = loginId;
-      this.password = password;
-      this.ipAddress = ipAddress;
-    }
+    public bool enabled;
   }
 }

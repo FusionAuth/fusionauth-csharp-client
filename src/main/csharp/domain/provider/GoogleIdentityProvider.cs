@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,31 +15,26 @@
  */
 
 using System;
-using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class IdentityProvider : Buildable<IdentityProvider>
+  public class GoogleIdentityProvider : BaseIdentityProvider<GoogleApplicationConfiguration>,
+                                        Buildable<GoogleIdentityProvider>
   {
-    public IDictionary<string, string> claimMap;
+    public string buttonText;
 
-    public ICollection<string> domains;
+    public string client_id;
 
-    public string headerKeyParameter;
+    public string client_secret;
 
-    public Guid id;
+    public string scope;
 
-    public IDictionary<string, string> keys;
+    public override IdentityProviderType getType()
+    {
+      return IdentityProviderType.Google;
+    }
 
-    public string name;
-
-    public IdentityProviderOAuth2Configuration oauth2;
-
-    public string uniqueIdentityClaim;
-
-    public UniqueIdentityClaimType uniqueIdentityClaimType;
-
-    public IdentityProvider With(Action<IdentityProvider> action)
+    public GoogleIdentityProvider With(Action<GoogleIdentityProvider> action)
     {
       action(this);
       return this;

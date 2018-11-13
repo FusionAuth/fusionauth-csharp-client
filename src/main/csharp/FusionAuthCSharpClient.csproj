@@ -13,10 +13,10 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>1.0.18</ReleaseVersion>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
     <LangVersion>3</LangVersion>
     <PackageId>FusionAuth.Client</PackageId>
-    <PackageVersion>1.0.18</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>Brian Pontarelli, Daniel DeGroff</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>voidmain, robotdan</Owners>
@@ -54,12 +54,14 @@
     <Compile Include="domain\api\AuditLogResponse.cs" />
     <Compile Include="domain\api\AuditLogSearchRequest.cs" />
     <Compile Include="domain\api\AuditLogSearchResponse.cs" />
+    <Compile Include="domain\api\BaseLoginRequest.cs" />
     <Compile Include="domain\api\EmailTemplateRequest.cs" />
     <Compile Include="domain\api\EmailTemplateResponse.cs" />
     <Compile Include="domain\api\email\SendRequest.cs" />
     <Compile Include="domain\api\email\SendResponse.cs" />
     <Compile Include="domain\api\GroupRequest.cs" />
     <Compile Include="domain\api\GroupResponse.cs" />
+    <Compile Include="domain\api\identityProvider\IdentityProviderLoginRequest.cs" />
     <Compile Include="domain\api\IntegrationRequest.cs" />
     <Compile Include="domain\api\IntegrationResponse.cs" />
     <Compile Include="domain\api\jwt\IssueResponse.cs" />
@@ -113,6 +115,16 @@
     <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
     <Compile Include="domain\Group.cs" />
     <Compile Include="domain\GroupMember.cs" />
+    <Compile Include="domain\provider\BaseIdentityProvider.cs" />
+    <Compile Include="domain\provider\BaseIdentityProviderApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\ExternalJWTApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\ExternalJWTIdentityProvider.cs" />
+    <Compile Include="domain\provider\FacebookApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\FacebookIdentityProvider.cs" />
+    <Compile Include="domain\provider\GoogleApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\GoogleIdentityProvider.cs" />
+    <Compile Include="domain\provider\IdentityProviderOAuth2Configuration.cs" />
+    <Compile Include="domain\provider\IdentityProviderType.cs" />
     <Compile Include="domain\TwilioConfiguration.cs" />
     <Compile Include="domain\ContentStatus.cs" />
     <Compile Include="domain\email\Attachment.cs" />
@@ -177,14 +189,10 @@
     <Compile Include="domain\event\UserUpdateEvent.cs" />
     <Compile Include="domain\AuthenticationTokenConfiguration.cs" />
     <Compile Include="domain\KafkaConfiguration.cs" />
-    <Compile Include="domain\api\jwt\ReconcileRequest.cs" />
     <Compile Include="domain\api\twoFactor\TwoFactorLoginRequest.cs" />
     <Compile Include="domain\api\user\VerifyEmailResponse.cs" />
     <Compile Include="domain\api\IdentityProviderRequest.cs" />
     <Compile Include="domain\api\IdentityProviderResponse.cs" />
-    <Compile Include="domain\IdentityProvider.cs" />
-    <Compile Include="domain\UniqueIdentityClaimType.cs" />
-    <Compile Include="domain\IdentityProviderOAuth2Configuration.cs" />
     <Compile Include="domain\TwoFactorDelivery.cs" />
     <Compile Include="domain\api\PasswordValidationRulesResponse.cs" />
     <Compile Include="domain\api\OAuthConfigurationResponse.cs" />

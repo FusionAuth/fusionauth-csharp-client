@@ -44,6 +44,8 @@ namespace FusionAuth.Domain
 
     public List<string> roles = new List<string>();
 
+    public readonly Dictionary<string, string> tokens = new Dictionary<string, string>();
+
     public Guid userId;
 
     public string username;

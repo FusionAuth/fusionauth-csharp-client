@@ -32,8 +32,6 @@
           <e p="Group.cs" t="Include" />
           <e p="GroupMember.cs" t="Include" />
           <e p="HTTPHeaders.cs" t="Include" />
-          <e p="IdentityProvider.cs" t="Include" />
-          <e p="IdentityProviderOAuth2Configuration.cs" t="Include" />
           <e p="Integrations.cs" t="Include" />
           <e p="JWTConfiguration.cs" t="Include" />
           <e p="KafkaConfiguration.cs" t="Include" />
@@ -53,7 +51,6 @@
           <e p="TwilioConfiguration.cs" t="Include" />
           <e p="TwoFactorDelivery.cs" t="Include" />
           <e p="UIConfiguration.cs" t="Include" />
-          <e p="UniqueIdentityClaimType.cs" t="Include" />
           <e p="User.cs" t="Include" />
           <e p="UserAction.cs" t="Include" />
           <e p="UserActionLog.cs" t="Include" />
@@ -69,6 +66,7 @@
             <e p="AuditLogResponse.cs" t="Include" />
             <e p="AuditLogSearchRequest.cs" t="Include" />
             <e p="AuditLogSearchResponse.cs" t="Include" />
+            <e p="BaseLoginRequest.cs" t="Include" />
             <e p="EmailTemplateRequest.cs" t="Include" />
             <e p="EmailTemplateResponse.cs" t="Include" />
             <e p="GroupRequest.cs" t="Include" />
@@ -109,11 +107,11 @@
               <e p="SendResponse.cs" t="Include" />
             </e>
             <e p="identityProvider" t="Include">
+              <e p="IdentityProviderLoginRequest.cs" t="Include" />
               <e p="LookupResponse.cs" t="Include" />
             </e>
             <e p="jwt" t="Include">
               <e p="IssueResponse.cs" t="Include" />
-              <e p="ReconcileRequest.cs" t="Include" />
               <e p="RefreshRequest.cs" t="Include" />
               <e p="RefreshResponse.cs" t="Include" />
               <e p="ValidateResponse.cs" t="Include" />
@@ -179,6 +177,18 @@
             <e p="OAuth2Configuration.cs" t="Include" />
             <e p="TokenType.cs" t="Include" />
           </e>
+          <e p="provider" t="Include">
+            <e p="BaseIdentityProvider.cs" t="Include" />
+            <e p="BaseIdentityProviderApplicationConfiguration.cs" t="Include" />
+            <e p="ExternalJWTApplicationConfiguration.cs" t="Include" />
+            <e p="ExternalJWTIdentityProvider.cs" t="Include" />
+            <e p="FacebookApplicationConfiguration.cs" t="Include" />
+            <e p="FacebookIdentityProvider.cs" t="Include" />
+            <e p="GoogleApplicationConfiguration.cs" t="Include" />
+            <e p="GoogleIdentityProvider.cs" t="Include" />
+            <e p="IdentityProviderOAuth2Configuration.cs" t="Include" />
+            <e p="IdentityProviderType.cs" t="Include" />
+          </e>
           <e p="search" t="Include">
             <e p="AuditLogSearchCriteria.cs" t="Include" />
             <e p="BaseSearchCriteria.cs" t="Include" />
@@ -205,7 +215,5 @@
         <e p="packages.config" t="Include" />
       </e>
     </e>
-    <e p="/app" t="IncludeRecursive" />
-    <e p="/ea3a050" t="IncludeRecursive" />
   </component>
 </project>

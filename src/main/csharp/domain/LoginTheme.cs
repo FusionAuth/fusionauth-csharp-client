@@ -20,9 +20,39 @@ namespace FusionAuth.Domain
 {
   public class LoginTheme
   {
-    public string stylesheet;
+    public string emailComplete;
+
+    public string emailSend;
+
+    public string emailVerify;
 
     public bool enabled;
+
+    public string helpers;
+
+    public DateTimeOffset? lastModified;
+
+    public string oauth2Authorize;
+
+    public string oauth2Error;
+
+    public string oauth2TwoFactor;
+
+    public string passwordChange;
+
+    public string passwordComplete;
+
+    public string passwordForgot;
+
+    public string passwordSent;
+
+    public string registrationComplete;
+
+    public string registrationSend;
+
+    public string registrationVerify;
+
+    public string stylesheet;
 
     public LoginTheme()
     {

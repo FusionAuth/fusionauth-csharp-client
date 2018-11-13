@@ -146,7 +146,6 @@ namespace FusionAuthCSharpClientTest
       return this;
     }
 
-
     public TestBuilder CreateApplication()
     {
       var retrieveResponse = Client.RetrieveApplication(ApplicationId);
@@ -225,7 +224,6 @@ namespace FusionAuthCSharpClientTest
       Assert.AreEqual(response.successResponse.jwt["applicationId"].ToString(), _test.Application.id.ToString());
     }
 
-
     [Test]
     public void Retrieve_Public_Keys_Test()
     {
@@ -270,7 +268,7 @@ namespace FusionAuthCSharpClientTest
       Assert.AreEqual(_test.User.username, testRetrieve.successResponse.registration.username);
       _test.AssertSuccess(testRetrieve);
 
-      //test update      
+      //test update
       var userRegistration = new UserRegistration(null, TestBuilder.ApplicationId, (Guid) _test.User.id, null,
                                                   _test.User.username, ContentStatus.ACTIVE,
                                                   new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"), null);
@@ -358,28 +356,21 @@ namespace FusionAuthCSharpClientTest
       {
         retrieveResponse.successResponse.identityProviders.ForEach(idp =>
         {
-          if (idp.name.Equals("C# IdentityProvider"))
+          BaseIdentityProvider<BaseIdentityProviderApplicationConfiguration> identityProvider = (BaseIdentityProvider<BaseIdentityProviderApplicationConfiguration>) idp;
+          if (identityProvider.name.Equals("C# IdentityProvider"))
           {
-            _test.Client.DeleteIdentityProvider(idp.id);
+            _test.Client.DeleteIdentityProvider(identityProvider.id);
           }
         });
       }
 
-      var createResponse = _test.Client.CreateIdentityProvider(null, new IdentityProviderRequest(new IdentityProvider()
-                                                                                                 .With(idp => idp.name =
-                                                                                                         "C# IdentityProvider")
-                                                                                                 .With(idp => idp
-                                                                                                           .headerKeyParameter
-                                                                                                         = "kid")
-                                                                                                 .With(idp =>
-                                                                                                         idp
-                                                                                                             .uniqueIdentityClaim
-                                                                                                           = "username")
-                                                                                                 .With(idp =>
-                                                                                                         idp
-                                                                                                             .uniqueIdentityClaimType
-                                                                                                           = UniqueIdentityClaimType
-                                                                                                             .Username)));
+      var createResponse =
+        _test.Client.CreateIdentityProvider(null,
+                                            new IdentityProviderRequest(new ExternalJWTIdentityProvider()
+                                                                        .With(idp => idp.name = "C# IdentityProvider")
+                                                                        .With(idp => idp.headerKeyParameter = "kid")
+                                                                        .With(idp => idp.uniqueIdentityClaim = "username")));
+
       _test.AssertSuccess(createResponse);
       retrieveResponse = _test.Client.RetrieveIdentityProviders();
       _test.AssertSuccess(retrieveResponse);

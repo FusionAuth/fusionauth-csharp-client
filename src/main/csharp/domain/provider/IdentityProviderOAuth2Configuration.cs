@@ -15,34 +15,24 @@
  */
 
 using System;
+using Newtonsoft.Json;
 
 namespace FusionAuth.Domain
 {
-  public class TwoFactorLoginRequest : BaseLoginRequest
+  public class IdentityProviderOAuth2Configuration
   {
-    public string code;
+    public Uri authorization_endpoint;
 
-    public bool trustComputer;
+    public string client_id;
 
-    public string twoFactorId;
+    public string client_secret;
 
-    public TwoFactorLoginRequest()
-    {
-    }
+    public string issuer;
 
-    public TwoFactorLoginRequest(Guid applicationId, string code, string twoFactorId)
-    {
-      this.applicationId = applicationId;
-      this.code = code;
-      this.twoFactorId = twoFactorId;
-    }
+    public string scope;
 
-    public TwoFactorLoginRequest(Guid applicationId, string code, string twoFactorId, String ipAddress)
-    {
-      this.applicationId = applicationId;
-      this.code = code;
-      this.ipAddress = ipAddress;
-      this.twoFactorId = twoFactorId;
-    }
+    public Uri token_endpoint;
+
+    public Uri userinfo_endpoint;
   }
 }

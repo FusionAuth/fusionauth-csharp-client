@@ -15,34 +15,32 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class TwoFactorLoginRequest : BaseLoginRequest
+  public class FacebookIdentityProvider : BaseIdentityProvider<FacebookApplicationConfiguration>,
+                                          Buildable<FacebookIdentityProvider>
   {
-    public string code;
+    public string appId;
 
-    public bool trustComputer;
+    public string buttonText;
 
-    public string twoFactorId;
+    public string clientSecret;
 
-    public TwoFactorLoginRequest()
+    public string fields;
+
+    public string permissions;
+
+    public FacebookIdentityProvider With(Action<FacebookIdentityProvider> action)
     {
+      action(this);
+      return this;
     }
 
-    public TwoFactorLoginRequest(Guid applicationId, string code, string twoFactorId)
+    public override IdentityProviderType getType()
     {
-      this.applicationId = applicationId;
-      this.code = code;
-      this.twoFactorId = twoFactorId;
-    }
-
-    public TwoFactorLoginRequest(Guid applicationId, string code, string twoFactorId, String ipAddress)
-    {
-      this.applicationId = applicationId;
-      this.code = code;
-      this.ipAddress = ipAddress;
-      this.twoFactorId = twoFactorId;
+      return IdentityProviderType.Facebook;
     }
   }
 }

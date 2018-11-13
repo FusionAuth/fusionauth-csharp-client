@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +14,20 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public enum UniqueIdentityClaimType
+  public abstract class BaseLoginRequest
   {
-    Email,
+    public Guid? applicationId;
 
-    Username
+    public string device;
+
+    public string ipAddress;
+
+    public MetaData metaData;
+
+    public bool noJWT;
   }
 }

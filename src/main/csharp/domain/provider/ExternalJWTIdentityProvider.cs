@@ -14,33 +14,35 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class IdentityProviderResponse
+  public class ExternalJWTIdentityProvider : BaseIdentityProvider<ExternalJWTApplicationConfiguration>,
+                                             Buildable<ExternalJWTIdentityProvider>
   {
-    public IdentityProvider identityProvider;
+    public IDictionary<string, string> claimMap;
 
-    public List<IdentityProvider> identityProviders;
+    public ICollection<string> domains;
 
-    public IdentityProviderResponse()
+    public string headerKeyParameter;
+
+    public IDictionary<string, string> keys;
+
+    public IdentityProviderOAuth2Configuration oauth2;
+
+    public string uniqueIdentityClaim;
+
+    public ExternalJWTIdentityProvider With(Action<ExternalJWTIdentityProvider> action)
     {
+      action(this);
+      return this;
     }
 
-    public IdentityProviderResponse(IdentityProvider identityProvider)
+    public override IdentityProviderType getType()
     {
-      this.identityProvider = identityProvider;
+      return IdentityProviderType.ExternalJWT;
     }
-
-    public IdentityProviderResponse(List<IdentityProvider> identityProviders)
-    {
-      this.identityProviders = identityProviders;
-    }
-  }
-
-  // Marker interface
-  public interface IdentityProvider
-  {
   }
 }
