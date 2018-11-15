@@ -178,16 +178,19 @@
             <e p="TokenType.cs" t="Include" />
           </e>
           <e p="provider" t="Include">
-            <e p="BaseIdentityProvider.cs" t="Include" />
-            <e p="BaseIdentityProviderApplicationConfiguration.cs" t="Include" />
             <e p="ExternalJWTApplicationConfiguration.cs" t="Include" />
             <e p="ExternalJWTIdentityProvider.cs" t="Include" />
             <e p="FacebookApplicationConfiguration.cs" t="Include" />
             <e p="FacebookIdentityProvider.cs" t="Include" />
             <e p="GoogleApplicationConfiguration.cs" t="Include" />
             <e p="GoogleIdentityProvider.cs" t="Include" />
+            <e p="IdentityProviderConverter.cs" t="Include" />
             <e p="IdentityProviderOAuth2Configuration.cs" t="Include" />
             <e p="IdentityProviderType.cs" t="Include" />
+            <e p="OpenIdConnectApplicationConfiguration.cs" t="Include" />
+            <e p="OpenIdConnectIdentityProvider.cs" t="Include" />
+            <e p="TwitterApplicationConfiguration.cs" t="Include" />
+            <e p="TwitterIdentityProvider.cs" t="Include" />
           </e>
           <e p="search" t="Include">
             <e p="AuditLogSearchCriteria.cs" t="Include" />

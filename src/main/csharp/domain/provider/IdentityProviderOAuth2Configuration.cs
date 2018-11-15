@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 
 namespace FusionAuth.Domain
 {
-  public class IdentityProviderOAuth2Configuration
+  public class IdentityProviderOAuth2Configuration : Buildable<IdentityProviderOAuth2Configuration>
   {
     public Uri authorization_endpoint;
 
@@ -34,5 +34,11 @@ namespace FusionAuth.Domain
     public Uri token_endpoint;
 
     public Uri userinfo_endpoint;
+
+    public IdentityProviderOAuth2Configuration With(Action<IdentityProviderOAuth2Configuration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

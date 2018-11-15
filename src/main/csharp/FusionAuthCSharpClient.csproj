@@ -13,10 +13,10 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>1.1.2</ReleaseVersion>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
     <LangVersion>3</LangVersion>
     <PackageId>FusionAuth.Client</PackageId>
-    <PackageVersion>1.1.2</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>Brian Pontarelli, Daniel DeGroff</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>voidmain, robotdan</Owners>
@@ -115,16 +115,19 @@
     <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
     <Compile Include="domain\Group.cs" />
     <Compile Include="domain\GroupMember.cs" />
-    <Compile Include="domain\provider\BaseIdentityProvider.cs" />
-    <Compile Include="domain\provider\BaseIdentityProviderApplicationConfiguration.cs" />
     <Compile Include="domain\provider\ExternalJWTApplicationConfiguration.cs" />
     <Compile Include="domain\provider\ExternalJWTIdentityProvider.cs" />
     <Compile Include="domain\provider\FacebookApplicationConfiguration.cs" />
     <Compile Include="domain\provider\FacebookIdentityProvider.cs" />
     <Compile Include="domain\provider\GoogleApplicationConfiguration.cs" />
     <Compile Include="domain\provider\GoogleIdentityProvider.cs" />
+    <Compile Include="domain\provider\IdentityProviderConverter.cs" />
     <Compile Include="domain\provider\IdentityProviderOAuth2Configuration.cs" />
     <Compile Include="domain\provider\IdentityProviderType.cs" />
+    <Compile Include="domain\provider\OpenIdConnectApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\OpenIdConnectIdentityProvider.cs" />
+    <Compile Include="domain\provider\TwitterApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\TwitterIdentityProvider.cs" />
     <Compile Include="domain\TwilioConfiguration.cs" />
     <Compile Include="domain\ContentStatus.cs" />
     <Compile Include="domain\email\Attachment.cs" />
@@ -219,8 +222,9 @@
     <Folder Include="domain\api\identityProvider\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Restify, Version=3.0.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\packages\Inversoft.Restify.3.1.5\lib\net20\Restify.dll</HintPath>
+    <Reference Include="Restify, Version=3.2.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Inversoft.Restify.3.2.2\lib\net20\Restify.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />

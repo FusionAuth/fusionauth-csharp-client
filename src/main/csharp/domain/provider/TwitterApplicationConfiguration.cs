@@ -14,12 +14,26 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public abstract class BaseIdentityProviderApplicationConfiguration
+  public class TwitterApplicationConfiguration : Buildable<TwitterApplicationConfiguration>
   {
+    public string buttonText;
+
     public bool createRegistration;
 
+    public string consumerKey;
+
+    public string consumerSecret;
+
     public bool enabled;
+
+    public TwitterApplicationConfiguration With(Action<TwitterApplicationConfiguration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

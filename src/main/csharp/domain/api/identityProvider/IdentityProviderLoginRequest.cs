@@ -23,7 +23,7 @@ namespace FusionAuth.Domain
   {
     public IDictionary<string, string> data = new Dictionary<string, string>();
 
-    public Guid identityPRoviderId;
+    public Guid identityProviderId;
 
     public string getEncodedJWT()
     {

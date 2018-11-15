@@ -14,9 +14,20 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public class FacebookApplicationConfiguration : BaseIdentityProviderApplicationConfiguration
+  public class FacebookApplicationConfiguration : Buildable<FacebookApplicationConfiguration>
   {
+    public bool enabled;
+
+    public bool createRegistration;
+
+    public FacebookApplicationConfiguration With(Action<FacebookApplicationConfiguration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

@@ -43,8 +43,9 @@
       <HintPath>..\..\..\packages\NUnit.3.10.1\lib\net35\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Restify, Version=3.0.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\libraries\restify\src\main\csharp\bin\Release\Restify.dll</HintPath>
+    <Reference Include="Restify, Version=3.2.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Inversoft.Restify.3.2.2\lib\net20\Restify.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Newtonsoft.Json">

@@ -30,7 +30,7 @@ namespace FusionAuth.Domain
 
     public string publicKey;
 
-    public int? refreshTokenTimeToLiveInMinutes;
+    public int refreshTokenTimeToLiveInMinutes;
 
     public string secret;
 

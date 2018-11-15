@@ -16,7 +16,7 @@
 
 namespace FusionAuth.Domain
 {
-  public class ExternalJWTApplicationConfiguration : BaseIdentityProviderApplicationConfiguration
+  public class ExternalJWTApplicationConfiguration
   {
   }
 }

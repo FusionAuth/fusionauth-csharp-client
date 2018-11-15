@@ -19,9 +19,14 @@ using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public abstract class BaseIdentityProvider<D> : IdentityProvider
+  public class OpenIdConnectIdentityProvider : Buildable<OpenIdConnectIdentityProvider>, IdentityProvider
   {
-    public Dictionary<Guid, D> applicationConfiguration = new Dictionary<Guid, D>();
+    public Dictionary<Guid, OpenIdConnectApplicationConfiguration> applicationConfiguration =
+      new Dictionary<Guid, OpenIdConnectApplicationConfiguration>();
+
+    public Uri buttonImageURL;
+
+    public string buttonText;
 
     public bool enabled;
 
@@ -29,6 +34,14 @@ namespace FusionAuth.Domain
 
     public string name;
 
-    public abstract IdentityProviderType getType();
+    public IdentityProviderOAuth2Configuration oauth2 = new IdentityProviderOAuth2Configuration();
+
+    public readonly IdentityProviderType type = IdentityProviderType.OpenIDConnect;
+
+    public OpenIdConnectIdentityProvider With(Action<OpenIdConnectIdentityProvider> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

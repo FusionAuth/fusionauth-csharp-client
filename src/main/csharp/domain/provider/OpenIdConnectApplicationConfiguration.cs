@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,34 +18,19 @@ using System;
 
 namespace FusionAuth.Domain
 {
-  public class LoginRequest : BaseLoginRequest, Buildable<LoginRequest>
+  public class OpenIdConnectApplicationConfiguration : Buildable<OpenIdConnectApplicationConfiguration>
   {
-    public string loginId;
+    public Uri buttonImageURL;
 
-    public string password;
+    public string buttonText;
 
-    public string twoFactorTrustId;
+    public bool createRegistration;
 
-    public LoginRequest()
-    {
-    }
+    public bool enabled;
 
-    public LoginRequest(Guid? applicationId, string loginId, string password)
-    {
-      this.applicationId = applicationId;
-      this.loginId = loginId;
-      this.password = password;
-    }
+    public IdentityProviderOAuth2Configuration oauth2 = new IdentityProviderOAuth2Configuration();
 
-    public LoginRequest(Guid? applicationId, string loginId, string password, string ipAddress)
-    {
-      this.applicationId = applicationId;
-      this.loginId = loginId;
-      this.password = password;
-      this.ipAddress = ipAddress;
-    }
-
-    public LoginRequest With(Action<LoginRequest> action)
+    public OpenIdConnectApplicationConfiguration With(Action<OpenIdConnectApplicationConfiguration> action)
     {
       action(this);
       return this;

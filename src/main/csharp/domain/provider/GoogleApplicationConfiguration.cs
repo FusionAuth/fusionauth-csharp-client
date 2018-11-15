@@ -14,9 +14,28 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public class GoogleApplicationConfiguration : BaseIdentityProviderApplicationConfiguration
+  public class GoogleApplicationConfiguration : Buildable<GoogleApplicationConfiguration>
   {
+    public string buttonText;
+
+    public string client_id;
+
+    public string client_secret;
+
+    public bool createRegistration;
+
+    public bool enabled;
+
+    public string scope;
+
+    public GoogleApplicationConfiguration With(Action<GoogleApplicationConfiguration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

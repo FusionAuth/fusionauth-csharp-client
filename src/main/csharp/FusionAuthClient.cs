@@ -20,6 +20,8 @@ using Inversoft.Restify;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace FusionAuth
 {
@@ -28,6 +30,17 @@ namespace FusionAuth
    */
   public class FusionAuthClient
   {
+    // Add our serializer here that includes our IdentityProviderConvert
+    private static readonly JsonSerializer serializer = new JsonSerializer();
+
+    static FusionAuthClient()
+    {
+      serializer.Converters.Add(new StringEnumConverter());
+      serializer.Converters.Add(new DateTimeOffsetConverter());
+      serializer.Converters.Add(new IdentityProviderConverter());
+      serializer.NullValueHandling = NullValueHandling.Ignore;
+    }
+
     public const string TENANT_ID_HEADER = "X-FusionAuth-TenantId";
 
     private readonly string apiKey;
@@ -87,7 +100,7 @@ namespace FusionAuth
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actioneeUserId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -106,7 +119,7 @@ namespace FusionAuth
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Delete()
                                           .Go();
     }
@@ -126,7 +139,7 @@ namespace FusionAuth
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
                                           .UrlSegment(changePasswordId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -145,7 +158,7 @@ namespace FusionAuth
     public ClientResponse<RESTVoid, Errors> ChangePasswordByIdentity(ChangePasswordRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -162,7 +175,7 @@ namespace FusionAuth
     public ClientResponse<RESTVoid, Errors> CommentOnUser(UserCommentRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/comment")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -181,7 +194,7 @@ namespace FusionAuth
     {
         return Start<ApplicationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -204,7 +217,7 @@ namespace FusionAuth
                                           .UrlSegment(applicationId)
                                           .UrlSegment("role")
                                           .UrlSegment(roleId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -223,7 +236,7 @@ namespace FusionAuth
     public ClientResponse<AuditLogResponse, Errors> CreateAuditLog(AuditLogRequest request)
     {
         return Start<AuditLogResponse, Errors>().Uri("/api/system/audit-log")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -242,7 +255,7 @@ namespace FusionAuth
     {
         return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
                                           .UrlSegment(emailTemplateId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -261,7 +274,7 @@ namespace FusionAuth
     {
         return Start<GroupResponse, Errors>().Uri("/api/group")
                                           .UrlSegment(groupId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -278,7 +291,7 @@ namespace FusionAuth
     public ClientResponse<MemberResponse, Errors> CreateGroupMembers(MemberRequest request)
     {
         return Start<MemberResponse, Errors>().Uri("/api/group/member")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -297,7 +310,7 @@ namespace FusionAuth
     {
         return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
                                           .UrlSegment(identityProviderId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -316,7 +329,7 @@ namespace FusionAuth
     {
         return Start<TenantResponse, Errors>().Uri("/api/tenant")
                                           .UrlSegment(tenantId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -335,7 +348,7 @@ namespace FusionAuth
     {
         return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -355,7 +368,7 @@ namespace FusionAuth
     {
         return Start<UserActionResponse, Errors>().Uri("/api/user-action")
                                           .UrlSegment(userActionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -375,7 +388,7 @@ namespace FusionAuth
     {
         return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
                                           .UrlSegment(userActionReasonId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -394,7 +407,7 @@ namespace FusionAuth
     {
         return Start<WebhookResponse, Errors>().Uri("/api/webhook")
                                           .UrlSegment(webhookId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -555,7 +568,7 @@ namespace FusionAuth
     public ClientResponse<RESTVoid, Errors> DeleteGroupMembers(MemberDeleteRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/group/member")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Delete()
                                           .Go();
     }
@@ -680,7 +693,7 @@ namespace FusionAuth
     public ClientResponse<RESTVoid, Errors> DeleteUsers(UserDeleteRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Delete()
                                           .Go();
     }
@@ -735,7 +748,7 @@ namespace FusionAuth
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
                                           .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -752,7 +765,7 @@ namespace FusionAuth
     public ClientResponse<RefreshResponse, Errors> ExchangeRefreshTokenForJWT(RefreshRequest request)
     {
         return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -769,7 +782,7 @@ namespace FusionAuth
     public ClientResponse<ForgotPasswordResponse, Errors> ForgotPassword(ForgotPasswordRequest request)
     {
         return Start<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -864,7 +877,7 @@ namespace FusionAuth
     public ClientResponse<LoginResponse, Errors> IdentityProviderLogin(IdentityProviderLoginRequest request)
     {
         return Start<LoginResponse, Errors>().Uri("/api/identity-provider/login")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -883,7 +896,7 @@ namespace FusionAuth
     public ClientResponse<RESTVoid, Errors> ImportUsers(ImportRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/import")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -923,7 +936,7 @@ namespace FusionAuth
     public ClientResponse<LoginResponse, Errors> Login(LoginRequest request)
     {
         return Start<LoginResponse, Errors>().Uri("/api/login")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -1009,7 +1022,7 @@ namespace FusionAuth
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -1080,7 +1093,7 @@ namespace FusionAuth
     public ClientResponse<LoginResponse, Errors> ReconcileJWT(IdentityProviderLoginRequest request)
     {
         return Start<LoginResponse, Errors>().Uri("/api/jwt/reconcile")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -1103,7 +1116,7 @@ namespace FusionAuth
     {
         return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
                                           .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -1280,7 +1293,7 @@ namespace FusionAuth
     public ClientResponse<PreviewResponse, Errors> RetrieveEmailTemplatePreview(PreviewRequest request)
     {
         return Start<PreviewResponse, Errors>().Uri("/api/email/template/preview")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -1934,7 +1947,7 @@ namespace FusionAuth
     public ClientResponse<AuditLogSearchResponse, RESTVoid> SearchAuditLogs(AuditLogSearchRequest request)
     {
         return Start<AuditLogSearchResponse, RESTVoid>().Uri("/api/system/audit-log/search")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -1969,7 +1982,7 @@ namespace FusionAuth
     public ClientResponse<SearchResponse, Errors> SearchUsersByQueryString(SearchRequest request)
     {
         return Start<SearchResponse, Errors>().Uri("/api/user/search")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -1989,7 +2002,7 @@ namespace FusionAuth
     {
         return Start<SendResponse, Errors>().Uri("/api/email/send")
                                           .UrlSegment(emailTemplateId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -2006,7 +2019,7 @@ namespace FusionAuth
     public ClientResponse<RESTVoid, Errors> SendTwoFactorCode(TwoFactorSendRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/two-factor/send")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -2040,7 +2053,7 @@ namespace FusionAuth
     public ClientResponse<LoginResponse, Errors> TwoFactorLogin(TwoFactorLoginRequest request)
     {
         return Start<LoginResponse, Errors>().Uri("/api/two-factor/login")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
     }
@@ -2059,7 +2072,7 @@ namespace FusionAuth
     {
         return Start<ApplicationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2081,7 +2094,7 @@ namespace FusionAuth
                                           .UrlSegment(applicationId)
                                           .UrlSegment("role")
                                           .UrlSegment(roleId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2100,7 +2113,7 @@ namespace FusionAuth
     {
         return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
                                           .UrlSegment(emailTemplateId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2119,7 +2132,7 @@ namespace FusionAuth
     {
         return Start<GroupResponse, Errors>().Uri("/api/group")
                                           .UrlSegment(groupId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2138,7 +2151,7 @@ namespace FusionAuth
     {
         return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
                                           .UrlSegment(identityProviderId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2155,7 +2168,7 @@ namespace FusionAuth
     public ClientResponse<IntegrationResponse, Errors> UpdateIntegrations(IntegrationRequest request)
     {
         return Start<IntegrationResponse, Errors>().Uri("/api/integration")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2174,7 +2187,7 @@ namespace FusionAuth
     {
         return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
                                           .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2191,7 +2204,7 @@ namespace FusionAuth
     public ClientResponse<SystemConfigurationResponse, Errors> UpdateSystemConfiguration(SystemConfigurationRequest request)
     {
         return Start<SystemConfigurationResponse, Errors>().Uri("/api/system-configuration")
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2210,7 +2223,7 @@ namespace FusionAuth
     {
         return Start<TenantResponse, Errors>().Uri("/api/tenant")
                                           .UrlSegment(tenantId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2229,7 +2242,7 @@ namespace FusionAuth
     {
         return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2248,7 +2261,7 @@ namespace FusionAuth
     {
         return Start<UserActionResponse, Errors>().Uri("/api/user-action")
                                           .UrlSegment(userActionId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2267,7 +2280,7 @@ namespace FusionAuth
     {
         return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
                                           .UrlSegment(userActionReasonId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2286,7 +2299,7 @@ namespace FusionAuth
     {
         return Start<WebhookResponse, Errors>().Uri("/api/webhook")
                                           .UrlSegment(webhookId)
-                                          .BodyHandler(new JSONBodyHandler(request))
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
     }
@@ -2348,9 +2361,9 @@ namespace FusionAuth
     // Start initializes and returns RESTClient
     private RESTClient<T, U> Start<T, U>()
     {
-        RESTClient<T, U> client = new RESTClient<T, U>().Authorization(apiKey)
-                                   .SuccessResponseHandler(typeof(T) == typeof(RESTVoid) ? null : new JSONResponseHandler<T>())
-                                   .ErrorResponseHandler(typeof(U) == typeof(RESTVoid) ? null : new JSONResponseHandler<U>())
+        var client = new RESTClient<T, U>().Authorization(apiKey)
+                                   .SuccessResponseHandler(typeof(T) == typeof(RESTVoid) ? null : new JSONResponseHandler<T>(serializer))
+                                   .ErrorResponseHandler(typeof(U) == typeof(RESTVoid) ? null : new JSONResponseHandler<U>(serializer))
                                    .Url(baseUrl)
                                    .Timeout(timeout)
                                    .ReadWriteTimeout(readWriteTimeout)

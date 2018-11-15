@@ -19,28 +19,33 @@ using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class FacebookIdentityProvider : BaseIdentityProvider<FacebookApplicationConfiguration>,
-                                          Buildable<FacebookIdentityProvider>
+  public class FacebookIdentityProvider : Buildable<FacebookIdentityProvider>, IdentityProvider
   {
     public string appId;
+
+    public Dictionary<Guid, FacebookApplicationConfiguration> applicationConfiguration =
+      new Dictionary<Guid, FacebookApplicationConfiguration>();
 
     public string buttonText;
 
     public string clientSecret;
 
+    public bool enabled;
+
     public string fields;
 
+    public Guid id;
+
+    public string name;
+
     public string permissions;
+
+    public readonly IdentityProviderType type = IdentityProviderType.Facebook;
 
     public FacebookIdentityProvider With(Action<FacebookIdentityProvider> action)
     {
       action(this);
       return this;
-    }
-
-    public override IdentityProviderType getType()
-    {
-      return IdentityProviderType.Facebook;
     }
   }
 }

@@ -356,10 +356,13 @@ namespace FusionAuthCSharpClientTest
       {
         retrieveResponse.successResponse.identityProviders.ForEach(idp =>
         {
-          BaseIdentityProvider<BaseIdentityProviderApplicationConfiguration> identityProvider = (BaseIdentityProvider<BaseIdentityProviderApplicationConfiguration>) idp;
-          if (identityProvider.name.Equals("C# IdentityProvider"))
+          if (idp.GetType() == typeof(ExternalJWTIdentityProvider))
           {
-            _test.Client.DeleteIdentityProvider(identityProvider.id);
+            var identityProvider = (ExternalJWTIdentityProvider) idp;
+            if (identityProvider.name.Equals("C# IdentityProvider"))
+            {
+              _test.Client.DeleteIdentityProvider(identityProvider.id);
+            }
           }
         });
       }

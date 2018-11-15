@@ -53,9 +53,5 @@ namespace FusionAuth.Domain
     public string registrationVerify;
 
     public string stylesheet;
-
-    public LoginTheme()
-    {
-    }
   }
 }

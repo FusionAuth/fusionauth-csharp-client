@@ -19,30 +19,35 @@ using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class ExternalJWTIdentityProvider : BaseIdentityProvider<ExternalJWTApplicationConfiguration>,
-                                             Buildable<ExternalJWTIdentityProvider>
+  public class ExternalJWTIdentityProvider : Buildable<ExternalJWTIdentityProvider>, IdentityProvider
   {
+    public Dictionary<Guid, ExternalJWTApplicationConfiguration> applicationConfiguration =
+      new Dictionary<Guid, ExternalJWTApplicationConfiguration>();
+
     public IDictionary<string, string> claimMap;
 
     public ICollection<string> domains;
 
+    public bool enabled;
+
     public string headerKeyParameter;
 
+    public Guid id;
+
     public IDictionary<string, string> keys;
+
+    public string name;
 
     public IdentityProviderOAuth2Configuration oauth2;
 
     public string uniqueIdentityClaim;
 
+    public readonly IdentityProviderType type = IdentityProviderType.ExternalJWT;
+
     public ExternalJWTIdentityProvider With(Action<ExternalJWTIdentityProvider> action)
     {
       action(this);
       return this;
-    }
-
-    public override IdentityProviderType getType()
-    {
-      return IdentityProviderType.ExternalJWT;
     }
   }
 }

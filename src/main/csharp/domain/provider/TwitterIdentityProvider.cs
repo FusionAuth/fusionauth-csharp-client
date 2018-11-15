@@ -15,37 +15,30 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class LoginRequest : BaseLoginRequest, Buildable<LoginRequest>
+  public class TwitterIdentityProvider : Buildable<TwitterIdentityProvider>, IdentityProvider
   {
-    public string loginId;
+    public Dictionary<Guid, TwitterApplicationConfiguration> applicationConfiguration =
+      new Dictionary<Guid, TwitterApplicationConfiguration>();
 
-    public string password;
+    public string buttonText;
 
-    public string twoFactorTrustId;
+    public string consumerKey;
 
-    public LoginRequest()
-    {
-    }
+    public string consumerSecret;
 
-    public LoginRequest(Guid? applicationId, string loginId, string password)
-    {
-      this.applicationId = applicationId;
-      this.loginId = loginId;
-      this.password = password;
-    }
+    public bool enabled;
 
-    public LoginRequest(Guid? applicationId, string loginId, string password, string ipAddress)
-    {
-      this.applicationId = applicationId;
-      this.loginId = loginId;
-      this.password = password;
-      this.ipAddress = ipAddress;
-    }
+    public Guid id;
 
-    public LoginRequest With(Action<LoginRequest> action)
+    public string name;
+
+    public readonly IdentityProviderType type = IdentityProviderType.Twitter;
+
+    public TwitterIdentityProvider With(Action<TwitterIdentityProvider> action)
     {
       action(this);
       return this;

@@ -15,12 +15,15 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class GoogleIdentityProvider : BaseIdentityProvider<GoogleApplicationConfiguration>,
-                                        Buildable<GoogleIdentityProvider>
+  public class GoogleIdentityProvider : Buildable<GoogleIdentityProvider>, IdentityProvider
   {
+    public Dictionary<Guid, GoogleApplicationConfiguration> applicationConfiguration =
+      new Dictionary<Guid, GoogleApplicationConfiguration>();
+
     public string buttonText;
 
     public string client_id;
@@ -29,10 +32,13 @@ namespace FusionAuth.Domain
 
     public string scope;
 
-    public override IdentityProviderType getType()
-    {
-      return IdentityProviderType.Google;
-    }
+    public bool enabled;
+
+    public Guid id;
+
+    public string name;
+
+    public readonly IdentityProviderType type = IdentityProviderType.Google;
 
     public GoogleIdentityProvider With(Action<GoogleIdentityProvider> action)
     {
