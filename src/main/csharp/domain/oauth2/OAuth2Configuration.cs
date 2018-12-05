@@ -29,7 +29,11 @@ namespace FusionAuth.Domain
 
     public string clientSecret;
 
+    public bool generateRefreshTokens = true;
+
     public Uri logoutURL;
+
+    public bool requireClientAuthentication;
 
     public OAuth2Configuration()
     {
