@@ -21,11 +21,7 @@ namespace FusionAuth.Domain
 {
   public class UserResponse
   {
-    public long total;
-
     public User user;
-
-    public List<User> users;
 
     public UserResponse()
     {
@@ -34,12 +30,6 @@ namespace FusionAuth.Domain
     public UserResponse(User user)
     {
       this.user = user;
-    }
-
-    public UserResponse(SearchResults<User> searchResults)
-    {
-      users = searchResults.results;
-      total = searchResults.total;
     }
   }
 }
