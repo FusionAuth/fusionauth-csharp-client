@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1175,7 +1175,8 @@ namespace FusionAuth
     }
 
     /**
-     * Retrieves all of the actions for the user with the given Id.
+     * Retrieves all of the actions for the user with the given Id. This will return all time based actions that are active,
+     * and inactive as well as non-time based actions.
      *
      * @param userId The Id of the user to fetch the actions for.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
@@ -1187,6 +1188,43 @@ namespace FusionAuth
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlParameter("userId", userId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the actions for the user with the given Id that are currently preventing the User from logging in.
+     *
+     * @param userId The Id of the user to fetch the actions for.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ActionResponse, Errors> RetrieveActionsPreventingLogin(Guid userId)
+    {
+        return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                          .UrlParameter("userId", userId)
+                                          .UrlParameter("preventingLogin", true)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the actions for the user with the given Id that are currently active.
+     * An active action means one that is time based and has not been canceled, and has not ended.
+     *
+     * @param userId The Id of the user to fetch the actions for.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ActionResponse, Errors> RetrieveActiveActions(Guid userId)
+    {
+        return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                          .UrlParameter("userId", userId)
+                                          .UrlParameter("active", true)
                                           .Get()
                                           .Go();
     }
@@ -1536,6 +1574,25 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieves the last number of login records.
+     *
+     * @param offset The initial record. e.g. 0 is the last login, 100 will be the 100th most recent login.
+     * @param limit (Optional, defaults to 10) The number of records to retrieve.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RecentLoginResponse, Errors> RetrieveRecentLogins(int offset, int limit)
+    {
+        return Start<RecentLoginResponse, Errors>().Uri("/api/user/recent-login")
+                                          .UrlParameter("offset", offset)
+                                          .UrlParameter("limit", limit)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the refresh tokens that belong to the user with the given Id.
      *
      * @param userId The Id of the user.
@@ -1844,6 +1901,54 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
+     * login counts for that application.
+     *
+     * @param applicationId (Optional) The application id.
+     * @param userId The userId id.
+     * @param start The start instant as UTC milliseconds since Epoch.
+     * @param end The end instant as UTC milliseconds since Epoch.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LoginReportResponse, Errors> RetrieveUserLoginReport(Guid? applicationId, Guid userId, long start, long end)
+    {
+        return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
+                                          .UrlParameter("applicationId", applicationId)
+                                          .UrlParameter("userId", userId)
+                                          .UrlParameter("start", start)
+                                          .UrlParameter("end", end)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the login report between the two instants for a particular user by login Id. If you specify an application id, it will only return the
+     * login counts for that application.
+     *
+     * @param applicationId (Optional) The application id.
+     * @param loginId The userId id.
+     * @param start The start instant as UTC milliseconds since Epoch.
+     * @param end The end instant as UTC milliseconds since Epoch.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LoginReportResponse, Errors> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long start, long end)
+    {
+        return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
+                                          .UrlParameter("applicationId", applicationId)
+                                          .UrlParameter("loginId", loginId)
+                                          .UrlParameter("start", start)
+                                          .UrlParameter("end", end)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the last number of login records for a user.
      *
      * @param userId The Id of the user.
@@ -1854,9 +1959,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserLoginReportResponse, Errors> RetrieveUserLoginReport(Guid userId, int offset, int limit)
+    public ClientResponse<RecentLoginResponse, Errors> RetrieveUserRecentLogins(Guid userId, int offset, int limit)
     {
-        return Start<UserLoginReportResponse, Errors>().Uri("/api/report/user-login")
+        return Start<RecentLoginResponse, Errors>().Uri("/api/user/recent-login")
                                           .UrlParameter("userId", userId)
                                           .UrlParameter("offset", offset)
                                           .UrlParameter("limit", limit)
