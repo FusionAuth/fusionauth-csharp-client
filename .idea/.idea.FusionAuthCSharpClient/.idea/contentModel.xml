@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/Library/Caches/Rider2018.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_FusionAuthCSharpClient.-326855183.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_FusionAuthCSharpClient.-326855183.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="FusionAuthCSharpClient.sln" t="IncludeFlat" />
       <e p="LICENSE" t="Include" />
@@ -23,6 +23,7 @@
           <e p="Buildable.cs" t="Include" />
           <e p="CleanSpeakConfiguration.cs" t="Include" />
           <e p="ContentStatus.cs" t="Include" />
+          <e p="DisplayableRawLogin.cs" t="Include" />
           <e p="EmailConfiguration.cs" t="Include" />
           <e p="EventConfiguration.cs" t="Include" />
           <e p="EventType.cs" t="Include" />
@@ -43,7 +44,9 @@
           <e p="PasswordEncryptionConfiguration.cs" t="Include" />
           <e p="PasswordValidationRules.cs" t="Include" />
           <e p="RawLogin.cs" t="Include" />
+          <e p="RegistrationConfiguration.cs" t="Include" />
           <e p="RememberPreviousPasswords.cs" t="Include" />
+          <e p="Requirable.cs" t="Include" />
           <e p="SystemConfiguration.cs" t="Include" />
           <e p="Tenant.cs" t="Include" />
           <e p="TenantEmailConfiguration.cs" t="Include" />
@@ -123,7 +126,6 @@
               <e p="MonthlyActiveUserReportResponse.cs" t="Include" />
               <e p="RegistrationReportResponse.cs" t="Include" />
               <e p="TotalsReportResponse.cs" t="Include" />
-              <e p="UserLoginReportResponse.cs" t="Include" />
             </e>
             <e p="twoFactor" t="Include">
               <e p="SecretResponse.cs" t="Include" />
@@ -137,6 +139,7 @@
               <e p="ForgotPasswordRequest.cs" t="Include" />
               <e p="ForgotPasswordResponse.cs" t="Include" />
               <e p="ImportRequest.cs" t="Include" />
+              <e p="RecentLoginResponse.cs" t="Include" />
               <e p="RegistrationRequest.cs" t="Include" />
               <e p="RegistrationResponse.cs" t="Include" />
               <e p="SearchRequest.cs" t="Include" />

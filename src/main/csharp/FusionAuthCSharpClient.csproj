@@ -76,6 +76,7 @@
     <Compile Include="domain\api\PublicKeyResponse.cs" />
     <Compile Include="domain\api\UserDeleteRequest.cs" />
     <Compile Include="domain\api\user\ForgotPasswordResponse.cs" />
+    <Compile Include="domain\api\user\RecentLoginResponse.cs" />
     <Compile Include="domain\api\WebhookRequest.cs" />
     <Compile Include="domain\api\WebhookResponse.cs" />
     <Compile Include="domain\api\PreviewRequest.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="domain\api\report\MonthlyActiveUserReportResponse.cs" />
     <Compile Include="domain\api\report\RegistrationReportResponse.cs" />
     <Compile Include="domain\api\report\TotalsReportResponse.cs" />
-    <Compile Include="domain\api\report\UserLoginReportResponse.cs" />
     <Compile Include="domain\api\SystemConfigurationRequest.cs" />
     <Compile Include="domain\api\SystemConfigurationResponse.cs" />
     <Compile Include="domain\api\TwoFactorRequest.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="domain\ApplicationRole.cs" />
     <Compile Include="domain\AuditLog.cs" />
     <Compile Include="domain\Buildable.cs" />
+    <Compile Include="domain\DisplayableRawLogin.cs" />
     <Compile Include="domain\EmailConfiguration.cs" />
     <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
     <Compile Include="domain\Group.cs" />
@@ -128,6 +129,8 @@
     <Compile Include="domain\provider\OpenIdConnectIdentityProvider.cs" />
     <Compile Include="domain\provider\TwitterApplicationConfiguration.cs" />
     <Compile Include="domain\provider\TwitterIdentityProvider.cs" />
+    <Compile Include="domain\RegistrationConfiguration.cs" />
+    <Compile Include="domain\Requirable.cs" />
     <Compile Include="domain\TwilioConfiguration.cs" />
     <Compile Include="domain\ContentStatus.cs" />
     <Compile Include="domain\email\Attachment.cs" />

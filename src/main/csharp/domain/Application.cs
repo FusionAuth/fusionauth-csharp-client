@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 
-
 namespace FusionAuth.Domain
 {
   public class Application : Buildable<Application>
@@ -29,16 +28,18 @@ namespace FusionAuth.Domain
     public AuthenticationTokenConfiguration authenticationTokenConfiguration;
 
     public CleanSpeakConfiguration cleanSpeakConfiguration;
-    
+
     public IDictionary<string, object> data = new Dictionary<string, object>();
 
     public Guid? id;
-    
+
     public JWTConfiguration jwtConfiguration;
 
     public string name;
 
     public OAuth2Configuration oauthConfiguration = new OAuth2Configuration();
+
+    public RegistrationConfiguration registrationConfiguration = new RegistrationConfiguration();
 
     public List<ApplicationRole> roles = new List<ApplicationRole>();
 
