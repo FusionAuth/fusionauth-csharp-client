@@ -1416,6 +1416,25 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieves all of the actions for the user with the given Id that are currently inactive.
+     * An inactive action means one that is time based and has been canceled or has expired, or is not time based.
+     *
+     * @param userId The Id of the user to fetch the actions for.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ActionResponse, Errors> RetrieveInactiveActions(Guid userId)
+    {
+        return Start<ActionResponse, Errors>().Uri("/api/user/action")
+                                          .UrlParameter("userId", userId)
+                                          .UrlParameter("active", false)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves all of the applications that are currently inactive.
      *
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
