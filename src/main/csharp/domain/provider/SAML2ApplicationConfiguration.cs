@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+/*
+ * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,24 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public enum GrantType
+  public class SAML2ApplicationConfiguration : Buildable<SAML2ApplicationConfiguration>
   {
-    Authorization,
+    public Uri buttonImageURL;
 
-    Implicit,
+    public string buttonText;
 
-    Resource_Owner_Credentials,
+    public bool createRegistration;
 
-    Client_Credentials,
+    public bool enabled;
 
-    Refresh_Token
+    public SAML2ApplicationConfiguration With(Action<SAML2ApplicationConfiguration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

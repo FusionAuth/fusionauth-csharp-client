@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,11 @@ namespace FusionAuth.Domain
       if (json["type"].Value<string>() == "OpenIDConnect")
       {
         return json.ToObject<OpenIdConnectIdentityProvider>(serializer);
+      }
+
+      if (json["type"].Value<string>() == "SAML2")
+      {
+        return json.ToObject<SAML2IdentityProvider>(serializer);
       }
 
       return null;

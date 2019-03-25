@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
+/*
+ * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,32 +19,40 @@ using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class ExternalJWTIdentityProvider : Buildable<ExternalJWTIdentityProvider>, IdentityProvider
+  public class SAML2IdentityProvider : Buildable<SAML2IdentityProvider>, IdentityProvider
   {
-    public IDictionary<Guid, ExternalJWTApplicationConfiguration> applicationConfiguration =
-      new Dictionary<Guid, ExternalJWTApplicationConfiguration>();
+    public readonly IdentityProviderType type = IdentityProviderType.SAML2;
+
+    public IDictionary<Guid, SAML2ApplicationConfiguration>
+      applicationConfiguration = new Dictionary<Guid, SAML2ApplicationConfiguration>();
+
+    public Uri buttonImageURL;
+
+    public string buttonText;
 
     public IDictionary<string, string> claimMap;
 
     public ICollection<string> domains;
 
-    public bool enabled;
+    public string emailClaim;
 
-    public string headerKeyParameter;
+    public bool enabled;
 
     public Guid id;
 
-    public IDictionary<string, string> keys;
+    public string idpEndpoint;
 
     public string name;
 
-    public IdentityProviderOAuth2Configuration oauth2;
+    public string requestPrivateKey;
 
-    public string uniqueIdentityClaim;
+    public string requestPublicKey;
 
-    public readonly IdentityProviderType type = IdentityProviderType.ExternalJWT;
+    public string responsePublicKey;
 
-    public ExternalJWTIdentityProvider With(Action<ExternalJWTIdentityProvider> action)
+    public string rolesClaim;
+
+    public SAML2IdentityProvider With(Action<SAML2IdentityProvider> action)
     {
       action(this);
       return this;

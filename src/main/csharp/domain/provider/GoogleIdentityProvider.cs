@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace FusionAuth.Domain
 {
   public class GoogleIdentityProvider : Buildable<GoogleIdentityProvider>, IdentityProvider
   {
-    public Dictionary<Guid, GoogleApplicationConfiguration> applicationConfiguration =
+    public IDictionary<Guid, GoogleApplicationConfiguration> applicationConfiguration =
       new Dictionary<Guid, GoogleApplicationConfiguration>();
 
     public string buttonText;

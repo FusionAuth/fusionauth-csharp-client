@@ -35,9 +35,13 @@ namespace FusionAuth.Domain
 
     public JWTConfiguration jwtConfiguration;
 
+    public LoginConfiguration loginConfiguration = new LoginConfiguration();
+
     public string name;
 
     public OAuth2Configuration oauthConfiguration = new OAuth2Configuration();
+
+    public PasswordlessConfiguration passwordlessConfiguration = new PasswordlessConfiguration();
 
     public RegistrationConfiguration registrationConfiguration = new RegistrationConfiguration();
 

@@ -29,7 +29,6 @@ namespace FusionAuth.Domain
 
     public string name;
 
-
     public Tenant With(Action<Tenant> action)
     {
       action(this);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,16 +22,18 @@ namespace FusionAuth.Domain
   public class AccessToken
   {
     [JsonProperty(PropertyName = "expires_in")]
-    public int expiresIn;
-
-    [JsonProperty(PropertyName = "access_token")]
-    public string token;
+    public int? expiresIn;
 
     [JsonProperty(PropertyName = "id_token")]
     public string idToken;
 
     [JsonProperty(PropertyName = "refresh_token")]
     public string refreshToken;
+
+    public string scope;
+
+    [JsonProperty(PropertyName = "access_token")]
+    public string token;
 
     [JsonProperty(PropertyName = "token_type")]
     public TokenType tokenType;

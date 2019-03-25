@@ -22,8 +22,6 @@ namespace FusionAuth.Domain
   {
     public Guid? applicationId;
 
-    public string device;
-
     public string ipAddress;
 
     public MetaData metaData;

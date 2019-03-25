@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
@@ -29,6 +28,8 @@ namespace FusionAuth.Domain
 
     public EventConfiguration eventConfiguration;
 
+    public EventLogConfiguration eventLogConfiguration = new EventLogConfiguration();
+
     public ExternalIdentifierConfiguration externalIdentifierConfiguration;
 
     public FailedAuthenticationConfiguration failedAuthenticationConfiguration;
@@ -37,13 +38,13 @@ namespace FusionAuth.Domain
 
     public JWTConfiguration jwtConfiguration;
 
+    public Uri logoutURL;
+
     public MaximumPasswordAge maximumPasswordAge = new MaximumPasswordAge();
 
     public MinimumPasswordAge minimumPasswordAge = new MinimumPasswordAge();
 
     public PasswordEncryptionConfiguration passwordEncryptionConfiguration;
-
-    public Uri logoutURL;
 
     public PasswordValidationRules passwordValidationRules;
 

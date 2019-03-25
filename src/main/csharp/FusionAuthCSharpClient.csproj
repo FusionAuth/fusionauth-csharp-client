@@ -13,10 +13,10 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>1.4.3</ReleaseVersion>
+    <ReleaseVersion>1.5.0</ReleaseVersion>
     <LangVersion>3</LangVersion>
     <PackageId>FusionAuth.Client</PackageId>
-    <PackageVersion>1.4.3</PackageVersion>
+    <PackageVersion>1.5.0</PackageVersion>
     <Authors>Brian Pontarelli, Daniel DeGroff</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>voidmain, robotdan</Owners>
@@ -25,7 +25,7 @@
     <PackageTags>json rest fusionauth api</PackageTags>
     <Title>C# FusionAuth Client</Title>
     <Description>C# FusionAuth Client</Description>
-    <PackOnBuild>false</PackOnBuild>
+    <PackOnBuild>true</PackOnBuild>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
   </PropertyGroup>
@@ -59,6 +59,8 @@
     <Compile Include="domain\api\EmailTemplateResponse.cs" />
     <Compile Include="domain\api\email\SendRequest.cs" />
     <Compile Include="domain\api\email\SendResponse.cs" />
+    <Compile Include="domain\api\EventLogSearchRequest.cs" />
+    <Compile Include="domain\api\EventLogSearchResponse.cs" />
     <Compile Include="domain\api\GroupRequest.cs" />
     <Compile Include="domain\api\GroupResponse.cs" />
     <Compile Include="domain\api\identityProvider\IdentityProviderLoginRequest.cs" />
@@ -67,14 +69,19 @@
     <Compile Include="domain\api\jwt\IssueResponse.cs" />
     <Compile Include="domain\api\jwt\RefreshRequest.cs" />
     <Compile Include="domain\api\jwt\ValidateResponse.cs" />
+    <Compile Include="domain\api\LambdaRequest.cs" />
+    <Compile Include="domain\api\LambdaResponse.cs" />
     <Compile Include="domain\api\LoginPreventedResponse.cs" />
     <Compile Include="domain\api\LoginRequest.cs" />
     <Compile Include="domain\api\LoginResponse.cs" />
     <Compile Include="domain\api\MemberDeleteRequest.cs" />
     <Compile Include="domain\api\MemberRequest.cs" />
     <Compile Include="domain\api\MemberResponse.cs" />
+    <Compile Include="domain\api\passwordless\PasswordlessLoginRequest.cs" />
+    <Compile Include="domain\api\passwordless\PasswordlessSendRequest.cs" />
     <Compile Include="domain\api\PublicKeyResponse.cs" />
     <Compile Include="domain\api\UserDeleteRequest.cs" />
+    <Compile Include="domain\api\user\ChangePasswordResponse.cs" />
     <Compile Include="domain\api\user\ForgotPasswordResponse.cs" />
     <Compile Include="domain\api\user\RecentLoginResponse.cs" />
     <Compile Include="domain\api\WebhookRequest.cs" />
@@ -113,9 +120,15 @@
     <Compile Include="domain\Buildable.cs" />
     <Compile Include="domain\DisplayableRawLogin.cs" />
     <Compile Include="domain\EmailConfiguration.cs" />
+    <Compile Include="domain\EventLog.cs" />
+    <Compile Include="domain\EventLogConfiguration.cs" />
     <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
     <Compile Include="domain\Group.cs" />
     <Compile Include="domain\GroupMember.cs" />
+    <Compile Include="domain\Lambda.cs" />
+    <Compile Include="domain\LambdaType.cs" />
+    <Compile Include="domain\LoginConfiguration.cs" />
+    <Compile Include="domain\PasswordlessConfiguration.cs" />
     <Compile Include="domain\provider\ExternalJWTApplicationConfiguration.cs" />
     <Compile Include="domain\provider\ExternalJWTIdentityProvider.cs" />
     <Compile Include="domain\provider\FacebookApplicationConfiguration.cs" />
@@ -127,10 +140,13 @@
     <Compile Include="domain\provider\IdentityProviderType.cs" />
     <Compile Include="domain\provider\OpenIdConnectApplicationConfiguration.cs" />
     <Compile Include="domain\provider\OpenIdConnectIdentityProvider.cs" />
+    <Compile Include="domain\provider\SAML2ApplicationConfiguration.cs" />
+    <Compile Include="domain\provider\SAML2IdentityProvider.cs" />
     <Compile Include="domain\provider\TwitterApplicationConfiguration.cs" />
     <Compile Include="domain\provider\TwitterIdentityProvider.cs" />
     <Compile Include="domain\RegistrationConfiguration.cs" />
     <Compile Include="domain\Requirable.cs" />
+    <Compile Include="domain\search\EventLogSearchCriteria.cs" />
     <Compile Include="domain\TwilioConfiguration.cs" />
     <Compile Include="domain\ContentStatus.cs" />
     <Compile Include="domain\email\Attachment.cs" />
@@ -152,7 +168,6 @@
     <Compile Include="domain\Webhook.cs" />
     <Compile Include="domain\event\EventRequest.cs" />
     <Compile Include="domain\event\UserActionPhase.cs" />
-    <Compile Include="domain\oauth2\GrantType.cs" />
     <Compile Include="domain\oauth2\OAuth2Configuration.cs" />
     <Compile Include="domain\email\EmailTemplate.cs" />
     <Compile Include="domain\PasswordValidationRules.cs" />

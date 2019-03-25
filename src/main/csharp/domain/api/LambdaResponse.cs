@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,26 @@
 
 using System.Collections.Generic;
 
-
 namespace FusionAuth.Domain
 {
-  public class RefreshResponse
+  public class LambdaResponse
   {
-    public List<RefreshToken> refreshTokens;
+    public Lambda lambda;
 
-    public string token;
+    public List<Lambda> lambdas;
+
+    public LambdaResponse()
+    {
+    }
+
+    public LambdaResponse(List<Lambda> lambdas)
+    {
+      this.lambdas = lambdas;
+    }
+
+    public LambdaResponse(Lambda lambda)
+    {
+      this.lambda = lambda;
+    }
   }
 }

@@ -135,9 +135,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> ChangePassword(string changePasswordId, ChangePasswordRequest request)
+    public ClientResponse<ChangePasswordResponse, Errors> ChangePassword(string changePasswordId, ChangePasswordRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/change-password")
+        return Start<ChangePasswordResponse, Errors>().Uri("/api/user/change-password")
                                           .UrlSegment(changePasswordId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
@@ -310,6 +310,25 @@ namespace FusionAuth
     {
         return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
                                           .UrlSegment(identityProviderId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Creates a Lambda. You can optionally specify an Id for the lambda, if not provided one will be generated.
+     *
+     * @param lambdaId (Optional) The Id for the lambda. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the lambda.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LambdaResponse, Errors> CreateLambda(Guid? lambdaId, LambdaRequest request)
+    {
+        return Start<LambdaResponse, Errors>().Uri("/api/lambda")
+                                          .UrlSegment(lambdaId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -586,6 +605,23 @@ namespace FusionAuth
     {
         return Start<RESTVoid, Errors>().Uri("/api/identity-provider")
                                           .UrlSegment(identityProviderId)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
+     * Deletes the lambda for the given Id.
+     *
+     * @param lambdaId The Id of the lambda to delete.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> DeleteLambda(Guid lambdaId)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/lambda")
+                                          .UrlSegment(lambdaId)
                                           .Delete()
                                           .Go();
     }
@@ -1024,6 +1060,23 @@ namespace FusionAuth
                                           .UrlSegment(actionId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
+                                          .Go();
+    }
+
+    /**
+     * Complete a login request using a passwordless code
+     *
+     * @param request The passwordless login request that contains all of the information used to complete login.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LoginResponse, Errors> PasswordlessLogin(PasswordlessLoginRequest request)
+    {
+        return Start<LoginResponse, Errors>().Uri("/api/passwordless/login")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
                                           .Go();
     }
 
@@ -1511,6 +1564,38 @@ namespace FusionAuth
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKeys()
     {
         return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the lambda for the given Id.
+     *
+     * @param lambdaId The Id of the lambda.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LambdaResponse, Errors> RetrieveLambda(Guid lambdaId)
+    {
+        return Start<LambdaResponse, Errors>().Uri("/api/lambda")
+                                          .UrlSegment(lambdaId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the lambdas.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LambdaResponse, RESTVoid> RetrieveLambdas()
+    {
+        return Start<LambdaResponse, RESTVoid>().Uri("/api/lambda")
                                           .Get()
                                           .Go();
     }
@@ -2077,6 +2162,23 @@ namespace FusionAuth
     }
 
     /**
+     * Searches the event logs with the specified criteria and pagination.
+     *
+     * @param request The search criteria and pagination information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<EventLogSearchResponse, RESTVoid> SearchEventLogs(EventLogSearchRequest request)
+    {
+        return Start<EventLogSearchResponse, RESTVoid>().Uri("/api/system/event-log/search")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the users for the given ids. If any id is invalid, it is ignored.
      *
      * @param ids The user ids to search for.
@@ -2126,6 +2228,23 @@ namespace FusionAuth
     {
         return Start<SendResponse, Errors>().Uri("/api/email/send")
                                           .UrlSegment(emailTemplateId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Send a passwordless authentication code in an email to complete login.
+     *
+     * @param request The passwordless send request that contains all of the information used to send an email containing a code.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> SendPasswordlessCode(PasswordlessSendRequest request)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/passwordless/send")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -2292,6 +2411,25 @@ namespace FusionAuth
     public ClientResponse<IntegrationResponse, Errors> UpdateIntegrations(IntegrationRequest request)
     {
         return Start<IntegrationResponse, Errors>().Uri("/api/integration")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
+     * Updates the lambda with the given Id.
+     *
+     * @param lambdaId The Id of the lambda to update.
+     * @param request The request that contains all of the new lambda information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LambdaResponse, Errors> UpdateLambda(Guid lambdaId, LambdaRequest request)
+    {
+        return Start<LambdaResponse, Errors>().Uri("/api/lambda")
+                                          .UrlSegment(lambdaId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();

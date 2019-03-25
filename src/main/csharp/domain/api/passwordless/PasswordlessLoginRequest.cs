@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,12 @@
  * language governing permissions and limitations under the License.
  */
 
-using System.Collections.Generic;
-
-
 namespace FusionAuth.Domain
 {
-  public class RefreshResponse
+  public class PasswordlessLoginRequest
   {
-    public List<RefreshToken> refreshTokens;
+    public string code;
 
-    public string token;
+    public string twoFactorTrustId;
   }
 }

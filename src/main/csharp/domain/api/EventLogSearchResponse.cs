@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,22 @@
 
 using System.Collections.Generic;
 
-
 namespace FusionAuth.Domain
 {
-  public class RefreshResponse
+  public class EventLogSearchResponse
   {
-    public List<RefreshToken> refreshTokens;
+    public List<EventLog> eventLogs;
 
-    public string token;
+    public long total;
+
+    public EventLogSearchResponse()
+    {
+    }
+
+    public EventLogSearchResponse(SearchResults<EventLog> searchResults)
+    {
+      this.eventLogs = searchResults.results;
+      this.total = searchResults.total;
+    }
   }
 }

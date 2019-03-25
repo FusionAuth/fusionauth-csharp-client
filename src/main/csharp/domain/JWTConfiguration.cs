@@ -45,6 +45,12 @@ namespace FusionAuth.Domain
 
   public enum Algorithm
   {
+    ES256,
+
+    ES384,
+
+    ES512,
+
     HS256,
 
     HS384,

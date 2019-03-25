@@ -26,6 +26,8 @@
           <e p="DisplayableRawLogin.cs" t="Include" />
           <e p="EmailConfiguration.cs" t="Include" />
           <e p="EventConfiguration.cs" t="Include" />
+          <e p="EventLog.cs" t="Include" />
+          <e p="EventLogConfiguration.cs" t="Include" />
           <e p="EventType.cs" t="Include" />
           <e p="ExpiryUnit.cs" t="Include" />
           <e p="ExternalIdentifierConfiguration.cs" t="Include" />
@@ -36,13 +38,17 @@
           <e p="Integrations.cs" t="Include" />
           <e p="JWTConfiguration.cs" t="Include" />
           <e p="KafkaConfiguration.cs" t="Include" />
+          <e p="Lambda.cs" t="Include" />
+          <e p="LambdaType.cs" t="Include" />
           <e p="LocalizedStrings.cs" t="Include" />
           <e p="LogHistory.cs" t="Include" />
+          <e p="LoginConfiguration.cs" t="Include" />
           <e p="LoginTheme.cs" t="Include" />
           <e p="MaximumPasswordAge.cs" t="Include" />
           <e p="MinimumPasswordAge.cs" t="Include" />
           <e p="PasswordEncryptionConfiguration.cs" t="Include" />
           <e p="PasswordValidationRules.cs" t="Include" />
+          <e p="PasswordlessConfiguration.cs" t="Include" />
           <e p="RawLogin.cs" t="Include" />
           <e p="RegistrationConfiguration.cs" t="Include" />
           <e p="RememberPreviousPasswords.cs" t="Include" />
@@ -72,12 +78,16 @@
             <e p="BaseLoginRequest.cs" t="Include" />
             <e p="EmailTemplateRequest.cs" t="Include" />
             <e p="EmailTemplateResponse.cs" t="Include" />
+            <e p="EventLogSearchRequest.cs" t="Include" />
+            <e p="EventLogSearchResponse.cs" t="Include" />
             <e p="GroupRequest.cs" t="Include" />
             <e p="GroupResponse.cs" t="Include" />
             <e p="IdentityProviderRequest.cs" t="Include" />
             <e p="IdentityProviderResponse.cs" t="Include" />
             <e p="IntegrationRequest.cs" t="Include" />
             <e p="IntegrationResponse.cs" t="Include" />
+            <e p="LambdaRequest.cs" t="Include" />
+            <e p="LambdaResponse.cs" t="Include" />
             <e p="LoginPreventedResponse.cs" t="Include" />
             <e p="LoginRequest.cs" t="Include" />
             <e p="LoginResponse.cs" t="Include" />
@@ -119,6 +129,10 @@
               <e p="RefreshResponse.cs" t="Include" />
               <e p="ValidateResponse.cs" t="Include" />
             </e>
+            <e p="passwordless" t="Include">
+              <e p="PasswordlessLoginRequest.cs" t="Include" />
+              <e p="PasswordlessSendRequest.cs" t="Include" />
+            </e>
             <e p="report" t="Include">
               <e p="Count.cs" t="Include" />
               <e p="DailyActiveUserReportResponse.cs" t="Include" />
@@ -136,6 +150,7 @@
               <e p="ActionRequest.cs" t="Include" />
               <e p="ActionResponse.cs" t="Include" />
               <e p="ChangePasswordRequest.cs" t="Include" />
+              <e p="ChangePasswordResponse.cs" t="Include" />
               <e p="ForgotPasswordRequest.cs" t="Include" />
               <e p="ForgotPasswordResponse.cs" t="Include" />
               <e p="ImportRequest.cs" t="Include" />
@@ -176,7 +191,6 @@
           </e>
           <e p="oauth2" t="Include">
             <e p="AccessToken.cs" t="Include" />
-            <e p="GrantType.cs" t="Include" />
             <e p="OAuth2Configuration.cs" t="Include" />
             <e p="TokenType.cs" t="Include" />
           </e>
@@ -192,12 +206,15 @@
             <e p="IdentityProviderType.cs" t="Include" />
             <e p="OpenIdConnectApplicationConfiguration.cs" t="Include" />
             <e p="OpenIdConnectIdentityProvider.cs" t="Include" />
+            <e p="SAML2ApplicationConfiguration.cs" t="Include" />
+            <e p="SAML2IdentityProvider.cs" t="Include" />
             <e p="TwitterApplicationConfiguration.cs" t="Include" />
             <e p="TwitterIdentityProvider.cs" t="Include" />
           </e>
           <e p="search" t="Include">
             <e p="AuditLogSearchCriteria.cs" t="Include" />
             <e p="BaseSearchCriteria.cs" t="Include" />
+            <e p="EventLogSearchCriteria.cs" t="Include" />
             <e p="SearchResults.cs" t="Include" />
             <e p="Sort.cs" t="Include" />
             <e p="SortField.cs" t="Include" />

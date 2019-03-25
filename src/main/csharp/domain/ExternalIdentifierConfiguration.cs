@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,10 @@ namespace FusionAuth.Domain
 
     public int emailVerificationIdTimeToLiveInSeconds;
 
+    public int oneTimePasswordTimeToLiveInSeconds;
+
+    public int passwordlessLoginTimeToLiveInSeconds;
+
     public int registrationVerificationIdTimeToLiveInSeconds;
 
     public int setupPasswordIdTimeToLiveInSeconds;
@@ -31,9 +35,5 @@ namespace FusionAuth.Domain
     public int twoFactorIdTimeToLiveInSeconds;
 
     public int twoFactorTrustIdTimeToLiveInSeconds;
-
-    public ExternalIdentifierConfiguration()
-    {
-    }
   }
 }

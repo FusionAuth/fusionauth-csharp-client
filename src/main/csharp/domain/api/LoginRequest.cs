@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ namespace FusionAuth.Domain
   public class LoginRequest : BaseLoginRequest, Buildable<LoginRequest>
   {
     public string loginId;
+
+    public string oneTimePassword;
 
     public string password;
 
