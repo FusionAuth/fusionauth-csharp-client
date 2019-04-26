@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,14 @@
 
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public enum CanonicalizationMethod
   {
-    JWTPopulate,
+    exclusive,
 
-    SAMLv2Reconcile,
+    exclusive_with_comments,
 
-    SAMLv2Populate
+    inclusive,
+
+    inclusive_with_comments,
   }
 }

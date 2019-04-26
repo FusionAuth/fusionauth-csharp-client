@@ -23,5 +23,7 @@ namespace FusionAuth.Domain
     public string message;
 
     public string start;
+
+    public EventLogType type;
   }
 }

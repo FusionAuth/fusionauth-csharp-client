@@ -28,6 +28,6 @@ namespace FusionAuth.Domain
 
     Twitter,
 
-    SAML2
+    SAMLv2
   }
 }

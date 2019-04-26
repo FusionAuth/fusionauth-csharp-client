@@ -60,9 +60,9 @@ namespace FusionAuth.Domain
         return json.ToObject<OpenIdConnectIdentityProvider>(serializer);
       }
 
-      if (json["type"].Value<string>() == "SAML2")
+      if (json["type"].Value<string>() == "SAMLv2")
       {
-        return json.ToObject<SAML2IdentityProvider>(serializer);
+        return json.ToObject<SAMLv2IdentityProvider>(serializer);
       }
 
       return null;

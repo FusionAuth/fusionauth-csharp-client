@@ -21,6 +21,7 @@
           <e p="AuditLog.cs" t="Include" />
           <e p="AuthenticationTokenConfiguration.cs" t="Include" />
           <e p="Buildable.cs" t="Include" />
+          <e p="CanonicalizationMethod.cs" t="Include" />
           <e p="CleanSpeakConfiguration.cs" t="Include" />
           <e p="ContentStatus.cs" t="Include" />
           <e p="DisplayableRawLogin.cs" t="Include" />
@@ -28,6 +29,7 @@
           <e p="EventConfiguration.cs" t="Include" />
           <e p="EventLog.cs" t="Include" />
           <e p="EventLogConfiguration.cs" t="Include" />
+          <e p="EventLogType.cs" t="Include" />
           <e p="EventType.cs" t="Include" />
           <e p="ExpiryUnit.cs" t="Include" />
           <e p="ExternalIdentifierConfiguration.cs" t="Include" />
@@ -38,7 +40,11 @@
           <e p="Integrations.cs" t="Include" />
           <e p="JWTConfiguration.cs" t="Include" />
           <e p="KafkaConfiguration.cs" t="Include" />
+          <e p="Key.cs" t="Include" />
+          <e p="KeyAlgorithm.cs" t="Include" />
+          <e p="KeyType.cs" t="Include" />
           <e p="Lambda.cs" t="Include" />
+          <e p="LambdaConfiguration.cs" t="Include" />
           <e p="LambdaType.cs" t="Include" />
           <e p="LocalizedStrings.cs" t="Include" />
           <e p="LogHistory.cs" t="Include" />
@@ -53,6 +59,7 @@
           <e p="RegistrationConfiguration.cs" t="Include" />
           <e p="RememberPreviousPasswords.cs" t="Include" />
           <e p="Requirable.cs" t="Include" />
+          <e p="SAMLv2Configuration.cs" t="Include" />
           <e p="SystemConfiguration.cs" t="Include" />
           <e p="Tenant.cs" t="Include" />
           <e p="TenantEmailConfiguration.cs" t="Include" />
@@ -78,6 +85,7 @@
             <e p="BaseLoginRequest.cs" t="Include" />
             <e p="EmailTemplateRequest.cs" t="Include" />
             <e p="EmailTemplateResponse.cs" t="Include" />
+            <e p="EventLogResponse.cs" t="Include" />
             <e p="EventLogSearchRequest.cs" t="Include" />
             <e p="EventLogSearchResponse.cs" t="Include" />
             <e p="GroupRequest.cs" t="Include" />
@@ -86,6 +94,8 @@
             <e p="IdentityProviderResponse.cs" t="Include" />
             <e p="IntegrationRequest.cs" t="Include" />
             <e p="IntegrationResponse.cs" t="Include" />
+            <e p="KeyRequest.cs" t="Include" />
+            <e p="KeyResponse.cs" t="Include" />
             <e p="LambdaRequest.cs" t="Include" />
             <e p="LambdaResponse.cs" t="Include" />
             <e p="LoginPreventedResponse.cs" t="Include" />
@@ -206,8 +216,8 @@
             <e p="IdentityProviderType.cs" t="Include" />
             <e p="OpenIdConnectApplicationConfiguration.cs" t="Include" />
             <e p="OpenIdConnectIdentityProvider.cs" t="Include" />
-            <e p="SAML2ApplicationConfiguration.cs" t="Include" />
-            <e p="SAML2IdentityProvider.cs" t="Include" />
+            <e p="SAMLv2ApplicationConfiguration.cs" t="Include" />
+            <e p="SAMLv2IdentityProvider.cs" t="Include" />
             <e p="TwitterApplicationConfiguration.cs" t="Include" />
             <e p="TwitterIdentityProvider.cs" t="Include" />
           </e>

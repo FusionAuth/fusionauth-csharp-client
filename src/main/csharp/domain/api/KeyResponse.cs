@@ -14,14 +14,28 @@
  * language governing permissions and limitations under the License.
  */
 
+using System.Collections.Generic;
+
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public class KeyResponse
   {
-    JWTPopulate,
+    public Key key;
 
-    SAMLv2Reconcile,
+    public List<Key> keys;
 
-    SAMLv2Populate
+    public KeyResponse()
+    {
+    }
+
+    public KeyResponse(List<Key> keys)
+    {
+      this.keys = keys;
+    }
+
+    public KeyResponse(Key key)
+    {
+      this.key = key;
+    }
   }
 }

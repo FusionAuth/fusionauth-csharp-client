@@ -14,14 +14,18 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public class LambdaConfiguration : Buildable<LambdaConfiguration>
   {
-    JWTPopulate,
+    public Guid? reconcileId;
 
-    SAMLv2Reconcile,
-
-    SAMLv2Populate
+    public LambdaConfiguration With(Action<LambdaConfiguration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

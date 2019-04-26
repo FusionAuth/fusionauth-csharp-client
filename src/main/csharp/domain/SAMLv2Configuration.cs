@@ -14,14 +14,32 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public class SAMLv2Configuration : Buildable<SAMLv2Configuration>
   {
-    JWTPopulate,
+    public string audience;
 
-    SAMLv2Reconcile,
+    public Uri callbackURL;
 
-    SAMLv2Populate
+    public bool debug;
+
+    public bool enabled;
+
+    public string issuer;
+
+    public Guid? keyId;
+
+    public Uri logoutURL;
+
+    public CanonicalizationMethod xmlSignatureC14nMethod = CanonicalizationMethod.exclusive_with_comments;
+
+    public SAMLv2Configuration With(Action<SAMLv2Configuration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

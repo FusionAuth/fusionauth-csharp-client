@@ -610,6 +610,23 @@ namespace FusionAuth
     }
 
     /**
+     * Deletes the key for the given Id.
+     *
+     * @param keyOd The Id of the key to delete.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> DeleteKey(Guid keyOd)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/key")
+                                          .UrlSegment(keyOd)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
      * Deletes the lambda for the given Id.
      *
      * @param lambdaId The Id of the lambda to delete.
@@ -843,6 +860,25 @@ namespace FusionAuth
     }
 
     /**
+     * Generate a new RSA or EC key pair or an HMAC secret.
+     *
+     * @param keyId (Optional) The Id for the key. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the key.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<KeyResponse, Errors> GenerateKey(Guid? keyId, KeyRequest request)
+    {
+        return Start<KeyResponse, Errors>().Uri("/api/key/generate")
+                                          .UrlSegment(keyId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Generate a new Application Registration Verification Id to be used with the Verify Registration API. This API will not attempt to send an
      * email to the User. This API may be used to collect the verificationId for use with a third party system.
      *
@@ -913,6 +949,25 @@ namespace FusionAuth
     public ClientResponse<LoginResponse, Errors> IdentityProviderLogin(IdentityProviderLoginRequest request)
     {
         return Start<LoginResponse, Errors>().Uri("/api/identity-provider/login")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Import an existing RSA or EC key pair or an HMAC secret.
+     *
+     * @param keyId (Optional) The Id for the key. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the key.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<KeyResponse, Errors> ImportKey(Guid? keyId, KeyRequest request)
+    {
+        return Start<KeyResponse, Errors>().Uri("/api/key/import")
+                                          .UrlSegment(keyId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -1405,6 +1460,23 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieves a single event log for the given Id.
+     *
+     * @param eventLogId The Id of the event log to retrieve.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<EventLogResponse, Errors> RetrieveEventLog(int eventLogId)
+    {
+        return Start<EventLogResponse, Errors>().Uri("/api/system/event-log")
+                                          .UrlSegment(eventLogId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the group for the given Id.
      *
      * @param groupId The Id of the group.
@@ -1569,6 +1641,38 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieves the key for the given Id.
+     *
+     * @param keyId The Id of the key.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<KeyResponse, Errors> RetrieveKey(Guid keyId)
+    {
+        return Start<KeyResponse, Errors>().Uri("/api/key")
+                                          .UrlSegment(keyId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the keys.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<KeyResponse, RESTVoid> RetrieveKeys()
+    {
+        return Start<KeyResponse, RESTVoid>().Uri("/api/key")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the lambda for the given Id.
      *
      * @param lambdaId The Id of the lambda.
@@ -1596,6 +1700,23 @@ namespace FusionAuth
     public ClientResponse<LambdaResponse, RESTVoid> RetrieveLambdas()
     {
         return Start<LambdaResponse, RESTVoid>().Uri("/api/lambda")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the lambdas for the provided type.
+     *
+     * @param type The type of the lambda to return.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LambdaResponse, RESTVoid> RetrieveLambdasByType(LambdaType type)
+    {
+        return Start<LambdaResponse, RESTVoid>().Uri("/api/lambda")
+                                          .UrlParameter("type", type)
                                           .Get()
                                           .Go();
     }
@@ -2411,6 +2532,25 @@ namespace FusionAuth
     public ClientResponse<IntegrationResponse, Errors> UpdateIntegrations(IntegrationRequest request)
     {
         return Start<IntegrationResponse, Errors>().Uri("/api/integration")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
+     * Updates the key with the given Id.
+     *
+     * @param keyId The Id of the key to update.
+     * @param request The request that contains all of the new key information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<KeyResponse, Errors> UpdateKey(Guid keyId, KeyRequest request)
+    {
+        return Start<KeyResponse, Errors>().Uri("/api/key")
+                                          .UrlSegment(keyId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();

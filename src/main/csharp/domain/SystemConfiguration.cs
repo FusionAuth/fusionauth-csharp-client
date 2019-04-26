@@ -36,6 +36,8 @@ namespace FusionAuth.Domain
 
     public int httpSessionMaxInactiveInterval = 3600;
 
+    public string issuer;
+
     public JWTConfiguration jwtConfiguration;
 
     public Uri logoutURL;

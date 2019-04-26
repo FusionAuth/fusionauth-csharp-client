@@ -35,6 +35,8 @@ namespace FusionAuth.Domain
 
     public JWTConfiguration jwtConfiguration;
 
+    public LambdaConfiguration lambdaConfiguration = new LambdaConfiguration();
+
     public LoginConfiguration loginConfiguration = new LoginConfiguration();
 
     public string name;
@@ -46,6 +48,8 @@ namespace FusionAuth.Domain
     public RegistrationConfiguration registrationConfiguration = new RegistrationConfiguration();
 
     public List<ApplicationRole> roles = new List<ApplicationRole>();
+
+    public SAMLv2Configuration samlv2Configuration = new SAMLv2Configuration();
 
     public Guid? tenantId;
 
@@ -106,6 +110,21 @@ namespace FusionAuth.Domain
     {
       action(this);
       return this;
+    }
+
+    public class LambdaConfiguration : Buildable<LambdaConfiguration>
+    {
+      public Guid? accessTokenPopulateId;
+
+      public Guid? idTokenPopulateId;
+
+      public Guid? samlv2PopulateId;
+
+      public LambdaConfiguration With(Action<LambdaConfiguration> action)
+      {
+        action(this);
+        return this;
+      }
     }
   }
 }

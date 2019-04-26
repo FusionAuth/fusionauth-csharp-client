@@ -15,18 +15,43 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class JWTConfiguration : Buildable<JWTConfiguration>
+  public class Key : Buildable<Key>
   {
-    public bool enabled;
+    public KeyAlgorithm algorithm;
 
-    public int refreshTokenTimeToLiveInMinutes;
+    public string certificate;
 
-    public int timeToLiveInSeconds;
+    public DateTimeOffset? expirationInstant;
 
-    public JWTConfiguration With(Action<JWTConfiguration> action)
+    // Response only
+    public string fingerprint;
+
+    public Guid? id;
+
+    public DateTimeOffset? insertInstant;
+
+    public string kid;
+
+    public int? length;
+
+    public string name;
+
+    public string privateKey;
+
+    public string publicKey;
+
+    public string secret;
+
+    // Response only
+    public string thumbprint;
+
+    public KeyType type;
+
+    public Key With(Action<Key> action)
     {
       action(this);
       return this;

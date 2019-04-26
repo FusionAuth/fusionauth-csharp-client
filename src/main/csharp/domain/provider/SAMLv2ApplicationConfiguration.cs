@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,14 +14,24 @@
  * language governing permissions and limitations under the License.
  */
 
+using System;
+
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public class SAMLv2ApplicationConfiguration : Buildable<SAMLv2ApplicationConfiguration>
   {
-    JWTPopulate,
+    public Uri buttonImageURL;
 
-    SAMLv2Reconcile,
+    public string buttonText;
 
-    SAMLv2Populate
+    public bool createRegistration;
+
+    public bool enabled;
+
+    public SAMLv2ApplicationConfiguration With(Action<SAMLv2ApplicationConfiguration> action)
+    {
+      action(this);
+      return this;
+    }
   }
 }

@@ -22,6 +22,8 @@ namespace FusionAuth.Domain
   {
     public string body;
 
+    public bool debug;
+
     public string description;
 
     public bool enabled;

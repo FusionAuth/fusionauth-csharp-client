@@ -19,18 +19,16 @@ using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class SAML2IdentityProvider : Buildable<SAML2IdentityProvider>, IdentityProvider
+  public class SAMLv2IdentityProvider : Buildable<SAMLv2IdentityProvider>, IdentityProvider
   {
-    public readonly IdentityProviderType type = IdentityProviderType.SAML2;
+    public readonly IdentityProviderType type = IdentityProviderType.SAMLv2;
 
-    public IDictionary<Guid, SAML2ApplicationConfiguration>
-      applicationConfiguration = new Dictionary<Guid, SAML2ApplicationConfiguration>();
+    public IDictionary<Guid, SAMLv2ApplicationConfiguration> applicationConfiguration =
+      new Dictionary<Guid, SAMLv2ApplicationConfiguration>();
 
     public Uri buttonImageURL;
 
     public string buttonText;
-
-    public IDictionary<string, string> claimMap;
 
     public ICollection<string> domains;
 
@@ -42,17 +40,17 @@ namespace FusionAuth.Domain
 
     public string idpEndpoint;
 
+    public string issuer;
+
+    public Guid? keyId;
+
+    public LambdaConfiguration lambdaConfiguration = new LambdaConfiguration();
+
     public string name;
 
-    public string requestPrivateKey;
+    public bool useNameIdForEmail;
 
-    public string requestPublicKey;
-
-    public string responsePublicKey;
-
-    public string rolesClaim;
-
-    public SAML2IdentityProvider With(Action<SAML2IdentityProvider> action)
+    public SAMLv2IdentityProvider With(Action<SAMLv2IdentityProvider> action)
     {
       action(this);
       return this;

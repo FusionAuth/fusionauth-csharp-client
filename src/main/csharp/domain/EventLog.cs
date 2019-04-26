@@ -26,6 +26,8 @@ namespace FusionAuth.Domain
 
     public string message;
 
+    public EventLogType type;
+
     public EventLog With(Action<EventLog> action)
     {
       action(this);

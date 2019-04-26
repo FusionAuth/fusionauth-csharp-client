@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,12 @@
 
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public enum KeyType
   {
-    JWTPopulate,
+    ECS,
 
-    SAMLv2Reconcile,
+    RSA,
 
-    SAMLv2Populate
+    HMAC,
   }
 }

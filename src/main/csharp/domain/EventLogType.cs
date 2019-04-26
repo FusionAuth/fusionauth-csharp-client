@@ -16,12 +16,12 @@
 
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public enum EventLogType
   {
-    JWTPopulate,
+    Information,
 
-    SAMLv2Reconcile,
+    Debug,
 
-    SAMLv2Populate
+    Error
   }
 }

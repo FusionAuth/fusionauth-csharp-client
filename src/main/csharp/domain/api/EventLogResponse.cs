@@ -14,24 +14,12 @@
  * language governing permissions and limitations under the License.
  */
 
-using System;
-
 namespace FusionAuth.Domain
 {
-  public class SAML2ApplicationConfiguration : Buildable<SAML2ApplicationConfiguration>
+  public class EventLogResponse
   {
-    public Uri buttonImageURL;
 
-    public string buttonText;
+    public EventLog eventLog;
 
-    public bool createRegistration;
-
-    public bool enabled;
-
-    public SAML2ApplicationConfiguration With(Action<SAML2ApplicationConfiguration> action)
-    {
-      action(this);
-      return this;
-    }
   }
 }

@@ -38,6 +38,8 @@ namespace FusionAuth.Domain
 
     public readonly IdentityProviderType type = IdentityProviderType.OpenIDConnect;
 
+    public LambdaConfiguration lambdaConfiguration = new LambdaConfiguration();
+
     public OpenIdConnectIdentityProvider With(Action<OpenIdConnectIdentityProvider> action)
     {
       action(this);

@@ -16,12 +16,17 @@
 
 namespace FusionAuth.Domain
 {
-  public enum LambdaType
+  public class KeyRequest
   {
-    JWTPopulate,
+    public Key key;
 
-    SAMLv2Reconcile,
+    public KeyRequest()
+    {
+    }
 
-    SAMLv2Populate
+    public KeyRequest(Key key)
+    {
+      this.key = key;
+    }
   }
 }
