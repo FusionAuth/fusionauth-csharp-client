@@ -20,7 +20,11 @@ namespace FusionAuth.Domain
 {
   public class JWTConfiguration : Buildable<JWTConfiguration>
   {
+    public Guid? accessTokenKeyId;
+
     public bool enabled;
+
+    public Guid? idTokenKeyId;
 
     public int refreshTokenTimeToLiveInMinutes;
 
