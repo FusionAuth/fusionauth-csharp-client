@@ -1,7 +1,7 @@
 ﻿using FusionAuth;
 using FusionAuth.Domain;
 
-namespace Example
+namespace io.fusionauth
 {
   public class Example
   {
