@@ -96,7 +96,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> ActionUser(Guid actioneeUserId, ActionRequest request)
+    public ClientResponse<ActionResponse, Errors> ActionUser(Guid? actioneeUserId, ActionRequest request)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actioneeUserId)
@@ -115,7 +115,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<FamilyResponse, Errors> AddUserToFamily(Guid familyId, FamilyRequest request)
+    public ClientResponse<FamilyResponse, Errors> AddUserToFamily(Guid? familyId, FamilyRequest request)
     {
         return Start<FamilyResponse, Errors>().Uri("/api/user/family")
                                           .UrlSegment(familyId)
@@ -134,7 +134,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> CancelAction(Guid actionId, ActionRequest request)
+    public ClientResponse<ActionResponse, Errors> CancelAction(Guid? actionId, ActionRequest request)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actionId)
@@ -230,7 +230,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> CreateApplicationRole(Guid applicationId, Guid? roleId, ApplicationRequest request)
+    public ClientResponse<ApplicationResponse, Errors> CreateApplicationRole(Guid? applicationId, Guid? roleId, ApplicationRequest request)
     {
         return Start<ApplicationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -517,7 +517,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeactivateApplication(Guid applicationId)
+    public ClientResponse<RESTVoid, Errors> DeactivateApplication(Guid? applicationId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -534,7 +534,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeactivateUser(Guid userId)
+    public ClientResponse<RESTVoid, Errors> DeactivateUser(Guid? userId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
@@ -551,7 +551,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeactivateUserAction(Guid userActionId)
+    public ClientResponse<RESTVoid, Errors> DeactivateUserAction(Guid? userActionId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user-action")
                                           .UrlSegment(userActionId)
@@ -568,7 +568,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeactivateUsers(ICollection<Guid> userIds)
+    public ClientResponse<RESTVoid, Errors> DeactivateUsers(List<string> userIds)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
                                           .UrlParameter("userId", userIds)
@@ -588,7 +588,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteApplication(Guid applicationId)
+    public ClientResponse<RESTVoid, Errors> DeleteApplication(Guid? applicationId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -608,7 +608,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteApplicationRole(Guid applicationId, Guid roleId)
+    public ClientResponse<RESTVoid, Errors> DeleteApplicationRole(Guid? applicationId, Guid? roleId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -627,7 +627,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteConsent(Guid consentId)
+    public ClientResponse<RESTVoid, Errors> DeleteConsent(Guid? consentId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/consent")
                                           .UrlSegment(consentId)
@@ -644,7 +644,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteEmailTemplate(Guid emailTemplateId)
+    public ClientResponse<RESTVoid, Errors> DeleteEmailTemplate(Guid? emailTemplateId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/email/template")
                                           .UrlSegment(emailTemplateId)
@@ -661,7 +661,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteGroup(Guid groupId)
+    public ClientResponse<RESTVoid, Errors> DeleteGroup(Guid? groupId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/group")
                                           .UrlSegment(groupId)
@@ -695,7 +695,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteIdentityProvider(Guid identityProviderId)
+    public ClientResponse<RESTVoid, Errors> DeleteIdentityProvider(Guid? identityProviderId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/identity-provider")
                                           .UrlSegment(identityProviderId)
@@ -712,7 +712,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteKey(Guid keyOd)
+    public ClientResponse<RESTVoid, Errors> DeleteKey(Guid? keyOd)
     {
         return Start<RESTVoid, Errors>().Uri("/api/key")
                                           .UrlSegment(keyOd)
@@ -729,7 +729,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteLambda(Guid lambdaId)
+    public ClientResponse<RESTVoid, Errors> DeleteLambda(Guid? lambdaId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/lambda")
                                           .UrlSegment(lambdaId)
@@ -747,7 +747,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteRegistration(Guid userId, Guid applicationId)
+    public ClientResponse<RESTVoid, Errors> DeleteRegistration(Guid? userId, Guid? applicationId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/registration")
                                           .UrlSegment(userId)
@@ -765,7 +765,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteTenant(Guid tenantId)
+    public ClientResponse<RESTVoid, Errors> DeleteTenant(Guid? tenantId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/tenant")
                                           .UrlSegment(tenantId)
@@ -783,7 +783,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteUser(Guid userId)
+    public ClientResponse<RESTVoid, Errors> DeleteUser(Guid? userId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
@@ -802,7 +802,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteUserAction(Guid userActionId)
+    public ClientResponse<RESTVoid, Errors> DeleteUserAction(Guid? userActionId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user-action")
                                           .UrlSegment(userActionId)
@@ -820,7 +820,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteUserActionReason(Guid userActionReasonId)
+    public ClientResponse<RESTVoid, Errors> DeleteUserActionReason(Guid? userActionReasonId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user-action-reason")
                                           .UrlSegment(userActionReasonId)
@@ -854,7 +854,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteWebhook(Guid webhookId)
+    public ClientResponse<RESTVoid, Errors> DeleteWebhook(Guid? webhookId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/webhook")
                                           .UrlSegment(webhookId)
@@ -872,7 +872,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DisableTwoFactor(Guid userId, string code)
+    public ClientResponse<RESTVoid, Errors> DisableTwoFactor(Guid? userId, string code)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
                                           .UrlParameter("userId", userId)
@@ -891,7 +891,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> EnableTwoFactor(Guid userId, TwoFactorRequest request)
+    public ClientResponse<RESTVoid, Errors> EnableTwoFactor(Guid? userId, TwoFactorRequest request)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/two-factor")
                                           .UrlSegment(userId)
@@ -983,7 +983,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<VerifyRegistrationResponse, RESTVoid> GenerateRegistrationVerificationId(string email, Guid applicationId)
+    public ClientResponse<VerifyRegistrationResponse, RESTVoid> GenerateRegistrationVerificationId(string email, Guid? applicationId)
     {
         return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
                                           .UrlParameter("email", email)
@@ -1100,7 +1100,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<IssueResponse, Errors> IssueJWT(Guid applicationId, string encodedJWT)
+    public ClientResponse<IssueResponse, Errors> IssueJWT(Guid? applicationId, string encodedJWT)
     {
         return Start<IssueResponse, Errors>().Uri("/api/jwt/issue")
                                           .Authorization("JWT " + encodedJWT)
@@ -1141,7 +1141,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> LoginPing(Guid userId, Guid applicationId, string callerIPAddress)
+    public ClientResponse<RESTVoid, Errors> LoginPing(Guid? userId, Guid? applicationId, string callerIPAddress)
     {
         return Start<RESTVoid, Errors>().Uri("/api/login")
                                           .UrlSegment(userId)
@@ -1165,7 +1165,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, RESTVoid> Logout(bool global, string refreshToken)
+    public ClientResponse<RESTVoid, RESTVoid> Logout(bool? global, string refreshToken)
     {
         return Start<RESTVoid, RESTVoid>().Uri("/api/logout")
                                           .UrlParameter("global", global)
@@ -1203,7 +1203,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> ModifyAction(Guid actionId, ActionRequest request)
+    public ClientResponse<ActionResponse, Errors> ModifyAction(Guid? actionId, ActionRequest request)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actionId)
@@ -1238,7 +1238,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> ReactivateApplication(Guid applicationId)
+    public ClientResponse<ApplicationResponse, Errors> ReactivateApplication(Guid? applicationId)
     {
         return Start<ApplicationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -1256,7 +1256,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserResponse, Errors> ReactivateUser(Guid userId)
+    public ClientResponse<UserResponse, Errors> ReactivateUser(Guid? userId)
     {
         return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
@@ -1274,7 +1274,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserActionResponse, Errors> ReactivateUserAction(Guid userActionId)
+    public ClientResponse<UserActionResponse, Errors> ReactivateUserAction(Guid? userActionId)
     {
         return Start<UserActionResponse, Errors>().Uri("/api/user-action")
                                           .UrlSegment(userActionId)
@@ -1333,7 +1333,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> RemoveUserFromFamily(Guid familyId, Guid userId)
+    public ClientResponse<RESTVoid, Errors> RemoveUserFromFamily(Guid? familyId, Guid? userId)
     {
         return Start<RESTVoid, Errors>().Uri("/api/user/family")
                                           .UrlSegment(familyId)
@@ -1369,7 +1369,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<VerifyRegistrationResponse, RESTVoid> ResendRegistrationVerification(string email, Guid applicationId)
+    public ClientResponse<VerifyRegistrationResponse, RESTVoid> ResendRegistrationVerification(string email, Guid? applicationId)
     {
         return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
                                           .UrlParameter("email", email)
@@ -1387,7 +1387,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> RetrieveAction(Guid actionId)
+    public ClientResponse<ActionResponse, Errors> RetrieveAction(Guid? actionId)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlSegment(actionId)
@@ -1405,7 +1405,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> RetrieveActions(Guid userId)
+    public ClientResponse<ActionResponse, Errors> RetrieveActions(Guid? userId)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlParameter("userId", userId)
@@ -1422,7 +1422,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> RetrieveActionsPreventingLogin(Guid userId)
+    public ClientResponse<ActionResponse, Errors> RetrieveActionsPreventingLogin(Guid? userId)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlParameter("userId", userId)
@@ -1441,7 +1441,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> RetrieveActiveActions(Guid userId)
+    public ClientResponse<ActionResponse, Errors> RetrieveActiveActions(Guid? userId)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlParameter("userId", userId)
@@ -1491,7 +1491,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<AuditLogResponse, Errors> RetrieveAuditLog(int auditLogId)
+    public ClientResponse<AuditLogResponse, Errors> RetrieveAuditLog(int? auditLogId)
     {
         return Start<AuditLogResponse, Errors>().Uri("/api/system/audit-log")
                                           .UrlSegment(auditLogId)
@@ -1508,7 +1508,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ConsentResponse, RESTVoid> RetrieveConsent(Guid consentId)
+    public ClientResponse<ConsentResponse, RESTVoid> RetrieveConsent(Guid? consentId)
     {
         return Start<ConsentResponse, RESTVoid>().Uri("/api/consent")
                                           .UrlSegment(consentId)
@@ -1543,7 +1543,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<DailyActiveUserReportResponse, Errors> RetrieveDailyActiveReport(Guid? applicationId, long start, long end)
+    public ClientResponse<DailyActiveUserReportResponse, Errors> RetrieveDailyActiveReport(Guid? applicationId, long? start, long? end)
     {
         return Start<DailyActiveUserReportResponse, Errors>().Uri("/api/report/daily-active-user")
                                           .UrlParameter("applicationId", applicationId)
@@ -1613,7 +1613,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<EventLogResponse, Errors> RetrieveEventLog(int eventLogId)
+    public ClientResponse<EventLogResponse, Errors> RetrieveEventLog(int? eventLogId)
     {
         return Start<EventLogResponse, Errors>().Uri("/api/system/event-log")
                                           .UrlSegment(eventLogId)
@@ -1630,7 +1630,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<FamilyResponse, RESTVoid> RetrieveFamilies(Guid userId)
+    public ClientResponse<FamilyResponse, RESTVoid> RetrieveFamilies(Guid? userId)
     {
         return Start<FamilyResponse, RESTVoid>().Uri("/api/user/family")
                                           .UrlParameter("userId", userId)
@@ -1647,7 +1647,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<FamilyResponse, RESTVoid> RetrieveFamilyMembersByFamilyId(Guid familyId)
+    public ClientResponse<FamilyResponse, RESTVoid> RetrieveFamilyMembersByFamilyId(Guid? familyId)
     {
         return Start<FamilyResponse, RESTVoid>().Uri("/api/user/family")
                                           .UrlSegment(familyId)
@@ -1664,7 +1664,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<GroupResponse, Errors> RetrieveGroup(Guid groupId)
+    public ClientResponse<GroupResponse, Errors> RetrieveGroup(Guid? groupId)
     {
         return Start<GroupResponse, Errors>().Uri("/api/group")
                                           .UrlSegment(groupId)
@@ -1729,7 +1729,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> RetrieveInactiveActions(Guid userId)
+    public ClientResponse<ActionResponse, Errors> RetrieveInactiveActions(Guid? userId)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
                                           .UrlParameter("userId", userId)
@@ -1828,7 +1828,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<KeyResponse, Errors> RetrieveKey(Guid keyId)
+    public ClientResponse<KeyResponse, Errors> RetrieveKey(Guid? keyId)
     {
         return Start<KeyResponse, Errors>().Uri("/api/key")
                                           .UrlSegment(keyId)
@@ -1860,7 +1860,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<LambdaResponse, Errors> RetrieveLambda(Guid lambdaId)
+    public ClientResponse<LambdaResponse, Errors> RetrieveLambda(Guid? lambdaId)
     {
         return Start<LambdaResponse, Errors>().Uri("/api/lambda")
                                           .UrlSegment(lambdaId)
@@ -1912,7 +1912,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<LoginReportResponse, Errors> RetrieveLoginReport(Guid? applicationId, long start, long end)
+    public ClientResponse<LoginReportResponse, Errors> RetrieveLoginReport(Guid? applicationId, long? start, long? end)
     {
         return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
                                           .UrlParameter("applicationId", applicationId)
@@ -1934,7 +1934,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<MonthlyActiveUserReportResponse, Errors> RetrieveMonthlyActiveReport(Guid? applicationId, long start, long end)
+    public ClientResponse<MonthlyActiveUserReportResponse, Errors> RetrieveMonthlyActiveReport(Guid? applicationId, long? start, long? end)
     {
         return Start<MonthlyActiveUserReportResponse, Errors>().Uri("/api/report/monthly-active-user")
                                           .UrlParameter("applicationId", applicationId)
@@ -1953,7 +1953,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<OAuthConfigurationResponse, Errors> RetrieveOauthConfiguration(Guid applicationId)
+    public ClientResponse<OAuthConfigurationResponse, Errors> RetrieveOauthConfiguration(Guid? applicationId)
     {
         return Start<OAuthConfigurationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -2004,7 +2004,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RecentLoginResponse, Errors> RetrieveRecentLogins(int offset, int limit)
+    public ClientResponse<RecentLoginResponse, Errors> RetrieveRecentLogins(int? offset, int? limit)
     {
         return Start<RecentLoginResponse, Errors>().Uri("/api/user/recent-login")
                                           .UrlParameter("offset", offset)
@@ -2022,7 +2022,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RefreshResponse, Errors> RetrieveRefreshTokens(Guid userId)
+    public ClientResponse<RefreshResponse, Errors> RetrieveRefreshTokens(Guid? userId)
     {
         return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
                                           .UrlParameter("userId", userId)
@@ -2040,7 +2040,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RegistrationResponse, Errors> RetrieveRegistration(Guid userId, Guid applicationId)
+    public ClientResponse<RegistrationResponse, Errors> RetrieveRegistration(Guid? userId, Guid? applicationId)
     {
         return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
                                           .UrlSegment(userId)
@@ -2061,7 +2061,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RegistrationReportResponse, Errors> RetrieveRegistrationReport(Guid? applicationId, long start, long end)
+    public ClientResponse<RegistrationReportResponse, Errors> RetrieveRegistrationReport(Guid? applicationId, long? start, long? end)
     {
         return Start<RegistrationReportResponse, Errors>().Uri("/api/report/registration")
                                           .UrlParameter("applicationId", applicationId)
@@ -2095,7 +2095,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<TenantResponse, Errors> RetrieveTenant(Guid tenantId)
+    public ClientResponse<TenantResponse, Errors> RetrieveTenant(Guid? tenantId)
     {
         return Start<TenantResponse, Errors>().Uri("/api/tenant")
                                           .UrlSegment(tenantId)
@@ -2143,7 +2143,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserResponse, Errors> RetrieveUser(Guid userId)
+    public ClientResponse<UserResponse, Errors> RetrieveUser(Guid? userId)
     {
         return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
@@ -2313,7 +2313,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserCommentResponse, Errors> RetrieveUserComments(Guid userId)
+    public ClientResponse<UserCommentResponse, Errors> RetrieveUserComments(Guid? userId)
     {
         return Start<UserCommentResponse, Errors>().Uri("/api/user/comment")
                                           .UrlSegment(userId)
@@ -2330,7 +2330,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserConsentResponse, RESTVoid> RetrieveUserConsent(Guid userConsentId)
+    public ClientResponse<UserConsentResponse, RESTVoid> RetrieveUserConsent(Guid? userConsentId)
     {
         return Start<UserConsentResponse, RESTVoid>().Uri("/api/user/consent")
                                           .UrlSegment(userConsentId)
@@ -2347,7 +2347,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserConsentResponse, RESTVoid> RetrieveUserConsents(Guid userId)
+    public ClientResponse<UserConsentResponse, RESTVoid> RetrieveUserConsents(Guid? userId)
     {
         return Start<UserConsentResponse, RESTVoid>().Uri("/api/user/consent")
                                           .UrlParameter("userId", userId)
@@ -2368,7 +2368,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<LoginReportResponse, Errors> RetrieveUserLoginReport(Guid? applicationId, Guid userId, long start, long end)
+    public ClientResponse<LoginReportResponse, Errors> RetrieveUserLoginReport(Guid? applicationId, Guid? userId, long? start, long? end)
     {
         return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
                                           .UrlParameter("applicationId", applicationId)
@@ -2392,7 +2392,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<LoginReportResponse, Errors> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long start, long end)
+    public ClientResponse<LoginReportResponse, Errors> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long? start, long? end)
     {
         return Start<LoginReportResponse, Errors>().Uri("/api/report/login")
                                           .UrlParameter("applicationId", applicationId)
@@ -2414,7 +2414,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RecentLoginResponse, Errors> RetrieveUserRecentLogins(Guid userId, int offset, int limit)
+    public ClientResponse<RecentLoginResponse, Errors> RetrieveUserRecentLogins(Guid? userId, int? offset, int? limit)
     {
         return Start<RecentLoginResponse, Errors>().Uri("/api/user/recent-login")
                                           .UrlParameter("userId", userId)
@@ -2504,7 +2504,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, RESTVoid> RevokeUserConsent(Guid userConsentId)
+    public ClientResponse<RESTVoid, RESTVoid> RevokeUserConsent(Guid? userConsentId)
     {
         return Start<RESTVoid, RESTVoid>().Uri("/api/user/consent")
                                           .UrlSegment(userConsentId)
@@ -2572,7 +2572,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<SearchResponse, Errors> SearchUsers(ICollection<Guid> ids)
+    public ClientResponse<SearchResponse, Errors> SearchUsers(List<string> ids)
     {
         return Start<SearchResponse, Errors>().Uri("/api/user/search")
                                           .UrlParameter("ids", ids)
@@ -2609,7 +2609,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<SendResponse, Errors> SendEmail(Guid emailTemplateId, SendRequest request)
+    public ClientResponse<SendResponse, Errors> SendEmail(Guid? emailTemplateId, SendRequest request)
     {
         return Start<SendResponse, Errors>().Uri("/api/email/send")
                                           .UrlSegment(emailTemplateId)
@@ -2713,7 +2713,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> UpdateApplication(Guid applicationId, ApplicationRequest request)
+    public ClientResponse<ApplicationResponse, Errors> UpdateApplication(Guid? applicationId, ApplicationRequest request)
     {
         return Start<ApplicationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -2733,7 +2733,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ApplicationResponse, Errors> UpdateApplicationRole(Guid applicationId, Guid roleId, ApplicationRequest request)
+    public ClientResponse<ApplicationResponse, Errors> UpdateApplicationRole(Guid? applicationId, Guid? roleId, ApplicationRequest request)
     {
         return Start<ApplicationResponse, Errors>().Uri("/api/application")
                                           .UrlSegment(applicationId)
@@ -2754,7 +2754,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ConsentResponse, Errors> UpdateConsent(Guid consentId, ConsentRequest request)
+    public ClientResponse<ConsentResponse, Errors> UpdateConsent(Guid? consentId, ConsentRequest request)
     {
         return Start<ConsentResponse, Errors>().Uri("/api/consent")
                                           .UrlSegment(consentId)
@@ -2773,7 +2773,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<EmailTemplateResponse, Errors> UpdateEmailTemplate(Guid emailTemplateId, EmailTemplateRequest request)
+    public ClientResponse<EmailTemplateResponse, Errors> UpdateEmailTemplate(Guid? emailTemplateId, EmailTemplateRequest request)
     {
         return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
                                           .UrlSegment(emailTemplateId)
@@ -2792,7 +2792,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<GroupResponse, Errors> UpdateGroup(Guid groupId, GroupRequest request)
+    public ClientResponse<GroupResponse, Errors> UpdateGroup(Guid? groupId, GroupRequest request)
     {
         return Start<GroupResponse, Errors>().Uri("/api/group")
                                           .UrlSegment(groupId)
@@ -2811,7 +2811,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<IdentityProviderResponse, Errors> UpdateIdentityProvider(Guid identityProviderId, IdentityProviderRequest request)
+    public ClientResponse<IdentityProviderResponse, Errors> UpdateIdentityProvider(Guid? identityProviderId, IdentityProviderRequest request)
     {
         return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
                                           .UrlSegment(identityProviderId)
@@ -2847,7 +2847,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<KeyResponse, Errors> UpdateKey(Guid keyId, KeyRequest request)
+    public ClientResponse<KeyResponse, Errors> UpdateKey(Guid? keyId, KeyRequest request)
     {
         return Start<KeyResponse, Errors>().Uri("/api/key")
                                           .UrlSegment(keyId)
@@ -2866,7 +2866,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<LambdaResponse, Errors> UpdateLambda(Guid lambdaId, LambdaRequest request)
+    public ClientResponse<LambdaResponse, Errors> UpdateLambda(Guid? lambdaId, LambdaRequest request)
     {
         return Start<LambdaResponse, Errors>().Uri("/api/lambda")
                                           .UrlSegment(lambdaId)
@@ -2885,7 +2885,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RegistrationResponse, Errors> UpdateRegistration(Guid userId, RegistrationRequest request)
+    public ClientResponse<RegistrationResponse, Errors> UpdateRegistration(Guid? userId, RegistrationRequest request)
     {
         return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
                                           .UrlSegment(userId)
@@ -2921,7 +2921,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<TenantResponse, Errors> UpdateTenant(Guid tenantId, TenantRequest request)
+    public ClientResponse<TenantResponse, Errors> UpdateTenant(Guid? tenantId, TenantRequest request)
     {
         return Start<TenantResponse, Errors>().Uri("/api/tenant")
                                           .UrlSegment(tenantId)
@@ -2940,7 +2940,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserResponse, Errors> UpdateUser(Guid userId, UserRequest request)
+    public ClientResponse<UserResponse, Errors> UpdateUser(Guid? userId, UserRequest request)
     {
         return Start<UserResponse, Errors>().Uri("/api/user")
                                           .UrlSegment(userId)
@@ -2959,7 +2959,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserActionResponse, Errors> UpdateUserAction(Guid userActionId, UserActionRequest request)
+    public ClientResponse<UserActionResponse, Errors> UpdateUserAction(Guid? userActionId, UserActionRequest request)
     {
         return Start<UserActionResponse, Errors>().Uri("/api/user-action")
                                           .UrlSegment(userActionId)
@@ -2978,7 +2978,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserActionReasonResponse, Errors> UpdateUserActionReason(Guid userActionReasonId, UserActionReasonRequest request)
+    public ClientResponse<UserActionReasonResponse, Errors> UpdateUserActionReason(Guid? userActionReasonId, UserActionReasonRequest request)
     {
         return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
                                           .UrlSegment(userActionReasonId)
@@ -2997,7 +2997,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserConsentResponse, Errors> UpdateUserConsent(Guid userConsentId, UserConsentRequest request)
+    public ClientResponse<UserConsentResponse, Errors> UpdateUserConsent(Guid? userConsentId, UserConsentRequest request)
     {
         return Start<UserConsentResponse, Errors>().Uri("/api/user/consent")
                                           .UrlSegment(userConsentId)
@@ -3016,7 +3016,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<WebhookResponse, Errors> UpdateWebhook(Guid webhookId, WebhookRequest request)
+    public ClientResponse<WebhookResponse, Errors> UpdateWebhook(Guid? webhookId, WebhookRequest request)
     {
         return Start<WebhookResponse, Errors>().Uri("/api/webhook")
                                           .UrlSegment(webhookId)
