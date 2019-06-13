@@ -106,6 +106,25 @@ namespace FusionAuth
     }
 
     /**
+     * Adds a user to an existing family. The family id must be specified.
+     *
+     * @param familyId The id of the family.
+     * @param request The request object that contains all of the information used to determine which user to add to the family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse, Errors> AddUserToFamily(Guid familyId, FamilyRequest request)
+    {
+        return Start<FamilyResponse, Errors>().Uri("/api/user/family")
+                                          .UrlSegment(familyId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
      * Cancels the user action.
      *
      * @param actionId The action id of the action to cancel.
@@ -242,6 +261,25 @@ namespace FusionAuth
     }
 
     /**
+     * Creates a user consent type. You can optionally specify an Id for the consent type, if not provided one will be generated.
+     *
+     * @param consentId (Optional) The Id for the consent. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the consent.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse, Errors> CreateConsent(Guid? consentId, ConsentRequest request)
+    {
+        return Start<ConsentResponse, Errors>().Uri("/api/consent")
+                                          .UrlSegment(consentId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Creates an email template. You can optionally specify an Id for the template, if not provided one will be generated.
      *
      * @param emailTemplateId (Optional) The Id for the template. If not provided a secure random UUID will be generated.
@@ -255,6 +293,26 @@ namespace FusionAuth
     {
         return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
                                           .UrlSegment(emailTemplateId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
+     * family, if not provided one will be generated.
+     *
+     * @param familyId (Optional) The id for the family. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse, Errors> CreateFamily(Guid? familyId, FamilyRequest request)
+    {
+        return Start<FamilyResponse, Errors>().Uri("/api/user/family")
+                                          .UrlSegment(familyId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -413,6 +471,25 @@ namespace FusionAuth
     }
 
     /**
+     * Creates a single User consent.
+     *
+     * @param userConsentId (Optional) The Id for the User consent. If not provided a secure random UUID will be generated.
+     * @param request The request that contains the user consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse, Errors> CreateUserConsent(Guid? userConsentId, UserConsentRequest request)
+    {
+        return Start<UserConsentResponse, Errors>().Uri("/api/user/consent")
+                                          .UrlSegment(userConsentId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Creates a webhook. You can optionally specify an Id for the webhook, if not provided one will be generated.
      *
      * @param webhookId (Optional) The Id for the webhook. If not provided a secure random UUID will be generated.
@@ -537,6 +614,23 @@ namespace FusionAuth
                                           .UrlSegment(applicationId)
                                           .UrlSegment("role")
                                           .UrlSegment(roleId)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
+     * Deletes the consent for the given Id.
+     *
+     * @param consentId The Id of the consent to delete.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> DeleteConsent(Guid consentId)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/consent")
+                                          .UrlSegment(consentId)
                                           .Delete()
                                           .Go();
     }
@@ -1230,6 +1324,25 @@ namespace FusionAuth
     }
 
     /**
+     * Removes a user from the family with the given id.
+     *
+     * @param familyId The id of the family to remove the user from.
+     * @param userId The id of the user to remove from the family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> RemoveUserFromFamily(Guid familyId, Guid userId)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/user/family")
+                                          .UrlSegment(familyId)
+                                          .UrlSegment(userId)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
      * Re-sends the verification email to the user.
      *
      * @param email The email address of the user that needs a new verification email.
@@ -1387,6 +1500,38 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieves the Consent for the given Id.
+     *
+     * @param consentId The Id of the consent.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse, RESTVoid> RetrieveConsent(Guid consentId)
+    {
+        return Start<ConsentResponse, RESTVoid>().Uri("/api/consent")
+                                          .UrlSegment(consentId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the consent.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse, RESTVoid> RetrieveConsents()
+    {
+        return Start<ConsentResponse, RESTVoid>().Uri("/api/consent")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the daily active user report between the two instants. If you specify an application id, it will only
      * return the daily active counts for that application.
      *
@@ -1472,6 +1617,40 @@ namespace FusionAuth
     {
         return Start<EventLogResponse, Errors>().Uri("/api/system/event-log")
                                           .UrlSegment(eventLogId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the families that a user belongs to.
+     *
+     * @param userId The User's id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse, RESTVoid> RetrieveFamilies(Guid userId)
+    {
+        return Start<FamilyResponse, RESTVoid>().Uri("/api/user/family")
+                                          .UrlParameter("userId", userId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the members of a family by the unique Family Id.
+     *
+     * @param familyId The unique Id of the Family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse, RESTVoid> RetrieveFamilyMembersByFamilyId(Guid familyId)
+    {
+        return Start<FamilyResponse, RESTVoid>().Uri("/api/user/family")
+                                          .UrlSegment(familyId)
                                           .Get()
                                           .Go();
     }
@@ -1794,6 +1973,23 @@ namespace FusionAuth
     public ClientResponse<PasswordValidationRulesResponse, RESTVoid> RetrievePasswordValidationRules()
     {
         return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/system-configuration/password-validation-rules")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the children for the given parent email address.
+     *
+     * @param parentEmail The email of the parent.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<PendingResponse, Errors> RetrievePendingChildren(string parentEmail)
+    {
+        return Start<PendingResponse, Errors>().Uri("/api/user/family/pending")
+                                          .UrlParameter("parentEmail", parentEmail)
                                           .Get()
                                           .Go();
     }
@@ -2126,6 +2322,40 @@ namespace FusionAuth
     }
 
     /**
+     * Retrieve a single User consent by Id.
+     *
+     * @param userConsentId The User consent Id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse, RESTVoid> RetrieveUserConsent(Guid userConsentId)
+    {
+        return Start<UserConsentResponse, RESTVoid>().Uri("/api/user/consent")
+                                          .UrlSegment(userConsentId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the consents for a User.
+     *
+     * @param userId The User's Id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse, RESTVoid> RetrieveUserConsents(Guid userId)
+    {
+        return Start<UserConsentResponse, RESTVoid>().Uri("/api/user/consent")
+                                          .UrlParameter("userId", userId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
      * login counts for that application.
      *
@@ -2266,6 +2496,23 @@ namespace FusionAuth
     }
 
     /**
+     * Revokes a single User consent by Id.
+     *
+     * @param userConsentId The User Consent Id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, RESTVoid> RevokeUserConsent(Guid userConsentId)
+    {
+        return Start<RESTVoid, RESTVoid>().Uri("/api/user/consent")
+                                          .UrlSegment(userConsentId)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
      * Searches the audit logs with the specified criteria and pagination.
      *
      * @param request The search criteria and pagination information.
@@ -2294,6 +2541,23 @@ namespace FusionAuth
     public ClientResponse<EventLogSearchResponse, RESTVoid> SearchEventLogs(EventLogSearchRequest request)
     {
         return Start<EventLogSearchResponse, RESTVoid>().Uri("/api/system/event-log/search")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Searches the login records with the specified criteria and pagination.
+     *
+     * @param request The search criteria and pagination information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LoginRecordSearchResponse, RESTVoid> SearchLoginRecords(LoginRecordSearchRequest request)
+    {
+        return Start<LoginRecordSearchResponse, RESTVoid>().Uri("/api/system/login-record/search")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -2349,6 +2613,23 @@ namespace FusionAuth
     {
         return Start<SendResponse, Errors>().Uri("/api/email/send")
                                           .UrlSegment(emailTemplateId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Sends out an email to a parent that they need to register and create a family or need to log in and add a child to their existing family.
+     *
+     * @param request The request object that contains the parent email.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> SendFamilyRequestEmail(FamilyEmailRequest request)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/user/family/request")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -2458,6 +2739,25 @@ namespace FusionAuth
                                           .UrlSegment(applicationId)
                                           .UrlSegment("role")
                                           .UrlSegment(roleId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
+     * Updates the consent with the given Id.
+     *
+     * @param consentId The Id of the consent to update.
+     * @param request The request that contains all of the new consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse, Errors> UpdateConsent(Guid consentId, ConsentRequest request)
+    {
+        return Start<ConsentResponse, Errors>().Uri("/api/consent")
+                                          .UrlSegment(consentId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
@@ -2682,6 +2982,25 @@ namespace FusionAuth
     {
         return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
                                           .UrlSegment(userActionReasonId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
+     * Updates a single User consent by Id.
+     *
+     * @param userConsentId The User Consent Id
+     * @param request The request that contains the user consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse, Errors> UpdateUserConsent(Guid userConsentId, UserConsentRequest request)
+    {
+        return Start<UserConsentResponse, Errors>().Uri("/api/user/consent")
+                                          .UrlSegment(userConsentId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Put()
                                           .Go();
