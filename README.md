@@ -3,6 +3,8 @@ If you're integrating FusionAuth with a C# (.Net) application, this library will
 
 For additional information and documentation on FusionAuth refer to [https://fusionauth.io](https://fusionauth.io).
 
+> **Read this first: **: This librrary has been superceded by the .NET Core FusionAuth library. See https://github.com/FusionAuth/fusionauth-netcore-client
+
 **Note:** This project uses a slightly different file layout than other C# and Visual Studio projects. This is a Java convention that we carried over to all of our client libraries to keep consistency.
 
 **Note:** This project is using .Net 2.0 and versions of various libraries that are compatible with .Net 2.0. This is done so that this library can be used with Unity.
