@@ -412,6 +412,25 @@ namespace FusionAuth
     }
 
     /**
+     * Creates a Theme. You can optionally specify an Id for the theme, if not provided one will be generated.
+     *
+     * @param themeId (Optional) The Id for the theme. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the theme.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse, Errors> CreateTheme(Guid? themeId, ThemeRequest request)
+    {
+        return Start<ThemeResponse, Errors>().Uri("/api/theme")
+                                          .UrlSegment(themeId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Creates a user. You can optionally specify an Id for the user, if not provided one will be generated.
      *
      * @param userId (Optional) The Id for the user. If not provided a secure random UUID will be generated.
@@ -774,6 +793,23 @@ namespace FusionAuth
     }
 
     /**
+     * Deletes the theme for the given Id.
+     *
+     * @param themeId The Id of the theme to delete.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> DeleteTheme(Guid? themeId)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/theme")
+                                          .UrlSegment(themeId)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
      * Deletes the user for the given Id. This permanently deletes all information, metrics, reports and data associated
      * with the user.
      *
@@ -948,7 +984,7 @@ namespace FusionAuth
     {
         return Start<VerifyEmailResponse, RESTVoid>().Uri("/api/user/verify-email")
                                           .UrlParameter("email", email)
-                                          .UrlParameter("sendVerifyPasswordEmail", false)
+                                          .UrlParameter("sendVerifyEmail", false)
                                           .Put()
                                           .Go();
     }
@@ -1110,7 +1146,9 @@ namespace FusionAuth
     }
 
     /**
-     * Logs a user in.
+     * Authenticates a user to FusionAuth. 
+     * 
+     * This API optionally requires an API key. See <code>Application.loginConfiguration.requireAuthentication</code>.
      *
      * @param request The login request that contains the user credentials used to log them in.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
@@ -1301,6 +1339,24 @@ namespace FusionAuth
     }
 
     /**
+     * Request a refresh of the User search index. This API is not generally necessary and the search index will become consistent in a
+     * reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
+     * if you are using the Search API or Delete Tenant API immediately following a User Create etc, you may wish to request a refresh to
+     *  ensure the index immediately current before making a query request to the search index.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> RefreshUserSearchIndex()
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/user/search")
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
      * Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
      * will create the user as well as register them for the application. This is called a Full Registration. However, if
      * you only provide the UserRegistration object, then the user must already exist and they will be registered for the
@@ -1351,9 +1407,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<VerifyEmailResponse, RESTVoid> ResendEmailVerification(string email)
+    public ClientResponse<VerifyEmailResponse, Errors> ResendEmailVerification(string email)
     {
-        return Start<VerifyEmailResponse, RESTVoid>().Uri("/api/user/verify-email")
+        return Start<VerifyEmailResponse, Errors>().Uri("/api/user/verify-email")
                                           .UrlParameter("email", email)
                                           .Put()
                                           .Go();
@@ -1369,9 +1425,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<VerifyRegistrationResponse, RESTVoid> ResendRegistrationVerification(string email, Guid? applicationId)
+    public ClientResponse<VerifyRegistrationResponse, Errors> ResendRegistrationVerification(string email, Guid? applicationId)
     {
-        return Start<VerifyRegistrationResponse, RESTVoid>().Uri("/api/user/verify-registration")
+        return Start<VerifyRegistrationResponse, Errors>().Uri("/api/user/verify-registration")
                                           .UrlParameter("email", email)
                                           .UrlParameter("applicationId", applicationId)
                                           .Put()
@@ -1786,11 +1842,9 @@ namespace FusionAuth
     }
 
     /**
-     * Retrieves the Public Key configured for verifying JSON Web Tokens (JWT) by the key Id. If the key Id is provided a
-     * single public key will be returned if one is found by that id. If the optional parameter key Id is not provided all
-     * public keys will be returned.
+     * Retrieves the Public Key configured for verifying JSON Web Tokens (JWT) by the key Id (kid).
      *
-     * @param keyId (Optional) The Id of the public key.
+     * @param keyId The Id of the public key (kid).
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
@@ -1799,7 +1853,24 @@ namespace FusionAuth
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKey(string keyId)
     {
         return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
-                                          .UrlSegment(keyId)
+                                          .UrlParameter("kid", keyId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the Public Key configured for verifying the JSON Web Tokens (JWT) issued by the Login API by the Application Id.
+     *
+     * @param applicationId The Id of the Application for which this key is used.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKeyByApplicationId(string applicationId)
+    {
+        return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+                                          .UrlParameter("applicationId", applicationId)
                                           .Get()
                                           .Go();
     }
@@ -1963,7 +2034,10 @@ namespace FusionAuth
     }
 
     /**
-     * Retrieves the password validation rules.
+     * Retrieves the password validation rules for a specific tenant. This method requires a tenantId to be provided 
+     * through the use of a Tenant scoped API key or an HTTP header X-FusionAuth-TenantId to specify the Tenant Id.
+     * 
+     * This API does not require an API key.
      *
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1972,7 +2046,26 @@ namespace FusionAuth
      */
     public ClientResponse<PasswordValidationRulesResponse, RESTVoid> RetrievePasswordValidationRules()
     {
-        return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/system-configuration/password-validation-rules")
+        return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/tenant/password-validation-rules")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the password validation rules for a specific tenant.
+     * 
+     * This API does not require an API key.
+     *
+     * @param tenantId The Id of the tenant.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<PasswordValidationRulesResponse, RESTVoid> RetrievePasswordValidationRulesWithTenantId(Guid? tenantId)
+    {
+        return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/tenant/password-validation-rules")
+                                          .UrlSegment(tenantId)
                                           .Get()
                                           .Go();
     }
@@ -2114,6 +2207,38 @@ namespace FusionAuth
     public ClientResponse<TenantResponse, RESTVoid> RetrieveTenants()
     {
         return Start<TenantResponse, RESTVoid>().Uri("/api/tenant")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the theme for the given Id.
+     *
+     * @param themeId The Id of the theme.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse, Errors> RetrieveTheme(Guid? themeId)
+    {
+        return Start<ThemeResponse, Errors>().Uri("/api/theme")
+                                          .UrlSegment(themeId)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves all of the themes.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse, RESTVoid> RetrieveThemes()
+    {
+        return Start<ThemeResponse, RESTVoid>().Uri("/api/theme")
                                           .Get()
                                           .Go();
     }
@@ -2931,6 +3056,25 @@ namespace FusionAuth
     }
 
     /**
+     * Updates the theme with the given Id.
+     *
+     * @param themeId The Id of the theme to update.
+     * @param request The request that contains all of the new theme information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse, Errors> UpdateTheme(Guid? themeId, ThemeRequest request)
+    {
+        return Start<ThemeResponse, Errors>().Uri("/api/theme")
+                                          .UrlSegment(themeId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Put()
+                                          .Go();
+    }
+
+    /**
      * Updates the user with the given Id.
      *
      * @param userId The Id of the user to update.
@@ -3054,9 +3198,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, RESTVoid> VerifyEmail(string verificationId)
+    public ClientResponse<RESTVoid, Errors> VerifyEmail(string verificationId)
     {
-        return Start<RESTVoid, RESTVoid>().Uri("/api/user/verify-email")
+        return Start<RESTVoid, Errors>().Uri("/api/user/verify-email")
                                           .UrlSegment(verificationId)
                                           .Post()
                                           .Go();
@@ -3071,9 +3215,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, RESTVoid> VerifyRegistration(string verificationId)
+    public ClientResponse<RESTVoid, Errors> VerifyRegistration(string verificationId)
     {
-        return Start<RESTVoid, RESTVoid>().Uri("/api/user/verify-registration")
+        return Start<RESTVoid, Errors>().Uri("/api/user/verify-registration")
                                           .UrlSegment(verificationId)
                                           .Post()
                                           .Go();
