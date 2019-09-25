@@ -7,3 +7,4 @@ build
 **/UserPrefs.xml
 **/workspace.xml
 .vs/
+.user
