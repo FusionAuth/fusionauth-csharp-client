@@ -18,18 +18,22 @@ using System;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class FamilyConfiguration : Enableable, Buildable<FamilyConfiguration>
     {
-      action(this);
-      return this;
+        public bool? allowChildRegistrations;
+        public Guid? confirmChildEmailTemplateId;
+        public bool? deleteOrphanedAccounts;
+        public int? deleteOrphanedAccountsDays;
+        public Guid? familyRequestEmailTemplateId;
+        public int? maximumChildAge;
+        public int? minimumOwnerAge;
+        public bool? parentEmailRequired;
+        public Guid? parentRegistrationEmailTemplateId;
+
+        public FamilyConfiguration With(Action<FamilyConfiguration> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

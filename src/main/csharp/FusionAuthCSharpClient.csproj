@@ -55,6 +55,8 @@
     <Compile Include="domain\api\AuditLogSearchRequest.cs" />
     <Compile Include="domain\api\AuditLogSearchResponse.cs" />
     <Compile Include="domain\api\BaseLoginRequest.cs" />
+    <Compile Include="domain\api\ConsentRequest.cs" />
+    <Compile Include="domain\api\ConsentResponse.cs" />
     <Compile Include="domain\api\EmailTemplateRequest.cs" />
     <Compile Include="domain\api\EmailTemplateResponse.cs" />
     <Compile Include="domain\api\email\SendRequest.cs" />
@@ -62,6 +64,9 @@
     <Compile Include="domain\api\EventLogResponse.cs" />
     <Compile Include="domain\api\EventLogSearchRequest.cs" />
     <Compile Include="domain\api\EventLogSearchResponse.cs" />
+    <Compile Include="domain\api\FamilyEmailRequest.cs" />
+    <Compile Include="domain\api\FamilyRequest.cs" />
+    <Compile Include="domain\api\FamilyResponse.cs" />
     <Compile Include="domain\api\GroupRequest.cs" />
     <Compile Include="domain\api\GroupResponse.cs" />
     <Compile Include="domain\api\identityProvider\IdentityProviderLoginRequest.cs" />
@@ -75,6 +80,8 @@
     <Compile Include="domain\api\LambdaRequest.cs" />
     <Compile Include="domain\api\LambdaResponse.cs" />
     <Compile Include="domain\api\LoginPreventedResponse.cs" />
+    <Compile Include="domain\api\LoginRecordSearchRequest.cs" />
+    <Compile Include="domain\api\LoginRecordSearchResponse.cs" />
     <Compile Include="domain\api\LoginRequest.cs" />
     <Compile Include="domain\api\LoginResponse.cs" />
     <Compile Include="domain\api\MemberDeleteRequest.cs" />
@@ -82,7 +89,13 @@
     <Compile Include="domain\api\MemberResponse.cs" />
     <Compile Include="domain\api\passwordless\PasswordlessLoginRequest.cs" />
     <Compile Include="domain\api\passwordless\PasswordlessSendRequest.cs" />
+    <Compile Include="domain\api\PendingResponse.cs" />
     <Compile Include="domain\api\PublicKeyResponse.cs" />
+    <Compile Include="domain\api\ThemeRequest.cs" />
+    <Compile Include="domain\api\ThemeResponse.cs" />
+    <Compile Include="domain\api\ThirdPartyLoginRequest.cs" />
+    <Compile Include="domain\api\UserConsentRequest.cs" />
+    <Compile Include="domain\api\UserConsentResponse.cs" />
     <Compile Include="domain\api\UserDeleteRequest.cs" />
     <Compile Include="domain\api\user\ChangePasswordResponse.cs" />
     <Compile Include="domain\api\user\ForgotPasswordResponse.cs" />
@@ -122,12 +135,20 @@
     <Compile Include="domain\AuditLog.cs" />
     <Compile Include="domain\Buildable.cs" />
     <Compile Include="domain\CanonicalizationMethod.cs" />
+    <Compile Include="domain\Consent.cs" />
+    <Compile Include="domain\ConsentStatus.cs" />
     <Compile Include="domain\DisplayableRawLogin.cs" />
     <Compile Include="domain\EmailConfiguration.cs" />
+    <Compile Include="domain\EmailPlus.cs" />
+    <Compile Include="domain\Enableable.cs" />
     <Compile Include="domain\EventLog.cs" />
     <Compile Include="domain\EventLogConfiguration.cs" />
     <Compile Include="domain\EventLogType.cs" />
     <Compile Include="domain\event\JWTRefreshTokenRevokeEvent.cs" />
+    <Compile Include="domain\Family.cs" />
+    <Compile Include="domain\FamilyConfiguration.cs" />
+    <Compile Include="domain\FamilyMember.cs" />
+    <Compile Include="domain\FamilyRole.cs" />
     <Compile Include="domain\Group.cs" />
     <Compile Include="domain\GroupMember.cs" />
     <Compile Include="domain\Key.cs" />
@@ -136,6 +157,7 @@
     <Compile Include="domain\Lambda.cs" />
     <Compile Include="domain\LambdaConfiguration.cs" />
     <Compile Include="domain\LambdaType.cs" />
+    <Compile Include="domain\LocalizedIntegers.cs" />
     <Compile Include="domain\LoginConfiguration.cs" />
     <Compile Include="domain\PasswordlessConfiguration.cs" />
     <Compile Include="domain\provider\ExternalJWTApplicationConfiguration.cs" />
@@ -157,6 +179,9 @@
     <Compile Include="domain\Requirable.cs" />
     <Compile Include="domain\SAMLv2Configuration.cs" />
     <Compile Include="domain\search\EventLogSearchCriteria.cs" />
+    <Compile Include="domain\search\LoginRecordSearchCriteria.cs" />
+    <Compile Include="domain\Templates.cs" />
+    <Compile Include="domain\Theme.cs" />
     <Compile Include="domain\TwilioConfiguration.cs" />
     <Compile Include="domain\ContentStatus.cs" />
     <Compile Include="domain\email\Attachment.cs" />
@@ -175,6 +200,7 @@
     <Compile Include="domain\TransactionType.cs" />
     <Compile Include="domain\CleanSpeakConfiguration.cs" />
     <Compile Include="domain\UIConfiguration.cs" />
+    <Compile Include="domain\UserConsent.cs" />
     <Compile Include="domain\Webhook.cs" />
     <Compile Include="domain\event\EventRequest.cs" />
     <Compile Include="domain\event\UserActionPhase.cs" />
@@ -232,7 +258,6 @@
     <Compile Include="domain\api\twoFactor\TwoFactorSendRequest.cs" />
     <Compile Include="domain\api\identityProvider\LookupResponse.cs" />
     <Compile Include="domain\ExternalIdentifierConfiguration.cs" />
-    <Compile Include="domain\LoginTheme.cs" />
     <Compile Include="domain\api\user\VerifyRegistrationResponse.cs" />
     <Compile Include="domain\api\TenantResponse.cs" />
     <Compile Include="domain\Tenant.cs" />
@@ -242,13 +267,7 @@
   <ItemGroup>
     <Content Include="FusionAuth.Client.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="domain\oauth2\" />
-    <Folder Include="domain\api\jwt\" />
-    <Folder Include="domain\jwt\" />
-    <Folder Include="domain\api\twoFactor\" />
-    <Folder Include="domain\api\identityProvider\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Restify, Version=3.2.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\packages\Inversoft.Restify.3.2.2\lib\net20\Restify.dll</HintPath>

@@ -18,18 +18,16 @@ using System;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class EmailPlus : Enableable, Buildable<EmailPlus>
     {
-      action(this);
-      return this;
+        public Guid? emailTemplateId;
+        public int? maximumTimeToSendEmailInHours;
+        public int? minimumTimeToSendEmailInHours;
+
+        public EmailPlus With(Action<EmailPlus> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

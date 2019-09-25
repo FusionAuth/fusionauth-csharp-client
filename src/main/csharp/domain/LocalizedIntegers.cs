@@ -15,21 +15,16 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class LocalizedIntegers : Dictionary<string, int>, Buildable<LocalizedIntegers>
     {
-      action(this);
-      return this;
+        public LocalizedIntegers With(Action<LocalizedIntegers> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

@@ -18,18 +18,14 @@ using System;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class FamilyRequest : Buildable<FamilyRequest>
     {
-      action(this);
-      return this;
+        public FamilyMember familyMember;
+
+        public FamilyRequest With(Action<FamilyRequest> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

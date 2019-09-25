@@ -15,21 +15,19 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class LoginRecordSearchResponse : Buildable<LoginRecordSearchResponse>
     {
-      action(this);
-      return this;
+        public List<DisplayableRawLogin> logins;
+        public long? total;
+
+        public LoginRecordSearchResponse With(Action<LoginRecordSearchResponse> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

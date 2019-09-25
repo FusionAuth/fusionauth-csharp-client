@@ -13,23 +13,19 @@
  * either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  */
-
 using System;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class ThemeRequest : Buildable<ThemeRequest>
     {
-      action(this);
-      return this;
+        public Guid? sourceThemeId;
+        public Theme theme;
+
+        public ThemeRequest With(Action<ThemeRequest> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

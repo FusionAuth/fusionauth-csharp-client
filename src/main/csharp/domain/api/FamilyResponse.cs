@@ -14,22 +14,21 @@
  * language governing permissions and limitations under the License.
  */
 
+
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class FamilyResponse : Buildable<FamilyResponse>
     {
-      action(this);
-      return this;
+        public List<Family> families;
+        public Family family;
+
+        public FamilyResponse With(Action<FamilyResponse> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

@@ -13,23 +13,13 @@
  * either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  */
-
-using System;
-
+ 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public enum FamilyRole
     {
-      action(this);
-      return this;
+        Child,
+        Teen,
+        Adult
     }
-  }
 }

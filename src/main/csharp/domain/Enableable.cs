@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +18,14 @@ using System;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class Enableable : Buildable<Enableable>
     {
-      action(this);
-      return this;
+        public bool? enabled;
+
+        public Enableable With(Action<Enableable> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }

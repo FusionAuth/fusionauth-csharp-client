@@ -15,21 +15,19 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace FusionAuth.Domain
 {
-  public class UIConfiguration : Buildable<UIConfiguration>
-  {
-    public string headerColor;
-
-    public string logoURL;
-
-    public string menuFontColor;
-
-    public UIConfiguration With(Action<UIConfiguration> action)
+    public class ThemeResponse : Buildable<ThemeResponse>
     {
-      action(this);
-      return this;
+        public Theme theme;
+        public List<Theme> themes;
+
+        public ThemeResponse With(Action<ThemeResponse> action)
+        {
+            action(this);
+            return this;
+        }
     }
-  }
 }
