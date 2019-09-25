@@ -140,6 +140,7 @@
     <Compile Include="domain\DisplayableRawLogin.cs" />
     <Compile Include="domain\EmailConfiguration.cs" />
     <Compile Include="domain\EmailPlus.cs" />
+    <Compile Include="domain\EmailSecurityType.cs" />
     <Compile Include="domain\Enableable.cs" />
     <Compile Include="domain\EventLog.cs" />
     <Compile Include="domain\EventLogConfiguration.cs" />
