@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018-2019, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,40 +15,15 @@
  */
 
 
-using System;
 
 namespace FusionAuth.Domain
 {
-    public class EmailConfiguration : Buildable<EmailConfiguration>
+    public enum EmailSecurityType
   {
-    public bool enabled;
-    
-    public Guid? forgotPasswordEmailTemplateId;
+    NONE,
 
-    public string host;
+    SSL,
 
-    public string password;
-
-    public Guid? passwordlessEmailTemplateId;
-
-    public int? port;
-
-    public EmailSecurityType security;
-    
-    public Guid? setPasswordEmailTemplateId;
-
-    public string username;
-    
-    public Guid? verificationEmailTemplateId;
-
-    public bool verifyEmail;
-
-    public bool verifyEmailWhenChanged;
-
-    public EmailConfiguration With(Action<EmailConfiguration> action)
-    {
-      action(this);
-      return this;
-    }
+    TLS
   }
 }
