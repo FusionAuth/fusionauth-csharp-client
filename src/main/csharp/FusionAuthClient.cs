@@ -2812,6 +2812,24 @@ namespace FusionAuth
     }
 
     /**
+     * Start a passwordless login request by generating a passwordless code. This code can be sent to the User using the Send
+     * Passwordless Code API or using a mechanism outside of FusionAuth. The passwordless login is completed by using the Passwordless Login API with this code.
+     *
+     * @param request The passwordless start request that contains all of the information used to begin the passwordless login request.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, Errors> StartPasswordlessLogin(PasswordlessStartRequest request)
+    {
+        return Start<RESTVoid, Errors>().Uri("/api/passwordless/start")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Complete login using a 2FA challenge
      *
      * @param request The login request that contains the user credentials used to log them in.
