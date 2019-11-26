@@ -15,7 +15,7 @@
         <tags>json rest http fusionauth</tags>
         <dependencies>
             <group targetFramework=".NETFramework2.0">
-                <dependency id="Inversoft.Restify" version="3.2.2" />
+                <dependency id="Inversoft.Restify" version="3.3.0" />
                 <dependency id="Newtonsoft.Json" version="10.0.3" />
             </group>
         </dependencies>

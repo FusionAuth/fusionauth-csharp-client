@@ -250,8 +250,8 @@
     <Folder Include="domain\api\identityProvider\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Restify, Version=3.2.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\packages\Inversoft.Restify.3.2.2\lib\net20\Restify.dll</HintPath>
+    <Reference Include="Restify, Version=3.3.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Inversoft.Restify.3.3.0\lib\net20\Restify.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -156,7 +156,7 @@ namespace FusionAuth
      */
     public ClientResponse<ChangePasswordResponse, Errors> ChangePassword(string changePasswordId, ChangePasswordRequest request)
     {
-        return Start<ChangePasswordResponse, Errors>().Uri("/api/user/change-password")
+        return StartAnonymous<ChangePasswordResponse, Errors>().Uri("/api/user/change-password")
                                           .UrlSegment(changePasswordId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
@@ -937,6 +937,62 @@ namespace FusionAuth
     }
 
     /**
+     * Exchanges an OAuth authorization code for an access token.
+     * If you will be using the Authorization Code grant, you will make a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+     *
+     * @param code The authorization code returned on the /oauth2/authorize response.
+     * @param client_id (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.
+     * @param client_secret (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.
+     * @param redirect_uri The URI to redirect to upon a successful request.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<AccessToken, OAuthError> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri)
+    {
+        Dictionary<string, string> body = new Dictionary<string, string>();
+        body.Add("code", code);
+        body.Add("client_id", client_id);
+        body.Add("client_secret", client_secret);
+        body.Add("grant_type", "authorization_code");
+        body.Add("redirect_uri", redirect_uri);
+        return StartAnonymous<AccessToken, OAuthError>().Uri("/oauth2/token")
+                                          .BodyHandler(new FormDataBodyHandler(body)
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Exchange a Refresh Token for an Access Token.
+     * If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
+     *
+     * @param refresh_token The refresh token that you would like to use to exchange for an access token.
+     * @param client_id (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.
+     * @param client_secret (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.
+     * @param scope (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.
+     * @param user_code (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<AccessToken, OAuthError> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code)
+    {
+        Dictionary<string, string> body = new Dictionary<string, string>();
+        body.Add("refresh_token", refresh_token);
+        body.Add("client_id", client_id);
+        body.Add("client_secret", client_secret);
+        body.Add("grant_type", "refresh_token");
+        body.Add("scope", scope);
+        body.Add("user_code", user_code);
+        return StartAnonymous<AccessToken, OAuthError>().Uri("/oauth2/token")
+                                          .BodyHandler(new FormDataBodyHandler(body)
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Exchange a refresh token for a new JWT.
      *
      * @param request The refresh request.
@@ -947,8 +1003,39 @@ namespace FusionAuth
      */
     public ClientResponse<RefreshResponse, Errors> ExchangeRefreshTokenForJWT(RefreshRequest request)
     {
-        return Start<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
+        return StartAnonymous<RefreshResponse, Errors>().Uri("/api/jwt/refresh")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Exchange User Credentials for a Token.
+     * If you will be using the Resource Owner Password Credential Grant, you will make a request to the Token endpoint to exchange the user’s email and password for an access token.
+     *
+     * @param username The login identifier of the user. The login identifier can be either the email or the username.
+     * @param password The user’s password.
+     * @param client_id (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.
+     * @param client_secret (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.
+     * @param scope (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.
+     * @param user_code (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<AccessToken, OAuthError> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code)
+    {
+        Dictionary<string, string> body = new Dictionary<string, string>();
+        body.Add("username", username);
+        body.Add("password", password);
+        body.Add("client_id", client_id);
+        body.Add("client_secret", client_secret);
+        body.Add("grant_type", "password");
+        body.Add("scope", scope);
+        body.Add("user_code", user_code);
+        return StartAnonymous<AccessToken, OAuthError>().Uri("/oauth2/token")
+                                          .BodyHandler(new FormDataBodyHandler(body)
                                           .Post()
                                           .Go();
     }
@@ -964,7 +1051,7 @@ namespace FusionAuth
      */
     public ClientResponse<ForgotPasswordResponse, Errors> ForgotPassword(ForgotPasswordRequest request)
     {
-        return Start<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
+        return StartAnonymous<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -1078,7 +1165,7 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> IdentityProviderLogin(IdentityProviderLoginRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/identity-provider/login")
+        return StartAnonymous<LoginResponse, Errors>().Uri("/api/identity-provider/login")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -1205,7 +1292,7 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, RESTVoid> Logout(bool? global, string refreshToken)
     {
-        return Start<RESTVoid, RESTVoid>().Uri("/api/logout")
+        return StartAnonymous<RESTVoid, RESTVoid>().Uri("/api/logout")
                                           .UrlParameter("global", global)
                                           .UrlParameter("refreshToken", refreshToken)
                                           .Post()
@@ -1261,9 +1348,312 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> PasswordlessLogin(PasswordlessLoginRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/passwordless/login")
+        return StartAnonymous<LoginResponse, Errors>().Uri("/api/passwordless/login")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the application with the given Id.
+     *
+     * @param applicationId The Id of the application to update.
+     * @param request The request that contains just the new application information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ApplicationResponse, Errors> PatchApplication(Guid? applicationId, Dictionary<string, object> request)
+    {
+        return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                          .UrlSegment(applicationId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the application role with the given id for the application.
+     *
+     * @param applicationId The Id of the application that the role belongs to.
+     * @param roleId The Id of the role to update.
+     * @param request The request that contains just the new role information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ApplicationResponse, Errors> PatchApplicationRole(Guid? applicationId, Guid? roleId, Dictionary<string, object> request)
+    {
+        return Start<ApplicationResponse, Errors>().Uri("/api/application")
+                                          .UrlSegment(applicationId)
+                                          .UrlSegment("role")
+                                          .UrlSegment(roleId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the consent with the given Id.
+     *
+     * @param consentId The Id of the consent to update.
+     * @param request The request that contains just the new consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse, Errors> PatchConsent(Guid? consentId, Dictionary<string, object> request)
+    {
+        return Start<ConsentResponse, Errors>().Uri("/api/consent")
+                                          .UrlSegment(consentId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the email template with the given Id.
+     *
+     * @param emailTemplateId The Id of the email template to update.
+     * @param request The request that contains just the new email template information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<EmailTemplateResponse, Errors> PatchEmailTemplate(Guid? emailTemplateId, Dictionary<string, object> request)
+    {
+        return Start<EmailTemplateResponse, Errors>().Uri("/api/email/template")
+                                          .UrlSegment(emailTemplateId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the group with the given Id.
+     *
+     * @param groupId The Id of the group to update.
+     * @param request The request that contains just the new group information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<GroupResponse, Errors> PatchGroup(Guid? groupId, Dictionary<string, object> request)
+    {
+        return Start<GroupResponse, Errors>().Uri("/api/group")
+                                          .UrlSegment(groupId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the identity provider with the given Id.
+     *
+     * @param identityProviderId The Id of the identity provider to update.
+     * @param request The request object that contains just the updated identity provider information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<IdentityProviderResponse, Errors> PatchIdentityProvider(Guid? identityProviderId, Dictionary<string, object> request)
+    {
+        return Start<IdentityProviderResponse, Errors>().Uri("/api/identity-provider")
+                                          .UrlSegment(identityProviderId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the available integrations.
+     *
+     * @param request The request that contains just the new integration information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<IntegrationResponse, Errors> PatchIntegrations(Dictionary<string, object> request)
+    {
+        return Start<IntegrationResponse, Errors>().Uri("/api/integration")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the lambda with the given Id.
+     *
+     * @param lambdaId The Id of the lambda to update.
+     * @param request The request that contains just the new lambda information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LambdaResponse, Errors> PatchLambda(Guid? lambdaId, Dictionary<string, object> request)
+    {
+        return Start<LambdaResponse, Errors>().Uri("/api/lambda")
+                                          .UrlSegment(lambdaId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
+     *
+     * @param userId The Id of the user whose registration is going to be updated.
+     * @param request The request that contains just the new registration information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RegistrationResponse, Errors> PatchRegistration(Guid? userId, Dictionary<string, object> request)
+    {
+        return Start<RegistrationResponse, Errors>().Uri("/api/user/registration")
+                                          .UrlSegment(userId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the system configuration.
+     *
+     * @param request The request that contains just the new system configuration information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<SystemConfigurationResponse, Errors> PatchSystemConfiguration(Dictionary<string, object> request)
+    {
+        return Start<SystemConfigurationResponse, Errors>().Uri("/api/system-configuration")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the tenant with the given Id.
+     *
+     * @param tenantId The Id of the tenant to update.
+     * @param request The request that contains just the new tenant information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<TenantResponse, Errors> PatchTenant(Guid? tenantId, Dictionary<string, object> request)
+    {
+        return Start<TenantResponse, Errors>().Uri("/api/tenant")
+                                          .UrlSegment(tenantId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the theme with the given Id.
+     *
+     * @param themeId The Id of the theme to update.
+     * @param request The request that contains just the new theme information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse, Errors> PatchTheme(Guid? themeId, Dictionary<string, object> request)
+    {
+        return Start<ThemeResponse, Errors>().Uri("/api/theme")
+                                          .UrlSegment(themeId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the user with the given Id.
+     *
+     * @param userId The Id of the user to update.
+     * @param request The request that contains just the new user information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserResponse, Errors> PatchUser(Guid? userId, Dictionary<string, object> request)
+    {
+        return Start<UserResponse, Errors>().Uri("/api/user")
+                                          .UrlSegment(userId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the user action with the given Id.
+     *
+     * @param userActionId The Id of the user action to update.
+     * @param request The request that contains just the new user action information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserActionResponse, Errors> PatchUserAction(Guid? userActionId, Dictionary<string, object> request)
+    {
+        return Start<UserActionResponse, Errors>().Uri("/api/user-action")
+                                          .UrlSegment(userActionId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, the user action reason with the given Id.
+     *
+     * @param userActionReasonId The Id of the user action reason to update.
+     * @param request The request that contains just the new user action reason information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserActionReasonResponse, Errors> PatchUserActionReason(Guid? userActionReasonId, Dictionary<string, object> request)
+    {
+        return Start<UserActionReasonResponse, Errors>().Uri("/api/user-action-reason")
+                                          .UrlSegment(userActionReasonId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
+                                          .Go();
+    }
+
+    /**
+     * Updates, via PATCH, a single User consent by Id.
+     *
+     * @param userConsentId The User Consent Id
+     * @param request The request that contains just the new user consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse, Errors> PatchUserConsent(Guid? userConsentId, Dictionary<string, object> request)
+    {
+        return Start<UserConsentResponse, Errors>().Uri("/api/user/consent")
+                                          .UrlSegment(userConsentId)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Patch()
                                           .Go();
     }
 
@@ -1332,7 +1722,7 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> ReconcileJWT(IdentityProviderLoginRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/jwt/reconcile")
+        return StartAnonymous<LoginResponse, Errors>().Uri("/api/jwt/reconcile")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -1409,7 +1799,7 @@ namespace FusionAuth
      */
     public ClientResponse<VerifyEmailResponse, Errors> ResendEmailVerification(string email)
     {
-        return Start<VerifyEmailResponse, Errors>().Uri("/api/user/verify-email")
+        return StartAnonymous<VerifyEmailResponse, Errors>().Uri("/api/user/verify-email")
                                           .UrlParameter("email", email)
                                           .Put()
                                           .Go();
@@ -1427,7 +1817,7 @@ namespace FusionAuth
      */
     public ClientResponse<VerifyRegistrationResponse, Errors> ResendRegistrationVerification(string email, Guid? applicationId)
     {
-        return Start<VerifyRegistrationResponse, Errors>().Uri("/api/user/verify-registration")
+        return StartAnonymous<VerifyRegistrationResponse, Errors>().Uri("/api/user/verify-registration")
                                           .UrlParameter("email", email)
                                           .UrlParameter("applicationId", applicationId)
                                           .Put()
@@ -1852,7 +2242,7 @@ namespace FusionAuth
      */
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKey(string keyId)
     {
-        return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+        return StartAnonymous<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
                                           .UrlParameter("kid", keyId)
                                           .Get()
                                           .Go();
@@ -1869,7 +2259,7 @@ namespace FusionAuth
      */
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKeyByApplicationId(string applicationId)
     {
-        return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+        return StartAnonymous<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
                                           .UrlParameter("applicationId", applicationId)
                                           .Get()
                                           .Go();
@@ -1885,7 +2275,22 @@ namespace FusionAuth
      */
     public ClientResponse<PublicKeyResponse, RESTVoid> RetrieveJWTPublicKeys()
     {
-        return Start<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+        return StartAnonymous<PublicKeyResponse, RESTVoid>().Uri("/api/jwt/public-key")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Returns public keys used by FusionAuth to cryptographically verify JWTs using the JSON Web Key format.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<JWKSResponse, RESTVoid> RetrieveJsonWebKeySet()
+    {
+        return StartAnonymous<JWKSResponse, RESTVoid>().Uri("/.well-known/jwks.json")
                                           .Get()
                                           .Go();
     }
@@ -2034,6 +2439,21 @@ namespace FusionAuth
     }
 
     /**
+     * Returns the well known OpenID Configuration JSON document
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<OpenIdConfiguration, RESTVoid> RetrieveOpenIdConfiguration()
+    {
+        return StartAnonymous<OpenIdConfiguration, RESTVoid>().Uri("/.well-known/openid-configuration")
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Retrieves the password validation rules for a specific tenant. This method requires a tenantId to be provided 
      * through the use of a Tenant scoped API key or an HTTP header X-FusionAuth-TenantId to specify the Tenant Id.
      * 
@@ -2046,7 +2466,7 @@ namespace FusionAuth
      */
     public ClientResponse<PasswordValidationRulesResponse, RESTVoid> RetrievePasswordValidationRules()
     {
-        return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/tenant/password-validation-rules")
+        return StartAnonymous<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/tenant/password-validation-rules")
                                           .Get()
                                           .Go();
     }
@@ -2064,7 +2484,7 @@ namespace FusionAuth
      */
     public ClientResponse<PasswordValidationRulesResponse, RESTVoid> RetrievePasswordValidationRulesWithTenantId(Guid? tenantId)
     {
-        return Start<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/tenant/password-validation-rules")
+        return StartAnonymous<PasswordValidationRulesResponse, RESTVoid>().Uri("/api/tenant/password-validation-rules")
                                           .UrlSegment(tenantId)
                                           .Get()
                                           .Go();
@@ -2560,7 +2980,7 @@ namespace FusionAuth
      */
     public ClientResponse<UserResponse, Errors> RetrieveUserUsingJWT(string encodedJWT)
     {
-        return Start<UserResponse, Errors>().Uri("/api/user")
+        return StartAnonymous<UserResponse, Errors>().Uri("/api/user")
                                           .Authorization("JWT " + encodedJWT)
                                           .Get()
                                           .Go();
@@ -2771,7 +3191,7 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> SendPasswordlessCode(PasswordlessSendRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/passwordless/send")
+        return StartAnonymous<RESTVoid, Errors>().Uri("/api/passwordless/send")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -2805,7 +3225,7 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> SendTwoFactorCodeForLogin(string twoFactorId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/two-factor/send")
+        return StartAnonymous<RESTVoid, Errors>().Uri("/api/two-factor/send")
                                           .UrlSegment(twoFactorId)
                                           .Post()
                                           .Go();
@@ -2840,7 +3260,7 @@ namespace FusionAuth
      */
     public ClientResponse<LoginResponse, Errors> TwoFactorLogin(TwoFactorLoginRequest request)
     {
-        return Start<LoginResponse, Errors>().Uri("/api/two-factor/login")
+        return StartAnonymous<LoginResponse, Errors>().Uri("/api/two-factor/login")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -3188,6 +3608,26 @@ namespace FusionAuth
     }
 
     /**
+     * Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
+     * If you build your own activation form you should validate the user provided code prior to beginning the Authorization grant.
+     *
+     * @param user_code The end-user verification code.
+     * @param client_id The client id.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid, RESTVoid> ValidateDevice(string user_code, string client_id)
+    {
+        return StartAnonymous<RESTVoid, RESTVoid>().Uri("/oauth2/device/validate")
+                                          .UrlParameter("user_code", user_code)
+                                          .UrlParameter("client_id", client_id)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
      * Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
      * signed and not expired.
      * <p>
@@ -3201,7 +3641,7 @@ namespace FusionAuth
      */
     public ClientResponse<ValidateResponse, RESTVoid> ValidateJWT(string encodedJWT)
     {
-        return Start<ValidateResponse, RESTVoid>().Uri("/api/jwt/validate")
+        return StartAnonymous<ValidateResponse, RESTVoid>().Uri("/api/jwt/validate")
                                           .Authorization("JWT " + encodedJWT)
                                           .Get()
                                           .Go();
@@ -3218,7 +3658,7 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> VerifyEmail(string verificationId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/verify-email")
+        return StartAnonymous<RESTVoid, Errors>().Uri("/api/user/verify-email")
                                           .UrlSegment(verificationId)
                                           .Post()
                                           .Go();
@@ -3235,7 +3675,7 @@ namespace FusionAuth
      */
     public ClientResponse<RESTVoid, Errors> VerifyRegistration(string verificationId)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/verify-registration")
+        return StartAnonymous<RESTVoid, Errors>().Uri("/api/user/verify-registration")
                                           .UrlSegment(verificationId)
                                           .Post()
                                           .Go();
@@ -3244,20 +3684,24 @@ namespace FusionAuth
     // Start initializes and returns RESTClient
     private RESTClient<T, U> Start<T, U>()
     {
-        var client = new RESTClient<T, U>().Authorization(apiKey)
-                                   .SuccessResponseHandler(typeof(T) == typeof(RESTVoid) ? null : new JSONResponseHandler<T>(serializer))
-                                   .ErrorResponseHandler(typeof(U) == typeof(RESTVoid) ? null : new JSONResponseHandler<U>(serializer))
-                                   .Url(baseUrl)
-                                   .Timeout(timeout)
-                                   .ReadWriteTimeout(readWriteTimeout)
-                                   .Proxy(webProxy);
-
-
-        if (tenantId != null) {
-          client.Header(TENANT_ID_HEADER, tenantId);
-        }
-
-        return client;
+        return StartAnonymous<T, U>().Authorization(apiKey);
     }
+  }
+
+  private RESTClient<T, U> StartAnonymous<T, U>()
+  {
+      var client = new RESTClient<T, U>().SuccessResponseHandler(typeof(T) == typeof(RESTVoid) ? null : new JSONResponseHandler<T>(serializer))
+                                .ErrorResponseHandler(typeof(U) == typeof(RESTVoid) ? null : new JSONResponseHandler<U>(serializer))
+                                .Url(baseUrl)
+                                .Timeout(timeout)
+                                .ReadWriteTimeout(readWriteTimeout)
+                                .Proxy(webProxy);
+
+
+      if (tenantId != null) {
+          client.Header(TENANT_ID_HEADER, tenantId);
+      }
+
+      return client;
   }
 }
