@@ -3232,6 +3232,24 @@ namespace FusionAuth
     }
 
     /**
+     * Begins a login request for a 3rd party login that requires user interaction such as HYPR.
+     *
+     * @param request The third-party login request that contains information from the third-party login
+     * providers that FusionAuth uses to reconcile the user's account.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<IdentityProviderStartLoginResponse, Errors> StartIdentityProviderLogin(IdentityProviderStartLoginRequest request)
+    {
+        return Start<IdentityProviderStartLoginResponse, Errors>().Uri("/api/identity-provider/start")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
      * Start a passwordless login request by generating a passwordless code. This code can be sent to the User using the Send
      * Passwordless Code API or using a mechanism outside of FusionAuth. The passwordless login is completed by using the Passwordless Login API with this code.
      *
