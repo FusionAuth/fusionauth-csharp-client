@@ -13,10 +13,10 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>1.12.0</ReleaseVersion>
+    <ReleaseVersion>1.13.0</ReleaseVersion>
     <LangVersion>3</LangVersion>
     <PackageId>FusionAuth.Client</PackageId>
-    <PackageVersion>1.12.0</PackageVersion>
+    <PackageVersion>1.13.0</PackageVersion>
     <Authors>Brian Pontarelli, Daniel DeGroff</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>voidmain, robotdan</Owners>
