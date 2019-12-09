@@ -587,10 +587,32 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeactivateUsers(List<string> userIds)
+    public ClientResponse<UserDeleteResponse, Errors> DeactivateUsers(List<string> userIds)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
+        return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
                                           .UrlParameter("userId", userIds)
+                                          .UrlParameter("dryRun", false)
+                                          .UrlParameter("hardDelete", false)
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
+     * Deactivates the users found with the given search query string.
+     *
+     * @param queryString The search query string.
+     * @param dryRun Whether to preview or deactivate the users found by the queryString
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserDeleteResponse, Errors> DeactivateUsersByQuery(string queryString, bool? dryRun)
+    {
+        return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
+                                          .UrlParameter("queryString", queryString)
+                                          .UrlParameter("dryRun", dryRun)
+                                          .UrlParameter("hardDelete", false)
                                           .Delete()
                                           .Go();
     }
@@ -865,18 +887,40 @@ namespace FusionAuth
     }
 
     /**
-     * Deletes the users with the given ids.
+     * Deletes the users with the given ids, or users matching the provided queryString.
+     * If you provide both userIds and queryString, the userIds will be honored.  This can be used to deactivate or hard-delete 
+     * a user based on the hardDelete request body parameter.
      *
-     * @param request The ids of the users to delete.
+     * @param request The UserDeleteRequest.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> DeleteUsers(UserDeleteRequest request)
+    public ClientResponse<UserDeleteResponse, Errors> DeleteUsers(UserDeleteRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/user/bulk")
+        return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Delete()
+                                          .Go();
+    }
+
+    /**
+     * Delete the users found with the given search query string.
+     *
+     * @param queryString The search query string.
+     * @param dryRun Whether to preview or delete the users found by the queryString
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserDeleteResponse, Errors> DeleteUsersByQuery(string queryString, bool? dryRun)
+    {
+        return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
+                                          .UrlParameter("queryString", queryString)
+                                          .UrlParameter("dryRun", dryRun)
+                                          .UrlParameter("hardDelete", true)
                                           .Delete()
                                           .Go();
     }
