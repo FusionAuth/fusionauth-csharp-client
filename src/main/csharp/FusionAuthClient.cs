@@ -156,7 +156,7 @@ namespace FusionAuth
      */
     public ClientResponse<ChangePasswordResponse, Errors> ChangePassword(string changePasswordId, ChangePasswordRequest request)
     {
-        return StartAnonymous<ChangePasswordResponse, Errors>().Uri("/api/user/change-password")
+        return Start<ChangePasswordResponse, Errors>().Uri("/api/user/change-password")
                                           .UrlSegment(changePasswordId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
@@ -1095,7 +1095,7 @@ namespace FusionAuth
      */
     public ClientResponse<ForgotPasswordResponse, Errors> ForgotPassword(ForgotPasswordRequest request)
     {
-        return StartAnonymous<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
+        return Start<ForgotPasswordResponse, Errors>().Uri("/api/user/forgot-password")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
@@ -1843,7 +1843,7 @@ namespace FusionAuth
      */
     public ClientResponse<VerifyEmailResponse, Errors> ResendEmailVerification(string email)
     {
-        return StartAnonymous<VerifyEmailResponse, Errors>().Uri("/api/user/verify-email")
+        return Start<VerifyEmailResponse, Errors>().Uri("/api/user/verify-email")
                                           .UrlParameter("email", email)
                                           .Put()
                                           .Go();
