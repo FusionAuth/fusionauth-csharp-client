@@ -1861,7 +1861,7 @@ namespace FusionAuth
      */
     public ClientResponse<VerifyRegistrationResponse, Errors> ResendRegistrationVerification(string email, Guid? applicationId)
     {
-        return StartAnonymous<VerifyRegistrationResponse, Errors>().Uri("/api/user/verify-registration")
+        return Start<VerifyRegistrationResponse, Errors>().Uri("/api/user/verify-registration")
                                           .UrlParameter("email", email)
                                           .UrlParameter("applicationId", applicationId)
                                           .Put()
