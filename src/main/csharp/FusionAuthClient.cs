@@ -3303,9 +3303,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<RESTVoid, Errors> StartPasswordlessLogin(PasswordlessStartRequest request)
+    public ClientResponse<PasswordlessStartResponse, Errors> StartPasswordlessLogin(PasswordlessStartRequest request)
     {
-        return Start<RESTVoid, Errors>().Uri("/api/passwordless/start")
+        return Start<PasswordlessStartResponse, Errors>().Uri("/api/passwordless/start")
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
