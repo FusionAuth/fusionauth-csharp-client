@@ -587,6 +587,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
+    [Obsolete("This method has been renamed to DeactivateUsersByIds, use this method instead.")]
     public ClientResponse<UserDeleteResponse, Errors> DeactivateUsers(List<string> userIds)
     {
         return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
@@ -598,20 +599,19 @@ namespace FusionAuth
     }
 
     /**
-     * Deactivates the users found with the given search query string.
+     * Deactivates the users with the given ids.
      *
-     * @param queryString The search query string.
-     * @param dryRun Whether to preview or deactivate the users found by the queryString
+     * @param userIds The ids of the users to deactivate.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserDeleteResponse, Errors> DeactivateUsersByQuery(string queryString, bool? dryRun)
+    public ClientResponse<UserDeleteResponse, Errors> DeactivateUsersByIds(List<string> userIds)
     {
         return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
-                                          .UrlParameter("queryString", queryString)
-                                          .UrlParameter("dryRun", dryRun)
+                                          .UrlParameter("userId", userIds)
+                                          .UrlParameter("dryRun", false)
                                           .UrlParameter("hardDelete", false)
                                           .Delete()
                                           .Go();
@@ -887,9 +887,11 @@ namespace FusionAuth
     }
 
     /**
-     * Deletes the users with the given ids, or users matching the provided queryString.
-     * If you provide both userIds and queryString, the userIds will be honored.  This can be used to deactivate or hard-delete 
-     * a user based on the hardDelete request body parameter.
+     * Deletes the users with the given ids, or users matching the provided JSON query or queryString.
+     * The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+     * 
+     * This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
+     * Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
      *
      * @param request The UserDeleteRequest.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
@@ -897,6 +899,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
+    [Obsolete("This method has been renamed to DeleteUsersByQuery, use this method instead.")]
     public ClientResponse<UserDeleteResponse, Errors> DeleteUsers(UserDeleteRequest request)
     {
         return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
@@ -906,21 +909,22 @@ namespace FusionAuth
     }
 
     /**
-     * Delete the users found with the given search query string.
+     * Deletes the users with the given ids, or users matching the provided JSON query or queryString.
+     * The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+     * 
+     * This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
+     * Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
      *
-     * @param queryString The search query string.
-     * @param dryRun Whether to preview or delete the users found by the queryString
+     * @param request The UserDeleteRequest.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<UserDeleteResponse, Errors> DeleteUsersByQuery(string queryString, bool? dryRun)
+    public ClientResponse<UserDeleteResponse, Errors> DeleteUsersByQuery(UserDeleteRequest request)
     {
         return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
-                                          .UrlParameter("queryString", queryString)
-                                          .UrlParameter("dryRun", dryRun)
-                                          .UrlParameter("hardDelete", true)
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Delete()
                                           .Go();
     }
@@ -3161,7 +3165,25 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
+    [Obsolete("This method has been renamed to SearchUsersByIds, use this method instead.")]
     public ClientResponse<SearchResponse, Errors> SearchUsers(List<string> ids)
+    {
+        return Start<SearchResponse, Errors>().Uri("/api/user/search")
+                                          .UrlParameter("ids", ids)
+                                          .Get()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the users for the given ids. If any id is invalid, it is ignored.
+     *
+     * @param ids The user ids to search for.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<SearchResponse, Errors> SearchUsersByIds(List<string> ids)
     {
         return Start<SearchResponse, Errors>().Uri("/api/user/search")
                                           .UrlParameter("ids", ids)
@@ -3172,13 +3194,32 @@ namespace FusionAuth
     /**
      * Retrieves the users for the given search criteria and pagination.
      *
-     * @param request The search criteria and pagination constraints. Fields used: queryString, numberOfResults, startRow,
-     * and sort fields.
+     * @param request The search criteria and pagination constraints. Fields used: ids, query, queryString, numberOfResults, orderBy, startRow,
+     * and sortFields.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
+    public ClientResponse<SearchResponse, Errors> SearchUsersByQuery(SearchRequest request)
+    {
+        return Start<SearchResponse, Errors>().Uri("/api/user/search")
+                                          .BodyHandler(new JSONBodyHandler(request, serializer))
+                                          .Post()
+                                          .Go();
+    }
+
+    /**
+     * Retrieves the users for the given search criteria and pagination.
+     *
+     * @param request The search criteria and pagination constraints. Fields used: ids, query, queryString, numberOfResults, orderBy, startRow,
+     * and sortFields.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    [Obsolete("This method has been renamed to SearchUsersByQuery, use this method instead.")]
     public ClientResponse<SearchResponse, Errors> SearchUsersByQueryString(SearchRequest request)
     {
         return Start<SearchResponse, Errors>().Uri("/api/user/search")
