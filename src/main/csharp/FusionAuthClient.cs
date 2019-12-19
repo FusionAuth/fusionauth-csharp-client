@@ -587,7 +587,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    [Obsolete("This method has been renamed to DeactivateUsersByIds, use this method instead.")]
+    [Obsolete("This method has been renamed to DeactivateUsersByIds, use that method instead.")]
     public ClientResponse<UserDeleteResponse, Errors> DeactivateUsers(List<string> userIds)
     {
         return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
@@ -899,7 +899,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    [Obsolete("This method has been renamed to DeleteUsersByQuery, use this method instead.")]
+    [Obsolete("This method has been renamed to DeleteUsersByQuery, use that method instead.")]
     public ClientResponse<UserDeleteResponse, Errors> DeleteUsers(UserDeleteRequest request)
     {
         return Start<UserDeleteResponse, Errors>().Uri("/api/user/bulk")
@@ -3165,7 +3165,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    [Obsolete("This method has been renamed to SearchUsersByIds, use this method instead.")]
+    [Obsolete("This method has been renamed to SearchUsersByIds, use that method instead.")]
     public ClientResponse<SearchResponse, Errors> SearchUsers(List<string> ids)
     {
         return Start<SearchResponse, Errors>().Uri("/api/user/search")
@@ -3219,7 +3219,7 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    [Obsolete("This method has been renamed to SearchUsersByQuery, use this method instead.")]
+    [Obsolete("This method has been renamed to SearchUsersByQuery, use that method instead.")]
     public ClientResponse<SearchResponse, Errors> SearchUsersByQueryString(SearchRequest request)
     {
         return Start<SearchResponse, Errors>().Uri("/api/user/search")
