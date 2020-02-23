@@ -85,10 +85,8 @@ namespace FusionAuth
 
     /**
      * Takes an action on a user. The user being actioned is called the "actionee" and the user taking the action is called the
-     * "actioner". Both user ids are required. You pass the actionee's user id into the method and the actioner's is put into the
-     * request object.
+     * "actioner". Both user ids are required in the request object.
      *
-     * @param actioneeUserId The actionee's user id.
      * @param request The action request that includes all of the information about the action being taken including
      * the id of the action, any options and the duration (if applicable).
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
@@ -96,10 +94,9 @@ namespace FusionAuth
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<ActionResponse, Errors> ActionUser(Guid? actioneeUserId, ActionRequest request)
+    public ClientResponse<ActionResponse, Errors> ActionUser(ActionRequest request)
     {
         return Start<ActionResponse, Errors>().Uri("/api/user/action")
-                                          .UrlSegment(actioneeUserId)
                                           .BodyHandler(new JSONBodyHandler(request, serializer))
                                           .Post()
                                           .Go();
