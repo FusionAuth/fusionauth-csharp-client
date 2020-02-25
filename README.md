@@ -3,7 +3,7 @@ If you're integrating FusionAuth with a C# (.Net) application, this library will
 
 For additional information and documentation on FusionAuth refer to [https://fusionauth.io](https://fusionauth.io).
 
-> **Read this first: **: This library has been deprecated and you should use the .NET Core FusionAuth library instead. See https://github.com/FusionAuth/fusionauth-netcore-client
+> **Read this first:** This library has been deprecated and you should use the .NET Core FusionAuth library instead. See https://github.com/FusionAuth/fusionauth-netcore-client
 
 **Note:** This project uses a slightly different file layout than other C# and Visual Studio projects. This is a Java convention that we carried over to all of our client libraries to keep consistency.
 
