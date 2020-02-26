@@ -1263,16 +1263,20 @@ namespace FusionAuth
      *
      * @param applicationId The Application Id for which you are requesting a new access token be issued.
      * @param encodedJWT The encoded JWT (access token).
+     * @param refreshToken (Optional) An existing refresh token used to request a refresh token in addition to a JWT in the response.
+     * <p>The target application represented by the applicationid request parameter must have refresh 
+     * tokens enabled in order to receive a refresh token in the response.</p>
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      * IOException.
      */
-    public ClientResponse<IssueResponse, Errors> IssueJWT(Guid? applicationId, string encodedJWT)
+    public ClientResponse<IssueResponse, Errors> IssueJWT(Guid? applicationId, string encodedJWT, string refreshToken)
     {
         return Start<IssueResponse, Errors>().Uri("/api/jwt/issue")
                                           .Authorization("JWT " + encodedJWT)
                                           .UrlParameter("applicationId", applicationId)
+                                          .UrlParameter("refreshToken", refreshToken)
                                           .Get()
                                           .Go();
     }
